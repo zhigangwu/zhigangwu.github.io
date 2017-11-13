@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="继之前两篇如何实现tableview本本篇我们就讲讲如何显示数据，其他话就不多说了直接进入主题。 首先在.h文件中定义一个NSArray属性用于存放数据 12345@interface TableViewController : UITableViewController@property (nonatomic, strong) NSArray *array;@end">
+<meta name="description" content="继之前如何实现tableview本篇我们就讲讲如何实现数据显示。 首先在.h文件中定义一个NSArray属性用于存放数据 12345@interface TableViewController : UITableViewController@property (nonatomic, strong) NSArray *array;@end">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UITabelview--数据显示">
 <meta property="og:url" content="http://yoursite.com/2017/11/13/UITabelview--数据显示/index.html">
 <meta property="og:site_name" content="Ryan">
-<meta property="og:description" content="继之前两篇如何实现tableview本本篇我们就讲讲如何显示数据，其他话就不多说了直接进入主题。 首先在.h文件中定义一个NSArray属性用于存放数据 12345@interface TableViewController : UITableViewController@property (nonatomic, strong) NSArray *array;@end">
+<meta property="og:description" content="继之前如何实现tableview本篇我们就讲讲如何实现数据显示。 首先在.h文件中定义一个NSArray属性用于存放数据 12345@interface TableViewController : UITableViewController@property (nonatomic, strong) NSArray *array;@end">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/5.png?raw=true">
-<meta property="og:updated_time" content="2017-11-13T07:07:12.969Z">
+<meta property="og:updated_time" content="2017-11-13T11:17:35.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITabelview--数据显示">
-<meta name="twitter:description" content="继之前两篇如何实现tableview本本篇我们就讲讲如何显示数据，其他话就不多说了直接进入主题。 首先在.h文件中定义一个NSArray属性用于存放数据 12345@interface TableViewController : UITableViewController@property (nonatomic, strong) NSArray *array;@end">
+<meta name="twitter:description" content="继之前如何实现tableview本篇我们就讲讲如何实现数据显示。 首先在.h文件中定义一个NSArray属性用于存放数据 12345@interface TableViewController : UITableViewController@property (nonatomic, strong) NSArray *array;@end">
 <meta name="twitter:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/5.png?raw=true">
 
 
@@ -301,18 +301,18 @@
       
 
       
-        <p>继之前两篇如何实现tableview本本篇我们就讲讲如何显示数据，其他话就不多说了直接进入主题。</p>
+        <p>继之前如何实现<code>tableview</code>本篇我们就讲讲如何实现数据显示。</p>
 <p>首先在<code>.h</code>文件中定义一个<code>NSArray</code>属性用于存放数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@interface TableViewController : UITableViewController</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) NSArray *array;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>接着在<code>.m</code>文件中我们添加剂个字符串数据</p>
+<p>接着在<code>.m</code>文件中我们添加几个字符串数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    self.array = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;];</span><br><span class="line">    </span><br><span class="line">    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@&quot;cell&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>修改</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section &#123;</span><br><span class="line"></span><br><span class="line">    return self.array.count;</span><br><span class="line">//    return 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>显示多少行的数据当然是根据数据中有多少数据决定的，<code>count</code>即引用计数。</p>
+<p>显示多少行数据当然是根据数据中有多少数据决定的，<code>count</code>即引用计数。</p>
 <p>获取到要显示多少行还不够还要把数据显示到<code>cell</code>上</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;cell&quot; forIndexPath:indexPath];</span><br><span class="line">    </span><br><span class="line">    if (!cell) &#123;</span><br><span class="line">        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@&quot;cell&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    cell.textLabel.text = [self.array objectAtIndex:indexPath.row];</span><br><span class="line">    cell.textLabel.textColor = [UIColor redColor];</span><br><span class="line">    </span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>UITableViewCell</code>自带有就有很多属性其中就有<code>textLabel``imageView</code>这个两个使用最多也是必不可少的属性。</p>
+<p><code>UITableViewCell</code>自带有就有很多属性，其中<code>textLabel``imageView</code>这个两个属性是使用最多也是必不可少的。</p>
 <p>运行就能看到添加的数据了</p>
 <p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/5.png?raw=true" alt=""></p>
 <p>当然这是最简单的数据显示方式更复杂的后面我会慢慢提及。</p>
