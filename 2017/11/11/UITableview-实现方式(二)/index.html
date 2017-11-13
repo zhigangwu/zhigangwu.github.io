@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>UITableview-实现方式(二) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="继UITableview(一)今天讲解UITableview的另外一种实现方式 - 继承与UIViewController。当创建好一个项目之后会发现自带会有一个名叫ViewController的文档点击ViewController.h不难发现该文件直接继承的是UIViewController">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UITableview-实现方式(二)">
+<meta property="og:url" content="http://yoursite.com/2017/11/11/UITableview-实现方式(二)/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="继UITableview(一)今天讲解UITableview的另外一种实现方式 - 继承与UIViewController。当创建好一个项目之后会发现自带会有一个名叫ViewController的文档点击ViewController.h不难发现该文件直接继承的是UIViewController">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/6.png?raw=true">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/7.png?raw=true">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/8.png?raw=true">
+<meta property="og:updated_time" content="2017-11-13T02:18:20.696Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UITableview-实现方式(二)">
+<meta name="twitter:description" content="继UITableview(一)今天讲解UITableview的另外一种实现方式 - 继承与UIViewController。当创建好一个项目之后会发现自带会有一个名叫ViewController的文档点击ViewController.h不难发现该文件直接继承的是UIViewController">
+<meta name="twitter:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/6.png?raw=true">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-UITableview-实现方式(二)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/11/UITableview-实现方式(二)/" class="article-date">
+  <time datetime="2017-11-10T16:00:00.000Z" itemprop="datePublished">2017-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      UITableview-实现方式(二)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>继<code>UITableview(一)</code>今天讲解UITableview的另外一种实现方式 - 继承与<code>UIViewController</code>。当创建好一个项目之后会发现自带会有一个名叫<code>ViewController</code>的文档点击<code>ViewController.h</code>不难发现该文件直接继承的是<code>UIViewController</code></p>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/6.png?raw=true" alt=""></p>
+<a id="more"></a>
+<p>在<code>UITableview(一)</code>中说到要实现一个表视图必须实现<code>UITableViewDataSource</code>中到两个方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section</span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</span><br></pre></td></tr></table></figure>
+<p>首先在<code>ViewController.h</code>中添加<code>UITableViewDelegate``UITableViewDataSource</code></p>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/7.png?raw=true" alt=""></p>
+<blockquote>
+<p>为什么要添加<code>UITableViewDelegate``UITableViewDataSource</code>后续文章中会详细讲解。</p>
+</blockquote>
+<p>之后在<code>ViewController.m</code>文件中添加两个必须实现的方法及相关代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section</span><br><span class="line">&#123;</span><br><span class="line">    return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;cell&quot; forIndexPath:indexPath];</span><br><span class="line">    </span><br><span class="line">    if (!cell) &#123;</span><br><span class="line">        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@&quot;cell&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其次在 <code>- (void)viewDidLoad;</code>中还要注册<code>cell</code>当按照<code>UITableview(一)</code>中讲解的那样添加代码时</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@&quot;cell&quot;];</span><br></pre></td></tr></table></figure>
+<p>是会报错的</p>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/8.png?raw=true" alt=""></p>
+<p>意思是没有相关的<code>tableView</code>属性，因为<code>UIViewController</code>不继承<code>UITableView</code>所以不拥有<code>UITableView</code>中的属性。因此我们必须单独添加</p>
+<p>首先初始化一个<code>UITableView</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UITableView *tableView = [[UITableView alloc] init];</span><br></pre></td></tr></table></figure>
+<p>初始化好之后就应该把<code>UITableView</code>视图添加到当前的视图中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self.view addSubview:tableView];</span><br></pre></td></tr></table></figure>
+<p>之后还必须设置下<code>tableView</code>的<code>frame</code>固定下显示的位置,设置为填满整个屏幕</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tableView.frame = [[UIScreen mainScreen] bounds];</span><br></pre></td></tr></table></figure>
+<p>而后就可以添加注册<code>cell</code>的代码了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@&quot;cell&quot;];</span><br></pre></td></tr></table></figure>
+<hr>
+<p>然而这并没有完事，还有两行最关键的代码需要添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tableView.delegate = self;</span><br><span class="line">tableView.dataSource = self;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这两行代码是重中之重但却是最容易被忽视的</li>
+</ul>
+<hr>
+<p>之后就可以运行了当然别忘了在<code>AppDelegate.h</code>文件中设置为<code>rootViewController</code>。</p>
+<p>最后祝大家双十一快~乐 – 想想你们真的快乐吗！！！😏</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/11/UITableview-实现方式(二)/" data-id="cj9xpsy7l0001hl6oc6udek68" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/13/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/10/UITableView-实现方式(一)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">UITableview-实现方式(一)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/11/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/11/UITableview-实现方式(二)/">UITableview-实现方式(二)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/10/UITableView-实现方式(一)/">UITableview-实现方式(一)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
