@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="简单的数据是实现了但这肯定不是我们所需求的样式，我们所需求的肯定是一种能满足我们审美的创建方式。 这时我们就需要单独去设置cell的样式，哪该如何去设置呢？接下来就我个人经验来讲解下。 首先创建一个集成于UITableViewCell的一个类文件  创建好之后可以先了解下该类有些属性和方法。">
+<meta name="description" content="简单的数据实现了但这肯定不是我们所需求的样式，我们所需求的肯定是一种能满足我们审美的创建方式。 这时我们就需要单独去设置cell的样式，哪该如何去设置呢？接下来就我个人经验来讲解下。 首先创建一个集成于UITableViewCell的一个类文件  创建好之后可以先了解下该类有哪些属性和方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UITableViewCell">
 <meta property="og:url" content="http://yoursite.com/2017/11/14/UITableViewCell/index.html">
 <meta property="og:site_name" content="Ryan">
-<meta property="og:description" content="简单的数据是实现了但这肯定不是我们所需求的样式，我们所需求的肯定是一种能满足我们审美的创建方式。 这时我们就需要单独去设置cell的样式，哪该如何去设置呢？接下来就我个人经验来讲解下。 首先创建一个集成于UITableViewCell的一个类文件  创建好之后可以先了解下该类有些属性和方法。">
+<meta property="og:description" content="简单的数据实现了但这肯定不是我们所需求的样式，我们所需求的肯定是一种能满足我们审美的创建方式。 这时我们就需要单独去设置cell的样式，哪该如何去设置呢？接下来就我个人经验来讲解下。 首先创建一个集成于UITableViewCell的一个类文件  创建好之后可以先了解下该类有哪些属性和方法。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/9.png?raw=true">
 <meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/10.png?raw=true">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/12.png?raw=true">
-<meta property="og:updated_time" content="2017-11-14T02:15:59.484Z">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/13.png?raw=true">
+<meta property="og:updated_time" content="2017-11-14T03:02:50.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITableViewCell">
-<meta name="twitter:description" content="简单的数据是实现了但这肯定不是我们所需求的样式，我们所需求的肯定是一种能满足我们审美的创建方式。 这时我们就需要单独去设置cell的样式，哪该如何去设置呢？接下来就我个人经验来讲解下。 首先创建一个集成于UITableViewCell的一个类文件  创建好之后可以先了解下该类有些属性和方法。">
+<meta name="twitter:description" content="简单的数据实现了但这肯定不是我们所需求的样式，我们所需求的肯定是一种能满足我们审美的创建方式。 这时我们就需要单独去设置cell的样式，哪该如何去设置呢？接下来就我个人经验来讲解下。 首先创建一个集成于UITableViewCell的一个类文件  创建好之后可以先了解下该类有哪些属性和方法。">
 <meta name="twitter:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/9.png?raw=true">
 
 
@@ -303,13 +303,13 @@
       
 
       
-        <p>简单的数据是实现了但这肯定不是我们所需求的样式，我们所需求的肯定是一种能满足我们审美的创建方式。</p>
+        <p>简单的数据实现了但这肯定不是我们所需求的样式，我们所需求的肯定是一种能满足我们审美的创建方式。</p>
 <p>这时我们就需要单独去设置<code>cell</code>的样式，哪该如何去设置呢？接下来就我个人经验来讲解下。</p>
 <p>首先创建一个集成于<code>UITableViewCell</code>的一个类文件</p>
 <p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/9.png?raw=true" alt=""></p>
-<p>创建好之后可以先了解下该类有些属性和方法。</p>
+<p>创建好之后可以先了解下该类有哪些属性和方法。</p>
 <a id="more"></a>
-<p>为了方便讲解我们就按下图的布局来讲解</p>
+<p>为了方便讲解我们就按下图的文字内容布局来讲解。</p>
 <p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/10.png?raw=true" alt=""></p>
 <p>左边的<code>头像</code>右上角的<code>绿标</code>还有右下角的<code>眼标</code>及<code>信息标识</code>都看作是图片,那就可以用<code>UIImageView</code>来布局实现。</p>
 <p>定义四个<code>UIImageView</code>类的属性分别来对应上面的图片。</p>
@@ -321,7 +321,7 @@
 <p>然后添加到<code>cell</code>的视图当中，注意<code>cell</code>的视图用的是<code>contentView</code>而非<code>View</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[self.contentView addSubview:self.imageViewA];</span><br><span class="line">[self.contentView addSubview:self.imageViewB];</span><br><span class="line">[self.contentView addSubview:self.imageViewC];</span><br><span class="line">[self.contentView addSubview:self.imageViewD];</span><br><span class="line">[self.contentView addSubview:self.labelA];</span><br><span class="line">[self.contentView addSubview:self.labelB];</span><br><span class="line">[self.contentView addSubview:self.labelC];</span><br><span class="line">[self.contentView addSubview:self.labelD];</span><br></pre></td></tr></table></figure>
 <p>之后就是设置每个属性视图在<code>cell</code>中的frame和背景颜色方便观察 比如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">self.labelA.frame = CGRectMake(80, 0, 100, 20);</span><br><span class="line">self.labelA.backgroundColor = [UIColor redColor];</span><br><span class="line">        </span><br><span class="line">self.labelB.frame = CGRectMake(80, 25, 80, 20);</span><br><span class="line">self.labelB.backgroundColor = [UIColor redColor];</span><br><span class="line">        </span><br><span class="line">self.labelC.frame = CGRectMake(280, 25, 50, 20);</span><br><span class="line">self.labelC.backgroundColor = [UIColor redColor];</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">self.imageViewA.frame = CGRectMake(5, 5, 80, 80);</span><br><span class="line">self.imageViewB.frame = CGRectMake(300, 5, 20, 20);</span><br><span class="line">self.imageViewC.frame = CGRectMake(300, 60, 20, 20);</span><br><span class="line">self.imageViewD.frame = CGRectMake(230, 60, 20, 20);</span><br><span class="line">        </span><br><span class="line">self.labelA.frame = CGRectMake(90, 5, 150, 20);</span><br><span class="line">self.labelB.frame = CGRectMake(90, 60, 100, 20);</span><br><span class="line">self.labelC.frame = CGRectMake(255, 60, 50, 20);</span><br><span class="line">self.labelD.frame = CGRectMake(330, 60, 50, 20);</span><br><span class="line">        </span><br><span class="line">self.labelA.backgroundColor = [UIColor redColor];</span><br><span class="line">self.labelB.backgroundColor = [UIColor redColor];</span><br><span class="line">self.labelC.backgroundColor = [UIColor redColor];</span><br><span class="line">self.labelD.backgroundColor = [UIColor redColor];</span><br></pre></td></tr></table></figure>
 <p><code>cell</code>的布局设置好之后接下来就是怎么把它与<code>UITableView</code>关联起来<br>回到<code>ViewController.h</code>文件首先关联头文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &quot;TableViewCell.h&quot;</span><br></pre></td></tr></table></figure>
 <p>接着在<code>- (void)viewDidLoad</code>方法中修改注册<code>cell</code>的信息,<br>把<code>UITableViewCell</code>更改为上面<code>引入头文件的文件名</code>我这里是<code>TableViewCell</code></p>
@@ -330,9 +330,9 @@
 <p>因为我们设置了新的<code>UILabel</code>属性信息因此也必须使用设置的属性来显示内容。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;cell&quot; forIndexPath:indexPath];</span><br><span class="line">    </span><br><span class="line">//    cell.textLabel.text = [self.array objectAtIndex:indexPath.row];</span><br><span class="line"></span><br><span class="line">    cell.labelA.text = [self.array objectAtIndex:indexPath.row];</span><br><span class="line">    cell.labelA.textColor = [UIColor blueColor];</span><br><span class="line">    </span><br><span class="line">    cell.labelB.text = @&quot;8小时后之前&quot;;</span><br><span class="line">    cell.labelB.textColor = [UIColor blueColor];</span><br><span class="line">    </span><br><span class="line">    cell.labelC.text = @&quot;2356&quot;;</span><br><span class="line">    cell.labelC.textColor = [UIColor blueColor];</span><br><span class="line">    </span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行</p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/12.png?raw=true" alt=""></p>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/13.png?raw=true" alt=""></p>
 <p>可以在<code>ViewController.h</code>文件中通过下面的方法可以设置<code>cell</code>的行高。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    return 200;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    return 100;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
