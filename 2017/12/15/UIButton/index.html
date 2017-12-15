@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Ryan">
 <meta property="og:description" content="其实还是很有必要单独写写平时用的最多的一些单独的控件，今天就先总结下UIButton.还是在之前写的UITableView中讲解，创建了一个FirstViewController让第二行的cell跳转到该视图控制器 1234567891011- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-15T08:30:39.813Z">
+<meta property="og:updated_time" content="2017-12-15T08:34:07.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIButton">
 <meta name="twitter:description" content="其实还是很有必要单独写写平时用的最多的一些单独的控件，今天就先总结下UIButton.还是在之前写的UITableView中讲解，创建了一个FirstViewController让第二行的cell跳转到该视图控制器 1234567891011- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath">
@@ -301,6 +301,7 @@
       
         <p>其实还是很有必要单独写写平时用的最多的一些单独的控件，今天就先总结下<code>UIButton</code>.还是在之前写的<code>UITableView</code>中讲解，创建了一个<code>FirstViewController</code>让第二行的<code>cell</code>跳转到该视图控制器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    if (indexPath.row == 0) &#123;</span><br><span class="line">        TableViewController *table = [[TableViewController alloc] init];</span><br><span class="line">        [self.navigationController pushViewController:table animated:YES];</span><br><span class="line">    &#125;</span><br><span class="line">    if (indexPath.row == 1) &#123;</span><br><span class="line">        FirstViewController *first = [[FirstViewController alloc] init];</span><br><span class="line">        [self.navigationController pushViewController:first animated:YES];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>然后我们在<code>FirstViewController</code>中添加一个<code>UIButton</code>，首页初始化再设置<code>button</code>的<code>frame</code>并设置一下<code>BackgroundColor</code>以方便查看最后在把<code>button``add</code>到当前的视图中.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UIButton *button = [[UIButton alloc] init];</span><br><span class="line">button.frame = CGRectMake(100, 100, 30, 30);</span><br><span class="line">[button setBackgroundColor:[UIColor greenColor]];</span><br><span class="line">[self.view addSubview:button];</span><br></pre></td></tr></table></figure>
 <blockquote>

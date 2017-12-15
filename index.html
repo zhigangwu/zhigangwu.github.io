@@ -299,114 +299,15 @@
 
       
         
-          
-            <p>其实还是很有必要单独写写平时用的最多的一些单独的控件，今天就先总结下<code>UIButton</code>.还是在之前写的<code>UITableView</code>中讲解，创建了一个<code>FirstViewController</code>让第二行的<code>cell</code>跳转到该视图控制器</p>
+          <p>其实还是很有必要单独写写平时用的最多的一些单独的控件，今天就先总结下<code>UIButton</code>.还是在之前写的<code>UITableView</code>中讲解，创建了一个<code>FirstViewController</code>让第二行的<code>cell</code>跳转到该视图控制器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    if (indexPath.row == 0) &#123;</span><br><span class="line">        TableViewController *table = [[TableViewController alloc] init];</span><br><span class="line">        [self.navigationController pushViewController:table animated:YES];</span><br><span class="line">    &#125;</span><br><span class="line">    if (indexPath.row == 1) &#123;</span><br><span class="line">        FirstViewController *first = [[FirstViewController alloc] init];</span><br><span class="line">        [self.navigationController pushViewController:first animated:YES];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后我们在<code>FirstViewController</code>中添加一个<code>UIButton</code>，首页初始化再设置<code>button</code>的<code>frame</code>并设置一下<code>BackgroundColor</code>以方便查看最后在把<code>button``add</code>到当前的视图中.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UIButton *button = [[UIButton alloc] init];</span><br><span class="line">button.frame = CGRectMake(100, 100, 30, 30);</span><br><span class="line">[button setBackgroundColor:[UIColor greenColor]];</span><br><span class="line">[self.view addSubview:button];</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>运行查看！有一个问题，就是当视图在跳转的过程中感觉不是很流畅有拖?影的感觉，这是因为<code>self.view</code>在被创建出来的<code>backgroundcolor</code>默认为透明色，因为只要将<code>backgroundcolor</code>设置为非透明色就可以了。</p>
-<p>如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;    self.view.backgroundColor = [UIColor whiteColor];</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>###首先看下按钮在被点击时有哪些状态</p>
-<table>
-<thead>
-<tr>
-<th>UIControlStateNormal</th>
-<th>正常状态无任何反应</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UIControlStateHighlighted</td>
-<td>标题在点击时显示不点击不显示</td>
-</tr>
-<tr>
-<td>UIControlStateDisabled</td>
-<td>禁用状态</td>
-</tr>
-<tr>
-<td>UIControlStateSelected</td>
-<td>可以设置被点击后的状态（点赞）</td>
-</tr>
-<tr>
-<td>UIControlStateFocused</td>
-<td>当屏幕支持聚焦时可用  iOS 9 新属性</td>
-</tr>
-<tr>
-<td>UIControlStateApplication</td>
-<td>当用做应用标志时</td>
-</tr>
-<tr>
-<td>UIControlStateReserved</td>
-<td>框架预留 无意义</td>
-</tr>
-</tbody>
-</table>
-<p><code>setTitle</code>和<code>setImage</code>下状态都是一样的。<br>前两个状态在平时用的应该是最多的，后面几个具体的用法本人也不是很清楚之后之后如果碰到会补充。☺️</p>
-<p>###更改字体的颜色:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)setTitleColor:(nullable UIColor *)color forState:(UIControlState)state</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如当被点击时字体颜色更改为红色:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> &gt;   [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];</span><br><span class="line">    </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>###更改button的标题字体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button.titleLabel.font = [UIFont systemFontOfSize:30];</span><br></pre></td></tr></table></figure>
-<p>###点击事件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[button addTarget:self action:@selector(selectButton:) forControlEvents:UIControlEventTouchUpInside];</span><br></pre></td></tr></table></figure>
-<p>在点击事件中可以实现点击<code>Button</code>后想要实现的效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)selectButton:(UIButton *)sender</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;,sender);</span><br><span class="line">    sender.selected = !sender.selected;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>如改变当前视图的背景颜色:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;- (void)selectButton:(UIButton *)sender</span><br><span class="line">&gt;&#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;,sender);</span><br><span class="line">    self.view.backgroundColor = [UIColor greenColor];</span><br><span class="line">&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p><code>forControlEvents</code>点击的类型也是有很多种的</p>
-<table>
-<thead>
-<tr>
-<th>UIControlEventTouchDown</th>
-<th>按下</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UIControlEventTouchDownRepeat</td>
-<td>多次按下</td>
-</tr>
-<tr>
-<td>UIControlEventTouchDragInside</td>
-<td>保持按下,在按钮及其一定的外围拖动</td>
-</tr>
-<tr>
-<td>UIControlEventTouchDragOutside</td>
-<td>保持按下,在按钮外面拖动</td>
-</tr>
-<tr>
-<td>UIControlEventTouchDragEnter</td>
-<td>DragOutside进入DragInside触发</td>
-</tr>
-<tr>
-<td>UIControlEventTouchDragExit</td>
-<td>DragInside到DragOutside触发</td>
-</tr>
-<tr>
-<td>UIControlEventTouchUpInside</td>
-<td>按钮及其一定外围内松开</td>
-</tr>
-<tr>
-<td>UIControlEventTouchUpOutside</td>
-<td>按钮外面松开</td>
-</tr>
-<tr>
-<td>UIControlEventTouchCancel</td>
-<td>点击取消</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>用的最多的是<code>UIControlEventTouchUpInside</code></li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/15/UIButton/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
