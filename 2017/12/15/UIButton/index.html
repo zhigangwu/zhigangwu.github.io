@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="其实还是很有必要单独写写平时用的最多的一些单独的控件，今天就先总结下UIButton.还是在之前写的UITableView中讲解，创建了一个FirstViewController让第二行的cell跳转到该视图控制器 1234567891011- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIButton">
+<meta property="og:url" content="http://yoursite.com/2017/12/15/UIButton/index.html">
+<meta property="og:site_name" content="Ryan">
+<meta property="og:description" content="其实还是很有必要单独写写平时用的最多的一些单独的控件，今天就先总结下UIButton.还是在之前写的UITableView中讲解，创建了一个FirstViewController让第二行的cell跳转到该视图控制器 1234567891011- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-15T08:30:39.813Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UIButton">
+<meta name="twitter:description" content="其实还是很有必要单独写写平时用的最多的一些单独的控件，今天就先总结下UIButton.还是在之前写的UITableView中讲解，创建了一个FirstViewController让第二行的cell跳转到该视图控制器 1234567891011- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/15/UIButton/"/>
+
+
+
+
+
+  <title>UIButton | Ryan</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ryan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Back To My Keyboard</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/UIButton/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ryan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ryan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UIButton</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T00:00:00+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>其实还是很有必要单独写写平时用的最多的一些单独的控件，今天就先总结下<code>UIButton</code>.还是在之前写的<code>UITableView</code>中讲解，创建了一个<code>FirstViewController</code>让第二行的<code>cell</code>跳转到该视图控制器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    if (indexPath.row == 0) &#123;</span><br><span class="line">        TableViewController *table = [[TableViewController alloc] init];</span><br><span class="line">        [self.navigationController pushViewController:table animated:YES];</span><br><span class="line">    &#125;</span><br><span class="line">    if (indexPath.row == 1) &#123;</span><br><span class="line">        FirstViewController *first = [[FirstViewController alloc] init];</span><br><span class="line">        [self.navigationController pushViewController:first animated:YES];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们在<code>FirstViewController</code>中添加一个<code>UIButton</code>，首页初始化再设置<code>button</code>的<code>frame</code>并设置一下<code>BackgroundColor</code>以方便查看最后在把<code>button``add</code>到当前的视图中.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UIButton *button = [[UIButton alloc] init];</span><br><span class="line">button.frame = CGRectMake(100, 100, 30, 30);</span><br><span class="line">[button setBackgroundColor:[UIColor greenColor]];</span><br><span class="line">[self.view addSubview:button];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>运行查看！有一个问题，就是当视图在跳转的过程中感觉不是很流畅有拖?影的感觉，这是因为<code>self.view</code>在被创建出来的<code>backgroundcolor</code>默认为透明色，因为只要将<code>backgroundcolor</code>设置为非透明色就可以了。</p>
+<p>如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;    self.view.backgroundColor = [UIColor whiteColor];</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>###首先看下按钮在被点击时有哪些状态</p>
+<table>
+<thead>
+<tr>
+<th>UIControlStateNormal</th>
+<th>正常状态无任何反应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UIControlStateHighlighted</td>
+<td>标题在点击时显示不点击不显示</td>
+</tr>
+<tr>
+<td>UIControlStateDisabled</td>
+<td>禁用状态</td>
+</tr>
+<tr>
+<td>UIControlStateSelected</td>
+<td>可以设置被点击后的状态（点赞）</td>
+</tr>
+<tr>
+<td>UIControlStateFocused</td>
+<td>当屏幕支持聚焦时可用  iOS 9 新属性</td>
+</tr>
+<tr>
+<td>UIControlStateApplication</td>
+<td>当用做应用标志时</td>
+</tr>
+<tr>
+<td>UIControlStateReserved</td>
+<td>框架预留 无意义</td>
+</tr>
+</tbody>
+</table>
+<p><code>setTitle</code>和<code>setImage</code>下状态都是一样的。<br>前两个状态在平时用的应该是最多的，后面几个具体的用法本人也不是很清楚之后之后如果碰到会补充。☺️</p>
+<p>###更改字体的颜色:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)setTitleColor:(nullable UIColor *)color forState:(UIControlState)state</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如当被点击时字体颜色更改为红色:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> &gt;   [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];</span><br><span class="line">    </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>###更改button的标题字体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button.titleLabel.font = [UIFont systemFontOfSize:30];</span><br></pre></td></tr></table></figure>
+<p>###点击事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[button addTarget:self action:@selector(selectButton:) forControlEvents:UIControlEventTouchUpInside];</span><br></pre></td></tr></table></figure>
+<p>在点击事件中可以实现点击<code>Button</code>后想要实现的效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)selectButton:(UIButton *)sender</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;,sender);</span><br><span class="line">    sender.selected = !sender.selected;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如改变当前视图的背景颜色:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;- (void)selectButton:(UIButton *)sender</span><br><span class="line">&gt;&#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;,sender);</span><br><span class="line">    self.view.backgroundColor = [UIColor greenColor];</span><br><span class="line">&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>forControlEvents</code>点击的类型也是有很多种的</p>
+<table>
+<thead>
+<tr>
+<th>UIControlEventTouchDown</th>
+<th>按下</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UIControlEventTouchDownRepeat</td>
+<td>多次按下</td>
+</tr>
+<tr>
+<td>UIControlEventTouchDragInside</td>
+<td>保持按下,在按钮及其一定的外围拖动</td>
+</tr>
+<tr>
+<td>UIControlEventTouchDragOutside</td>
+<td>保持按下,在按钮外面拖动</td>
+</tr>
+<tr>
+<td>UIControlEventTouchDragEnter</td>
+<td>DragOutside进入DragInside触发</td>
+</tr>
+<tr>
+<td>UIControlEventTouchDragExit</td>
+<td>DragInside到DragOutside触发</td>
+</tr>
+<tr>
+<td>UIControlEventTouchUpInside</td>
+<td>按钮及其一定外围内松开</td>
+</tr>
+<tr>
+<td>UIControlEventTouchUpOutside</td>
+<td>按钮外面松开</td>
+</tr>
+<tr>
+<td>UIControlEventTouchCancel</td>
+<td>点击取消</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>用的最多的是<code>UIControlEventTouchUpInside</code></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/27/UITabelView基本总结二/" rel="next" title="UITabelView基本总结二">
+                <i class="fa fa-chevron-left"></i> UITabelView基本总结二
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ryan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ryan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
