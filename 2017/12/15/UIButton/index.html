@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Ryan">
 <meta property="og:description" content="其实还是很有必要单独写写平时用的最多的一些单独的控件，今天就先总结下UIButton.还是在之前写的UITableView中讲解，创建了一个FirstViewController让第二行的cell跳转到该视图控制器 1234567891011- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-15T08:34:07.741Z">
+<meta property="og:updated_time" content="2017-12-18T06:12:10.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIButton">
 <meta name="twitter:description" content="其实还是很有必要单独写写平时用的最多的一些单独的控件，今天就先总结下UIButton.还是在之前写的UITableView中讲解，创建了一个FirstViewController让第二行的cell跳转到该视图控制器 1234567891011- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath">
@@ -308,8 +308,7 @@
 <p>运行查看！有一个问题，就是当视图在跳转的过程中感觉不是很流畅有拖?影的感觉，这是因为<code>self.view</code>在被创建出来的<code>backgroundcolor</code>默认为透明色，因为只要将<code>backgroundcolor</code>设置为非透明色就可以了。</p>
 <p>如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;    self.view.backgroundColor = [UIColor whiteColor];</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p>###首先看下按钮在被点击时有哪些状态</p>
-<table>
+<h3 id="首先看下按钮在被点击时有哪些状态"><a href="#首先看下按钮在被点击时有哪些状态" class="headerlink" title="首先看下按钮在被点击时有哪些状态"></a>首先看下按钮在被点击时有哪些状态</h3><table>
 <thead>
 <tr>
 <th>UIControlStateNormal</th>
@@ -344,16 +343,13 @@
 </tbody>
 </table>
 <p><code>setTitle</code>和<code>setImage</code>下状态都是一样的。<br>前两个状态在平时用的应该是最多的，后面几个具体的用法本人也不是很清楚之后之后如果碰到会补充。☺️</p>
-<p>###更改字体的颜色:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)setTitleColor:(nullable UIColor *)color forState:(UIControlState)state</span><br></pre></td></tr></table></figure>
+<h3 id="更改字体的颜色"><a href="#更改字体的颜色" class="headerlink" title="更改字体的颜色:"></a>更改字体的颜色:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)setTitleColor:(nullable UIColor *)color forState:(UIControlState)state</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>如当被点击时字体颜色更改为红色:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> &gt;   [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];</span><br><span class="line">    </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>###更改button的标题字体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button.titleLabel.font = [UIFont systemFontOfSize:30];</span><br></pre></td></tr></table></figure>
-<p>###点击事件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[button addTarget:self action:@selector(selectButton:) forControlEvents:UIControlEventTouchUpInside];</span><br></pre></td></tr></table></figure>
+<h3 id="更改button的标题字体"><a href="#更改button的标题字体" class="headerlink" title="更改button的标题字体"></a>更改button的标题字体</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button.titleLabel.font = [UIFont systemFontOfSize:30];</span><br></pre></td></tr></table></figure>
+<h3 id="点击事件"><a href="#点击事件" class="headerlink" title="点击事件"></a>点击事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[button addTarget:self action:@selector(selectButton:) forControlEvents:UIControlEventTouchUpInside];</span><br></pre></td></tr></table></figure>
 <p>在点击事件中可以实现点击<code>Button</code>后想要实现的效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)selectButton:(UIButton *)sender</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;,sender);</span><br><span class="line">    sender.selected = !sender.selected;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>如改变当前视图的背景颜色:</p>
@@ -489,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -534,6 +539,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先看下按钮在被点击时有哪些状态"><span class="nav-number">1.</span> <span class="nav-text">首先看下按钮在被点击时有哪些状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改字体的颜色"><span class="nav-number">2.</span> <span class="nav-text">更改字体的颜色:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改button的标题字体"><span class="nav-number">3.</span> <span class="nav-text">更改button的标题字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#点击事件"><span class="nav-number">4.</span> <span class="nav-text">点击事件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
