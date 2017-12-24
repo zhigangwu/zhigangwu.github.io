@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="UILabel 初始化  1UILabel *label = [[UILabel alloc] init];  基本属性  1234567891011121314// frame设置labelA.frame = CGRectMake(90, 5, 150, 20);// 设置文本内容@property(nullable, nonatomic,copy)   NSString *text; labe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UILabel、UITextview、UITextField">
+<meta property="og:url" content="http://yoursite.com/2017/12/23/UILabel、UITextview、UITextField/index.html">
+<meta property="og:site_name" content="Ryan">
+<meta property="og:description" content="UILabel 初始化  1UILabel *label = [[UILabel alloc] init];  基本属性  1234567891011121314// frame设置labelA.frame = CGRectMake(90, 5, 150, 20);// 设置文本内容@property(nullable, nonatomic,copy)   NSString *text; labe">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-24T04:04:06.973Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UILabel、UITextview、UITextField">
+<meta name="twitter:description" content="UILabel 初始化  1UILabel *label = [[UILabel alloc] init];  基本属性  1234567891011121314// frame设置labelA.frame = CGRectMake(90, 5, 150, 20);// 设置文本内容@property(nullable, nonatomic,copy)   NSString *text; labe">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/23/UILabel、UITextview、UITextField/"/>
+
+
+
+
+
+  <title>UILabel、UITextview、UITextField | Ryan</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ryan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Back To My Keyboard</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/UILabel、UITextview、UITextField/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ryan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ryan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UILabel、UITextview、UITextField</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="UILabel"><a href="#UILabel" class="headerlink" title="UILabel"></a>UILabel</h3><ul>
+<li>初始化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UILabel *label = [[UILabel alloc] init];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>基本属性</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// frame设置</span><br><span class="line">labelA.frame = CGRectMake(90, 5, 150, 20);</span><br><span class="line"></span><br><span class="line">// 设置文本内容</span><br><span class="line">@property(nullable, nonatomic,copy)   NSString *text; </span><br><span class="line">label.text = @&quot;文本内容&quot;;  </span><br><span class="line"></span><br><span class="line">// 文本字体      </span><br><span class="line">@property(null_resettable, nonatomic,strong) UIFont *font;</span><br><span class="line">label.font = [UIFont fontWithName:@&quot;PingFangSC-Light&quot; size:16];</span><br><span class="line"></span><br><span class="line">// 文本字体颜色</span><br><span class="line">@property(null_resettable, nonatomic,strong) UIColor *textColor; </span><br><span class="line">label.textColor = [UIColor colorWithRed:66/255.0 green:66/255.0 blue:66/255.0 alpha:1/1.0];</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>设置文本对其方式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property(nonatomic) NSTextAlignment textAlignment;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>NSTextAlignmentNatural 默认方式; ios 9 之前是NSTextAlignmentLeft(左对齐)<br>// default is NSTextAlignmentNatural (before iOS 9, the default was NSTextAlignmentLeft)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSTextAlignmentLeft : 左对齐</span><br><span class="line">NSTextAlignmentCenter : 居中</span><br><span class="line">NSTextAlignmentRight : 右对齐</span><br><span class="line"></span><br><span class="line">label.textAlignment = NSTextAlignmentCenter;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>行数设置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@property(nonatomic) NSInteger numberOfLines;</span><br><span class="line"></span><br><span class="line">// 行数不限</span><br><span class="line">self.labelA.numberOfLines = 0;</span><br><span class="line"></span><br><span class="line">// 具体行数设置具体数字</span><br><span class="line">self.labelA.numberOfLines = 2;</span><br></pre></td></tr></table></figure>
+<h3 id="UITextview"><a href="#UITextview" class="headerlink" title="UITextview"></a>UITextview</h3><ul>
+<li><code>UITextview</code>的部分基础属性设置跟<code>UILabel</code>差不多</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@property(null_resettable,nonatomic,copy) NSString *text;</span><br><span class="line">@property(nullable,nonatomic,strong) UIFont *font;</span><br><span class="line">@property(nullable,nonatomic,strong) UIColor *textColor;</span><br><span class="line">@property(nonatomic) NSTextAlignment textAlignment;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>UITextViewDelegate</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 将要开始编辑</span><br><span class="line">- (BOOL)textViewShouldBeginEditing:(UITextView *)textView;</span><br><span class="line"></span><br><span class="line">// 将要结束编辑</span><br><span class="line">- (BOOL)textViewShouldEndEditing:(UITextView *)textView;</span><br><span class="line"></span><br><span class="line">// 是否开始编辑</span><br><span class="line">- (void)textViewDidBeginEditing:(UITextView *)textView;</span><br><span class="line"></span><br><span class="line">// 是否结束编辑</span><br><span class="line">- (void)textViewDidEndEditing:(UITextView *)textView;</span><br><span class="line"></span><br><span class="line">// 内容将要发生改变编辑</span><br><span class="line">	- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;</span><br><span class="line"></span><br><span class="line">// 内容发生改变时调用 可以在此方法中设置文本框高度的自适应</span><br><span class="line">- (void)textViewDidChange:(UITextView *)textView;</span><br><span class="line"></span><br><span class="line">// 焦点发生改变- (void)textViewDidChangeSelection:(UITextView *)textView;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>退出键盘 </li>
+</ul>
+<p>因为UITextview是一个文本编辑控件在编辑时键盘是自动跳出显示的，然而在编辑完成时键盘却不会自动跳出需要手动设置方法让键盘消失。</p>
+<blockquote>
+<p>在模拟器运行中有可能出现点击UITextView后出现光标但为跳出模拟器键盘，使用电脑键盘可以输入。要使用模拟器自带键盘可以通过<code>Shift + Command + K</code>设置</p>
+</blockquote>
+<ul>
+<li>1.如果你程序是有导航条的，可以在导航条上面加多一个Done的按钮，用来退出键盘，当然要先实现UITextViewDelegate。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 添加导航栏按钮</span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    self.view.backgroundColor = [UIColor whiteColor];</span><br><span class="line">    </span><br><span class="line">    self.textView = [[UITextView alloc] init];</span><br><span class="line">    self.textView.backgroundColor = [UIColor greenColor];</span><br><span class="line">    self.textView.frame = CGRectMake(50, 100, 200, 300);</span><br><span class="line">    [self.view addSubview:self.textView];</span><br><span class="line">    self.textView.delegate = self; // *代理设置别忘了</span><br><span class="line">    </span><br><span class="line">    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@&quot;down&quot;</span><br><span class="line">                                                             style:UIBarButtonItemStyleDone</span><br><span class="line">                                                            target:self</span><br><span class="line">                                                            action:@selector(leaveEditMode)];</span><br><span class="line">    </span><br><span class="line">    self.navigationItem.rightBarButtonItem = done;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 通过按钮让UITextview注销第一响应</span><br><span class="line">- (void)leaveEditMode &#123;</span><br><span class="line">    [self.textView resignFirstResponder];   </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果你的textview里不用回车键，可以把<code>return</code>键当做退出键盘的响应键</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text</span><br><span class="line">&#123;    </span><br><span class="line"></span><br><span class="line">    if ([text isEqualToString:@&quot;\n&quot;]) &#123;    </span><br><span class="line"></span><br><span class="line">        [textView resignFirstResponder];    </span><br><span class="line"></span><br><span class="line">        return NO;    </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return YES;    </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>点击textview外的空白视图退出键盘(一般是当前的视图)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    [self.view endEditing:YES];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NSNotification-通知</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UIKIT_EXTERN NSNotificationName const UITextViewTextDidBeginEditingNotification; //开始编辑时发送通知</span><br><span class="line">UIKIT_EXTERN NSNotificationName const UITextViewTextDidChangeNotification; // 文本发生变化时发送通知</span><br><span class="line">UIKIT_EXTERN NSNotificationName const UITextViewTextDidEndEditingNotification; // 结束编辑时发送通知</span><br></pre></td></tr></table></figure>
+<h3 id="UITextField"><a href="#UITextField" class="headerlink" title="UITextField"></a>UITextField</h3><p><code>UITextField</code>的用法基本与<code>UITextview</code>相同.<code>UITextField</code>也有自己的代理方法<code>UITextFieldDelegate</code></p>
+<p>区别:</p>
+<ul>
+<li><p>UITextField: 只能输入一行，不可以滚动，可以设置提醒文字。</p>
+</li>
+<li><p>UITextView: 能输入多行，可以滚动，不可以设置提醒文字。</p>
+</li>
+</ul>
+<blockquote>
+<p>该三个控件都具有文本显示的作用<br><code>UILabel:显示的只读文本无法编辑，可以根据文字内容自动换行</code><br><code>UITextView</code>:可编辑文本内容，也可进行换行。<br><code>UITextField</code>:可编辑文本但无法换行，只能显示一行。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/15/UIButton/" rel="next" title="UIButton">
+                <i class="fa fa-chevron-left"></i> UIButton
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ryan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#UILabel"><span class="nav-number">1.</span> <span class="nav-text">UILabel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UITextview"><span class="nav-number">2.</span> <span class="nav-text">UITextview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UITextField"><span class="nav-number">3.</span> <span class="nav-text">UITextField</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ryan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
