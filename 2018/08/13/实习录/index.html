@@ -79,24 +79,17 @@
 
 
 
-<meta name="description" content="1.什么是UITableview？  图中展示的就一个基础的UItableView。">
+<meta name="description" content="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。 其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。  时间上班敲代码的时间远比之前上的班的时间过的要快的多快的多，真正体会到了时间不够用是种什么感觉。因为经验少多半">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UITableview-实现方式(一)">
-<meta property="og:url" content="http://yoursite.com/2017/11/10/UITableView-实现方式(一)/index.html">
+<meta property="og:title" content="实习录">
+<meta property="og:url" content="http://yoursite.com/2018/08/13/实习录/index.html">
 <meta property="og:site_name" content="Ryan">
-<meta property="og:description" content="1.什么是UITableview？  图中展示的就一个基础的UItableView。">
+<meta property="og:description" content="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。 其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。  时间上班敲代码的时间远比之前上的班的时间过的要快的多快的多，真正体会到了时间不够用是种什么感觉。因为经验少多半">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/5.png?raw=true">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/1.png?raw=true">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/2.png?raw=true">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/3.png?raw=true">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/4.png?raw=true">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/5.png?raw=true">
-<meta property="og:updated_time" content="2017-11-13T11:21:59.162Z">
+<meta property="og:updated_time" content="2018-08-13T06:52:15.405Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UITableview-实现方式(一)">
-<meta name="twitter:description" content="1.什么是UITableview？  图中展示的就一个基础的UItableView。">
-<meta name="twitter:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/5.png?raw=true">
+<meta name="twitter:title" content="实习录">
+<meta name="twitter:description" content="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。 其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。  时间上班敲代码的时间远比之前上的班的时间过的要快的多快的多，真正体会到了时间不够用是种什么感觉。因为经验少多半">
 
 
 
@@ -126,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/10/UITableView-实现方式(一)/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/13/实习录/"/>
 
 
 
 
 
-  <title>UITableview-实现方式(一) | Ryan</title>
+  <title>实习录 | Ryan</title>
   
 
 
@@ -239,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/10/UITableView-实现方式(一)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/实习录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ryan">
@@ -256,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">UITableview-实现方式(一)</h1>
+          <h1 class="post-title" itemprop="name headline">实习录</h1>
         
 
         <div class="post-meta">
@@ -268,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-10T00:00:00+08:00">
-                2017-11-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T00:00:00+08:00">
+                2018-08-13
               </time>
             
 
@@ -306,33 +299,15 @@
       
 
       
-        <p>1.什么是UITableview？</p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/5.png?raw=true" alt=""></p>
-<p>图中展示的就一个基础的UItableView。</p>
-<a id="more"></a>
-<p>2.如何实现？</p>
-<ul>
-<li>1 直接继承与UITableViewController</li>
-</ul>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/1.png?raw=true" alt=""></p>
-<p>建立好文档后先了解下UITableViewController有那些特性。<br>选择<code>UITableViewController.h</code>文件，按住 <code>Ctrl + commend</code>键光标移至下图深灰背景的UITableViewController位置然后单击。</p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/2.png?raw=true" alt=""></p>
-<p>单击之后会跳转到一新的页面看如下选择中的内容</p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/3.png?raw=true" alt=""></p>
-<p>其实我们可以看到尖括号中的<code>UITableViewDelegate</code>即<code>代理</code> <code>UITableViewDataSource</code>即<code>数据源</code>。<code>UITableViewDelegate</code>跟<code>UITableViewDataSource</code>分别都有自己的方法。我们先来看<code>UITableViewDataSource</code>用上面的<code>Ctrl + commend</code>方法点击<code>UITableViewDataSource</code>。</p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/4.png?raw=true" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">`@required`表示的是必须实现的方法即想让一个tableview能够正常运行就必须实现以下方法</span><br><span class="line"></span><br><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;</span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;</span><br></pre></td></tr></table></figure>
-<p> <code>@optional</code>表示可选的方法当想实现某些特殊的功能的时候即会用到里面的方法。</p>
-<p>回到新建的TableViewController文档选择<code>TableViewController.m</code>文件，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section &#123;</span><br><span class="line"></span><br><span class="line">    return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;cell&quot; forIndexPath:indexPath];</span><br><span class="line">    </span><br><span class="line">    if (!cell) &#123;</span><br><span class="line">        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@&quot;cell&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后在<code>AppDelegate.m</code>把<code>TableViewController</code>设置为<code>rootViewController</code>根试图</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</span><br><span class="line">    self.window.backgroundColor = [UIColor whiteColor];</span><br><span class="line">    </span><br><span class="line">    TableViewController *tableview = [[TableViewController alloc] init];</span><br><span class="line">    self.window.rootViewController = tableview;</span><br><span class="line">    </span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然而当运行发现奔溃报如下错误</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Terminating app due to uncaught exception &apos;NSInternalInconsistencyException&apos;, reason: &apos;unable to dequeue a cell with identifier cell - must register a nib or a class for the identifier or connect a prototype cell in a storyboard&apos;</span><br></pre></td></tr></table></figure>
-<p>意思是没有注册相关cell没有cell自然也不会显示相关的行。还是在<code>TableViewController.m</code>文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@&quot;cell&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>再次运行成功这样一个最简单的UITableView就实现了</p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/5.png?raw=true" alt=""></p>
+        <h4 id="时隔将至半载趁有点空余时间-其实是懒-￣▽￣-感觉多多少少还是应该写点感受的。"><a href="#时隔将至半载趁有点空余时间-其实是懒-￣▽￣-感觉多多少少还是应该写点感受的。" class="headerlink" title="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。"></a>时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。</h4><blockquote>
+<p>其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。</p>
+</blockquote>
+<h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><p>上班敲代码的时间远比之前上的班的时间过的要快的多快的多，真正体会到了时间不够用是种什么感觉。因为经验少多半的时间用在了找资料看资料上，工作进度也随之累积着。但感慨的是时间并没有被浪费掉而是为现在的工作打下了基础。</p>
+<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>第一个项目可以说是个不小的项目因为是实习分配到的相比其他端算是简单的，但是相比自学期间写的Demo现在想想根本就是两回事啊！所以每天工作的时间自然而然的花在了资料上了。虽还有很多要学但是比起刚入职的那段时间现在起码不会那么的狼狈吧。</p>
+<p>###生活<br>因为上班地址离住比较远(其实应该算是很远吧20KM +)坐公交地铁不实际因此就买了辆小龟车(电动车)开启了每天上下班兜风的日子。虽然本人没什么睡懒觉的习惯但是因为之前上班的点离的都是相当的近生物钟还是会相对比较迟，至此生物钟也被重新规划。</p>
+<hr>
+<p>写的不多希望以后的自己看到了多少会有点感触！</p>
+<p>在此还要感谢在生活中工作中曾帮助过我的人—祝安好！</p>
 
       
     </div>
@@ -357,15 +332,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/12/23/UILabel、UITextview、UITextField/" rel="next" title="UILabel、UITextview、UITextField">
+                <i class="fa fa-chevron-left"></i> UILabel、UITextview、UITextField
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/11/UITableview-实现方式(二)/" rel="prev" title="UITableview-实现方式(二)">
-                UITableview-实现方式(二) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -417,8 +392,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -462,6 +446,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#时隔将至半载趁有点空余时间-其实是懒-￣▽￣-感觉多多少少还是应该写点感受的。"><span class="nav-number">1.</span> <span class="nav-text">时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间"><span class="nav-number"></span> <span class="nav-text">时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作"><span class="nav-number"></span> <span class="nav-text">工作</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
