@@ -86,14 +86,14 @@
 <meta property="og:site_name" content="Ryan">
 <meta property="og:description" content="#UICollectionView 2019-2-27对于UICollectionView在之前的项目中就有接触到过，只可惜接触到的知之甚少又没有抓紧巩固所以很快就生疏了。可幸的是在最近的项目中好好的使用了一番，虽然用到的都是很基础的但也学到了很多。  UICollectionView的主要用途是数据管理和显示，而数据显示就多半跟布局样式有关联。UICollectionView自然也有自己的一套自">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/02/27/UICollectionView/布局.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/27/UICollectionView/布局.png">
-<meta property="og:image" content="http://yoursite.com/Users/apple/Desktop/布局.png">
-<meta property="og:updated_time" content="2019-02-27T12:37:19.960Z">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/collection.png?raw=true">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/viewandlyout.png?raw=true">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/sectionInset.png?raw=true">
+<meta property="og:updated_time" content="2019-02-27T12:59:51.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ryan">
 <meta name="twitter:description" content="#UICollectionView 2019-2-27对于UICollectionView在之前的项目中就有接触到过，只可惜接触到的知之甚少又没有抓紧巩固所以很快就生疏了。可幸的是在最近的项目中好好的使用了一番，虽然用到的都是很基础的但也学到了很多。  UICollectionView的主要用途是数据管理和显示，而数据显示就多半跟布局样式有关联。UICollectionView自然也有自己的一套自">
-<meta name="twitter:image" content="http://yoursite.com/2019/02/27/UICollectionView/布局.png">
+<meta name="twitter:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/collection.png?raw=true">
 
 
 
@@ -305,9 +305,9 @@
       
         <p>#UICollectionView</p>
 <h3 id="2019-2-27"><a href="#2019-2-27" class="headerlink" title="2019-2-27"></a>2019-2-27</h3><p>对于<a href="https://developer.apple.com/documentation/uikit/uicollectionview?language=objc" target="_blank" rel="external">UICollectionView</a>在之前的项目中就有接触到过，只可惜接触到的知之甚少又没有抓紧巩固所以很快就生疏了。可幸的是在最近的项目中好好的使用了一番，虽然用到的都是很基础的但也学到了很多。</p>
-<p><img src="布局.png" alt=""></p>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/collection.png?raw=true" alt="UICollectionView"></p>
 <p>UICollectionView的主要用途是数据管理和显示，而数据显示就多半跟布局样式有关联。UICollectionView自然也有自己的一套自定义布局的流程。</p>
-<p><img src="布局.png" alt="avatar"></p>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/viewandlyout.png?raw=true" alt="UICollectionViewLayout"></p>
 <p>在文档的视图与布局中提到了一个重要的类-<a href="https://developer.apple.com/documentation/uikit/uicollectionviewlayout?language=objc" target="_blank" rel="external">UICollectionViewLayout</a></p>
 <a id="more"></a>
 <p>###UICollectionViewLayout</p>
@@ -319,8 +319,10 @@
 <li>swift </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let layout = UICollectionViewFlowLayout.init()</span><br><span class="line">layout.minimumLineSpacing = 0.0</span><br><span class="line">layout.minimumInteritemSpacing = 0.0</span><br><span class="line">layout.scrollDirection = .horizontal</span><br><span class="line">layout.sectionInset = UIEdgeInsets.init(top: 0, left: 12, bottom: 0, right: 12)</span><br><span class="line">layout.scrollDirection = .vertical</span><br><span class="line">layout.itemSize = CGSize(width: (kScreenWidth - 33) / 2, height: ((kScreenWidth - 33) / 2) / 2 + 60)</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>对于sectionInset再借用一张网图来说明下</p>
-<p><img src="/Users/apple/Desktop/布局.png" alt="Alt Image Text"></p>
+</blockquote>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/sectionInset.png?raw=true" alt="Alt Image Text"></p>
 <blockquote>
 <p>以上属性设置也可以通过UICollectionViewDelegateFlowLayout的代理方法来进行设置</p>
 </blockquote>
