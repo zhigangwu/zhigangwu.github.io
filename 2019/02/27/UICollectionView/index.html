@@ -79,20 +79,21 @@
 
 
 
-<meta name="description" content="今天主要讲解下平时在开发UITabelView时容易碰到的一些设置。(这里是我平时用的比较多的设置) 一 :cell中图片圆形设置 12[self.image_view.layer setCornerRadius:20];[self.image_view.layer setMasksToBounds:YES]; setCornerRadius设置圆形的半径，一般UIImageView的CGSize">
+<meta name="description" content="#UICollectionView 2019-2-27对于UICollectionView在之前的项目中就有接触到过，只可惜接触到的知之甚少又没有抓紧巩固所以很快就生疏了。可幸的是在最近的项目中好好的使用了一番，虽然用到的都是很基础的但也学到了很多。  UICollectionView的主要用途是数据管理和显示，而数据显示就多半跟布局样式有关联。UICollectionView自然也有自己的一套自">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UITabelView基本总结二">
-<meta property="og:url" content="http://yoursite.com/2017/11/27/UITabelView基本总结二/index.html">
+<meta property="og:title" content="Ryan">
+<meta property="og:url" content="http://yoursite.com/2019/02/27/UICollectionView/index.html">
 <meta property="og:site_name" content="Ryan">
-<meta property="og:description" content="今天主要讲解下平时在开发UITabelView时容易碰到的一些设置。(这里是我平时用的比较多的设置) 一 :cell中图片圆形设置 12[self.image_view.layer setCornerRadius:20];[self.image_view.layer setMasksToBounds:YES]; setCornerRadius设置圆形的半径，一般UIImageView的CGSize">
+<meta property="og:description" content="#UICollectionView 2019-2-27对于UICollectionView在之前的项目中就有接触到过，只可惜接触到的知之甚少又没有抓紧巩固所以很快就生疏了。可幸的是在最近的项目中好好的使用了一番，虽然用到的都是很基础的但也学到了很多。  UICollectionView的主要用途是数据管理和显示，而数据显示就多半跟布局样式有关联。UICollectionView自然也有自己的一套自">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/31.png?raw=true">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/32.png?raw=true">
-<meta property="og:updated_time" content="2017-11-27T14:07:37.432Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/27/UICollectionView/布局.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/27/UICollectionView/布局.png">
+<meta property="og:image" content="http://yoursite.com/Users/apple/Desktop/布局.png">
+<meta property="og:updated_time" content="2019-02-27T12:37:19.960Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UITabelView基本总结二">
-<meta name="twitter:description" content="今天主要讲解下平时在开发UITabelView时容易碰到的一些设置。(这里是我平时用的比较多的设置) 一 :cell中图片圆形设置 12[self.image_view.layer setCornerRadius:20];[self.image_view.layer setMasksToBounds:YES]; setCornerRadius设置圆形的半径，一般UIImageView的CGSize">
-<meta name="twitter:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/31.png?raw=true">
+<meta name="twitter:title" content="Ryan">
+<meta name="twitter:description" content="#UICollectionView 2019-2-27对于UICollectionView在之前的项目中就有接触到过，只可惜接触到的知之甚少又没有抓紧巩固所以很快就生疏了。可幸的是在最近的项目中好好的使用了一番，虽然用到的都是很基础的但也学到了很多。  UICollectionView的主要用途是数据管理和显示，而数据显示就多半跟布局样式有关联。UICollectionView自然也有自己的一套自">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/27/UICollectionView/布局.png">
 
 
 
@@ -122,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/27/UITabelView基本总结二/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/02/27/UICollectionView/"/>
 
 
 
 
 
-  <title>UITabelView基本总结二 | Ryan</title>
+  <title> | Ryan</title>
   
 
 
@@ -235,7 +236,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/27/UITabelView基本总结二/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/27/UICollectionView/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ryan">
@@ -252,7 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">UITabelView基本总结二</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -264,8 +265,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-27T00:00:00+08:00">
-                2017-11-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-27T20:35:04+08:00">
+                2019-02-27
               </time>
             
 
@@ -302,24 +303,50 @@
       
 
       
-        <p>今天主要讲解下平时在开发UITabelView时容易碰到的一些设置。(这里是我平时用的比较多的设置)</p>
-<p>一 :<code>cell</code>中图片圆形设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[self.image_view.layer setCornerRadius:20];</span><br><span class="line">[self.image_view.layer setMasksToBounds:YES];</span><br></pre></td></tr></table></figure>
-<p><code>setCornerRadius</code>设置圆形的半径，一般<code>UIImageView</code>的<code>CGSizeMake</code>都是设置成<code>正方形</code>的，所以<code>setCornerRadius</code>基本都是<code>CGFloat width</code> or <code>CGFloat height</code>的一半。</p>
-<p><code>setMasksToBounds</code>其实就是将圆形外的部分隐藏。</p>
+        <p>#UICollectionView</p>
+<h3 id="2019-2-27"><a href="#2019-2-27" class="headerlink" title="2019-2-27"></a>2019-2-27</h3><p>对于<a href="https://developer.apple.com/documentation/uikit/uicollectionview?language=objc" target="_blank" rel="external">UICollectionView</a>在之前的项目中就有接触到过，只可惜接触到的知之甚少又没有抓紧巩固所以很快就生疏了。可幸的是在最近的项目中好好的使用了一番，虽然用到的都是很基础的但也学到了很多。</p>
+<p><img src="布局.png" alt=""></p>
+<p>UICollectionView的主要用途是数据管理和显示，而数据显示就多半跟布局样式有关联。UICollectionView自然也有自己的一套自定义布局的流程。</p>
+<p><img src="布局.png" alt="avatar"></p>
+<p>在文档的视图与布局中提到了一个重要的类-<a href="https://developer.apple.com/documentation/uikit/uicollectionviewlayout?language=objc" target="_blank" rel="external">UICollectionViewLayout</a></p>
 <a id="more"></a>
-<p>二 :关闭点击<code>cell</code>时的效果</p>
-<p>一般点击<code>cell</code>时会有一个变色的效果虽然不是特难看但总有不想要的时候，这时候这个这样设置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell.selectionStyle = UITableViewCellSelectionStyleNone;</span><br></pre></td></tr></table></figure>
-<p>三 :全屏化<code>cell</code>下划线</p>
-<p>默认</p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/31.png?raw=true" alt=""></p>
-<p>在<code>viewDidLoad</code>中添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) &#123;</span><br><span class="line">    self.tableView.separatorInset = UIEdgeInsetsZero;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) &#123;</span><br><span class="line">    self.tableView.layoutMargins = UIEdgeInsetsZero;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后在<code>cellForRowAtIndexPath</code>中添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ([scanlogincell respondsToSelector:@selector(setLayoutMargins:)]) &#123;</span><br><span class="line">    [scanlogincell setLayoutMargins:UIEdgeInsetsZero];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>效果</p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/32.png?raw=true" alt=""></p>
+<p>###UICollectionViewLayout</p>
+<ul>
+<li>OC</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init]; //初始化</span><br><span class="line">layout.minimumLineSpacing = 0.0; // 最小行间距</span><br><span class="line">layout.minimumInteritemSpacing = 0.0; // 最小item间距</span><br><span class="line">layout.scrollDirection = UICollectionViewScrollDirectionHorizontal; // 滚动方向 可设置水平滚动或垂直滚动</span><br><span class="line">layout.sectionInset = UIEdgeInsetsMake(0, 12, 0, 12); // 调整内容的边距</span><br><span class="line">layout.itemSize = (CGSizeMake((WIDTH - 33) / 2,(((WIDTH - 33) / 2) * 5) / 4 + 40)); // 尺寸大小</span><br></pre></td></tr></table></figure>
+<ul>
+<li>swift </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let layout = UICollectionViewFlowLayout.init()</span><br><span class="line">layout.minimumLineSpacing = 0.0</span><br><span class="line">layout.minimumInteritemSpacing = 0.0</span><br><span class="line">layout.scrollDirection = .horizontal</span><br><span class="line">layout.sectionInset = UIEdgeInsets.init(top: 0, left: 12, bottom: 0, right: 12)</span><br><span class="line">layout.scrollDirection = .vertical</span><br><span class="line">layout.itemSize = CGSize(width: (kScreenWidth - 33) / 2, height: ((kScreenWidth - 33) / 2) / 2 + 60)</span><br></pre></td></tr></table></figure>
+<p>对于sectionInset再借用一张网图来说明下</p>
+<p><img src="/Users/apple/Desktop/布局.png" alt="Alt Image Text"></p>
+<blockquote>
+<p>以上属性设置也可以通过UICollectionViewDelegateFlowLayout的代理方法来进行设置</p>
+</blockquote>
+<p>###UICollectionView</p>
+<p>UICollectionView的设置就跟UITableView很像了</p>
+<blockquote>
+<p>关键是初始化时必须使用指定的初始化布局</p>
+</blockquote>
+<ul>
+<li>OC</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout]; </span><br><span class="line">collectionView.delegate = self;</span><br><span class="line">collectionView.dataSource = self;</span><br><span class="line">[collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@&quot;cell&quot;];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>swift</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">collectionview = UICollectionView.init(frame: .zero, collectionViewLayout: layout)</span><br><span class="line">collectionview.backgroundColor = UIColor.white</span><br><span class="line">collectionview.isScrollEnabled = false</span><br><span class="line">self.addSubview(collectionview)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数据源和代理当然必不可少</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView;</span><br><span class="line"></span><br><span class="line">- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;</span><br><span class="line"></span><br><span class="line">- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在设置cell的尺寸时需要注意，cell的大小也影响这numberOfItemsInSection也就是每行显示的数量。<code>cell的布局个数 * cell的宽度 + 间隙 &gt; 屏幕宽度时</code> 那么就会导致第一行的最后一个cell会被挤压到新的一行.因此在设置cell的size时就应该考虑合适的宽度和间隙比例。</p>
+</blockquote>
+<ul>
+<li>如有差错请赐教</li>
+</ul>
 
       
     </div>
@@ -344,8 +371,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/17/导航控制器-UINavigationController/" rel="next" title="导航控制器--UINavigationController">
-                <i class="fa fa-chevron-left"></i> 导航控制器--UINavigationController
+              <a href="/2018/08/13/实习录/" rel="next" title="实习录">
+                <i class="fa fa-chevron-left"></i> 实习录
               </a>
             
           </div>
@@ -353,10 +380,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/15/UIButton/" rel="prev" title="UIButton">
-                UIButton <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -408,8 +431,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -453,6 +485,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2019-2-27"><span class="nav-number">1.</span> <span class="nav-text">2019-2-27</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
