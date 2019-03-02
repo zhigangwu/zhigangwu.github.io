@@ -89,7 +89,8 @@
 <meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/collection.png?raw=true">
 <meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/viewandlyout.png?raw=true">
 <meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/sectionInset.png?raw=true">
-<meta property="og:updated_time" content="2019-02-27T13:08:44.749Z">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/Screen%20Shot%202019-03-02%20at%2020.44.13.png?raw=true">
+<meta property="og:updated_time" content="2019-03-02T12:50:04.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UICollectionView">
 <meta name="twitter:description" content="对于UICollectionView在之前的项目中就有接触到过，只可惜接触到的知之甚少又没有抓紧巩固所以很快就生疏了。可幸的是在最近的项目中好好的使用了一番，虽然用到的都是很基础的但也学到了很多。  UICollectionView的主要用途是数据管理和显示，而数据显示就多半跟布局样式有关联。UICollectionView自然也有自己的一套自定义布局的流程。  在文档的视图与布局中提到了一个重要">
@@ -345,6 +346,10 @@
 <blockquote>
 <p>在设置cell的尺寸时需要注意，cell的大小也影响这numberOfItemsInSection也就是每行显示的数量。<code>cell的布局个数 * cell的宽度 + 间隙 &gt; 屏幕宽度时</code> 那么就会导致第一行的最后一个cell会被挤压到新的一行.因此在设置cell的size时就应该考虑合适的宽度和间隙比例。</p>
 </blockquote>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/Screen%20Shot%202019-03-02%20at%2020.44.13.png?raw=true" alt="demo"></p>
+<ul>
+<li>根据上图略带在讲解下黄色部分是通过UICollectionViewFlowLayout设置的，红色的则是UICollectionViewCell。白色间隔通过UICollectionViewFlowLayout的minimumLineSpacing，minimumInteritemSpacing这两个属性来设置。要想得到更好的布局可以搭配上sectionInset属性一起设置。</li>
+</ul>
 <ul>
 <li>如有差错请赐教</li>
 </ul>
@@ -381,6 +386,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/02/UITableView嵌套UICollectionView/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -448,7 +457,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
