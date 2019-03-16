@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。 其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。">
+<meta name="description" content="项目中填了一个新功能大致是输入地址定位和长按定位，在此做个总结来赠强对知识点的记忆。先上效果图">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实习录">
-<meta property="og:url" content="http://yoursite.com/2018/08/13/实习录/index.html">
+<meta property="og:title" content="MapKit长按定位">
+<meta property="og:url" content="http://yoursite.com/2019/03/16/MapKit长按定位/index.html">
 <meta property="og:site_name" content="Ryan">
-<meta property="og:description" content="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。 其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。">
+<meta property="og:description" content="项目中填了一个新功能大致是输入地址定位和长按定位，在此做个总结来赠强对知识点的记忆。先上效果图">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-13T06:56:08.724Z">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/MapKit%E9%95%BF%E6%8C%89%E5%AE%9A%E4%BD%8D.gif?raw=true">
+<meta property="og:updated_time" content="2019-03-16T14:22:32.402Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="实习录">
-<meta name="twitter:description" content="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。 其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。">
+<meta name="twitter:title" content="MapKit长按定位">
+<meta name="twitter:description" content="项目中填了一个新功能大致是输入地址定位和长按定位，在此做个总结来赠强对知识点的记忆。先上效果图">
+<meta name="twitter:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/MapKit%E9%95%BF%E6%8C%89%E5%AE%9A%E4%BD%8D.gif?raw=true">
 
 
 
@@ -119,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/13/实习录/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/16/MapKit长按定位/"/>
 
 
 
 
 
-  <title>实习录 | Ryan</title>
+  <title>MapKit长按定位 | Ryan</title>
   
 
 
@@ -232,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/实习录/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/16/MapKit长按定位/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ryan">
@@ -249,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">实习录</h1>
+          <h1 class="post-title" itemprop="name headline">MapKit长按定位</h1>
         
 
         <div class="post-meta">
@@ -261,8 +263,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T00:00:00+08:00">
-                2018-08-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-16T00:00:00+08:00">
+                2019-03-16
               </time>
             
 
@@ -299,16 +301,43 @@
       
 
       
-        <h4 id="时隔将至半载趁有点空余时间-其实是懒-￣▽￣-感觉多多少少还是应该写点感受的。"><a href="#时隔将至半载趁有点空余时间-其实是懒-￣▽￣-感觉多多少少还是应该写点感受的。" class="headerlink" title="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。"></a>时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。</h4><blockquote>
-<p>其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。</p>
-</blockquote>
+        <p>项目中填了一个新功能大致是输入地址定位和长按定位，在此做个总结来赠强对知识点的记忆。<br>先上效果图</p>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/MapKit%E9%95%BF%E6%8C%89%E5%AE%9A%E4%BD%8D.gif?raw=true" alt="demo"></p>
 <a id="more"></a>
-<h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><p>上班敲代码的时间远比之前上的班的时间过的要快的多快的多，真正体会到了时间不够用是种什么感觉。因为经验少多半的时间用在了找资料看资料上，工作进度也随之累积着。但感慨的是时间并没有被浪费掉而是为现在的工作打下了基础。</p>
-<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>第一个项目可以说是个不小的项目因为是实习分配到的相比其他端算是简单的，但是相比自学期间写的Demo现在想想根本就是两回事啊！所以每天工作的时间自然而然的花在了资料上了。虽还有很多要学但是比起刚入职的那段时间现在起码不会那么的狼狈吧。</p>
-<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><p>因为上班地址离住比较远(其实应该算是很远吧20KM +)坐公交地铁不实际因此就买了辆小龟车(电动车)开启了每天上下班兜风的日子。虽然本人没什么睡懒觉的习惯但是因为之前上班的点离的都是相当的近生物钟还是会相对比较迟，至此生物钟也被重新规划。</p>
-<hr>
-<p>写的不多希望以后的自己看到了多少会有点感触！</p>
-<p>在此还要感谢在生活中工作中曾帮助过我的人—祝安好！</p>
+<ul>
+<li>关键知识点</li>
+</ul>
+<p>1.CLGeocoder地理编码和反地理编码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//地理编码</span><br><span class="line">- (void)geocodeAddressString:(NSString *)addressString completionHandler:(CLGeocodeCompletionHandler)completionHandler;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过addressString:(定位的地址)获取到经纬度,在通过CLGeocoder的反地理编码定位</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 反地理编码</span><br><span class="line">- (void)reverseGeocodeLocation:(CLLocation *)location completionHandler:(CLGeocodeCompletionHandler)completionHandler;</span><br></pre></td></tr></table></figure>
+<p>2.长按定位使用了:UILongPressGestureRecognizer长按手势</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)]; // 长按手势</span><br><span class="line">longPress.delegate = self; // 记得添加代理UIGestureRecognizerDelegate</span><br><span class="line">[_mapView addGestureRecognizer:longPress];</span><br></pre></td></tr></table></figure>
+<p>长按手势监听</p>
+<ul>
+<li>把长按的点位转成经纬度</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CGPoint touchPoint = [gestureRecognizer locationInView:_mapView];</span><br><span class="line">CLLocationCoordinate2D touchMapCoordinate = [_mapView convertPoint:touchPoint toCoordinateFromView:_mapView];</span><br><span class="line"></span><br><span class="line">[self setLocationWithLatitude:touchMapCoordinate.latitude AndLongitude:touchMapCoordinate.longitude]; // 自定义的一个方法主要功能是反地理编码</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实现反地理编码方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)setLocationWithLatitude:(CLLocationDegrees)latitude AndLongitude:(CLLocationDegrees)longitude;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>长按定位因为只需要当前的最新定位因此在长按手势监听中需要删除之前定位的大头针图标</p>
+</blockquote>
+<pre><code>if (_mapView.annotations.count &gt; 0) {
+    NSMutableArray *removeAnnotations = [[NSMutableArray alloc]init];
+    //将所有需要移除打大头针添加一个数组，去掉当前位置的大头针
+    [removeAnnotations addObjectsFromArray:self.mapView.annotations];
+    [removeAnnotations removeObject:self.mapView.userLocation];
+    //移除需要移除的大头针
+    [self.mapView removeAnnotations:removeAnnotations];
+}
+</code></pre><ul>
+<li>个人知识整理不喜勿喷，如有差错不领赐教！！！！！</li>
+</ul>
 
       
     </div>
@@ -333,8 +362,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/23/UILabel、UITextview、UITextField/" rel="next" title="UILabel、UITextview、UITextField">
-                <i class="fa fa-chevron-left"></i> UILabel、UITextview、UITextField
+              <a href="/2019/03/06/WeekSelection/" rel="next" title="WeekSelection">
+                <i class="fa fa-chevron-left"></i> WeekSelection
               </a>
             
           </div>
@@ -342,10 +371,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/27/UICollectionView/" rel="prev" title="UICollectionView">
-                UICollectionView <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -397,17 +422,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -451,22 +467,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#时隔将至半载趁有点空余时间-其实是懒-￣▽￣-感觉多多少少还是应该写点感受的。"><span class="nav-number">1.</span> <span class="nav-text">时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间"><span class="nav-number"></span> <span class="nav-text">时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作"><span class="nav-number"></span> <span class="nav-text">工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生活"><span class="nav-number"></span> <span class="nav-text">生活</span></a></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
