@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="真的是说出来都是泪😭被Git整整蹂躏了一个多的星期，从Git上传项目到github到git创建私有库可以说是步步是坑。期间甚至一度的彪脏话一度的奔溃，虽然至本片总结算是解决了大部分难题但还是有很多问题的具体真正的解决步骤没有弄清楚（因为很多步骤感觉都是凑巧成功的—惭愧）。不管怎么样还是得好好的把解决了的问题总结总结。 Git上传代码至GitHub 其实这个问题我是在创建私有库的支行才碰到的但是发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git的各种总结">
+<meta property="og:url" content="http://yoursite.com/2019/04/03/Git的各种总结/index.html">
+<meta property="og:site_name" content="Ryan">
+<meta property="og:description" content="真的是说出来都是泪😭被Git整整蹂躏了一个多的星期，从Git上传项目到github到git创建私有库可以说是步步是坑。期间甚至一度的彪脏话一度的奔溃，虽然至本片总结算是解决了大部分难题但还是有很多问题的具体真正的解决步骤没有弄清楚（因为很多步骤感觉都是凑巧成功的—惭愧）。不管怎么样还是得好好的把解决了的问题总结总结。 Git上传代码至GitHub 其实这个问题我是在创建私有库的支行才碰到的但是发">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/step_1.png?raw=true">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/step_2.png?raw=true">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/step_3.png?raw=true">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/problem_1.png?raw=true">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/problem_2.png?raw=true">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/solve_2.png?raw=true">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/solve.png?raw=true">
+<meta property="og:updated_time" content="2019-04-03T15:13:58.354Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git的各种总结">
+<meta name="twitter:description" content="真的是说出来都是泪😭被Git整整蹂躏了一个多的星期，从Git上传项目到github到git创建私有库可以说是步步是坑。期间甚至一度的彪脏话一度的奔溃，虽然至本片总结算是解决了大部分难题但还是有很多问题的具体真正的解决步骤没有弄清楚（因为很多步骤感觉都是凑巧成功的—惭愧）。不管怎么样还是得好好的把解决了的问题总结总结。 Git上传代码至GitHub 其实这个问题我是在创建私有库的支行才碰到的但是发">
+<meta name="twitter:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/step_1.png?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/03/Git的各种总结/"/>
+
+
+
+
+
+  <title>Git的各种总结 | Ryan</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ryan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Back To My Keyboard</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/Git的各种总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ryan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ryan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git的各种总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-03T00:00:00+08:00">
+                2019-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>真的是说出来都是泪😭被Git整整蹂躏了一个多的星期，从Git上传项目到github到git创建私有库可以说是步步是坑。期间甚至一度的彪脏话一度的奔溃，虽然至本片总结算是解决了大部分难题但还是有很多问题的具体真正的解决步骤没有弄清楚（因为很多步骤感觉都是凑巧成功的—惭愧）。不管怎么样还是得好好的把解决了的问题总结总结。</p>
+<h2 id="Git上传代码至GitHub"><a href="#Git上传代码至GitHub" class="headerlink" title="Git上传代码至GitHub"></a>Git上传代码至GitHub</h2><blockquote>
+<p>其实这个问题我是在创建私有库的支行才碰到的但是发现这个其实是基础的东西（惭愧again），因为之前一直使用Desktop管理项目没使用过Git，现在发现坑还真不少….</p>
+</blockquote>
+<a id="more"></a>
+<p>###1.New repository 创建项目仓库</p>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/step_1.png?raw=true" alt="step_1"></p>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/step_2.png?raw=true" alt="step_2"></p>
+<ul>
+<li>Repository name 是必填的  Description是选填的 在下面是项目是否公开  README看自己情况是否自动生成后期也可以在添加修改 最后下面两个下拉选择第一个应该是对应开发语言的选项 第二个是相关证书（没研究过貌似都选择 MIT License）</li>
+</ul>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/step_3.png?raw=true" alt="step_3"></p>
+<ul>
+<li>Create repository 之后会用到最上面的项目地址</li>
+</ul>
+<blockquote>
+<p>我觉得还是得从问题上总结比较合理，毕竟有效快速的解决问题才是我们所需要的。</p>
+</blockquote>
+<p>###问题复现 - SSH Key</p>
+<ul>
+<li>因为现在用的Mac经过蹂躏后有些环境已经适合上传了，所以特此找了太没怎么使用过Git的Mac mini来看看能不能复现之前的问题，不出所料果然出现了之前的遇到的问题–如下图！(在此啰嗦下在实际遇到问题的途中最好养成截图保留问题的习惯，一来能记录问题所在二来也为能为之后的总结带来目的性。而不至于像我一样去复现问题 惭愧again again😂)</li>
+</ul>
+<p>1&gt; 首先CD到要上传的项目</p>
+<p>2&gt; 这里网上教程有两种一种是 执行git status 另一个是 git init  我两种都试了结果都报错</p>
+<p>3&gt; git add .</p>
+<p>4&gt; git commit -m “注释”</p>
+<p>5&gt; git remote add origin git@github.com:用户名/项目名.git</p>
+<p>6&gt; git push -f origin master</p>
+<ul>
+<li>结果</li>
+</ul>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/problem_1.png?raw=true" alt="problem_1"></p>
+<blockquote>
+<p>执行git status </p>
+</blockquote>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/problem_2.png?raw=true" alt="problem_2"></p>
+<blockquote>
+<p>执行 git init</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">都报了 </span><br><span class="line">git@github.com: Permission denied (publickey).</span><br><span class="line"></span><br><span class="line">fatal: Could not read from remote repository. </span><br><span class="line">Please make sure you have the correct access rights </span><br><span class="line">and the repository exists.</span><br><span class="line"></span><br><span class="line">根据图片还可以发行执行git status时还提供了一项有关 key 的验证。这一项其实就是整个项目上传的关键。</span><br><span class="line"></span><br><span class="line">关键的问题就是没有权限的问题，本地的ssh key没有跟github上的对应所造成的。所以解决该问题的出发点也就从ssh key出发。</span><br></pre></td></tr></table></figure>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>1&gt; cd 本地项目目录</p>
+<p>2&gt; git init </p>
+<p>3&gt; ssh-keygen -t rsa -C “github email”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">会出现:</span><br><span class="line">Enter file in which to save the key (/Users/apple001/.ssh/id_rsa): 填写路径</span><br><span class="line"></span><br><span class="line">可以直接回车默认路径</span><br><span class="line"></span><br><span class="line">我觉得这样比较合适:</span><br><span class="line">Enter file in which to save the key (/Users/apple001/.ssh/id_rsa): /Users/apple001/.ssh/id_rsa_test //自定义要保存的目录名称用来区别之前的文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接下来的两次密码直接回车</li>
+</ul>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/solve_2.png?raw=true" alt="solve_2"></p>
+<blockquote>
+<p>出现上图说明SSH key 创建完成</p>
+</blockquote>
+<p>4&gt; 可以执行 pbcopy &lt; ~/.ssh/id_test_rsa.pub 直接复制   也可以执行 cd ~/.ssh  在执行 open . (有个点) 来打开文件所在文件夹 用文本工具来打开 <font color="#FF0000">.pub</font>  文件进行复制。</p>
+<p>5&gt; 复制完成后进github -&gt; 点右上角自己的头像 -&gt; 点<font color="#FF0000">Settings</font> —&gt; 点<font color="#FF0000">SSH and GPG keys</font> -&gt; 点<font color="#FF0000">New SSH key</font> -&gt; 上方输入名称下方复制key就行了</p>
+<p>6&gt; 执行 ssh -T git@github.com </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">如果报 git@github.com: Permission denied (publickey).</span><br><span class="line"></span><br><span class="line">执行 ssh-add ~/.ssh/id_rsa_test （不是.pub文件）</span><br><span class="line"></span><br><span class="line">出现 Identity added: /Users/apple001/.ssh/id_rsa_test (github邮箱)</span><br><span class="line"></span><br><span class="line">再次执行 ssh -T git@github.com</span><br><span class="line"></span><br><span class="line">出现 Hi walkback! You&apos;ve successfully authenticated, but GitHub does not provide shell access.  说明验证成功 但是还不具有访问的权限 执行第7步</span><br></pre></td></tr></table></figure>
+<p>7&gt; 执行 git config –global user.name “github的昵称”  和 git config –global user.email “github邮箱”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行第7步作者是没有出现任何的报错的，至此在执行之前的上传步骤就可以了</span><br></pre></td></tr></table></figure>
+<p>8&gt; CD到要上传的项目 (如果之前是有cd ~/.ssh 的 记得CD回项目目录)</p>
+<p>9&gt; git status </p>
+<p>3&gt; git add .</p>
+<p>4&gt; git commit -m “注释”</p>
+<p>5&gt; git remote add origin git@github.com:用户名/项目名.git</p>
+<p>6&gt; git push -f origin master </p>
+<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/solve.png?raw=true" alt="solve"></p>
+<font color="#FF0000">如果结果跟上图一样的话一般就没什么问题 可以刷新github看看应该是已经上传成功了</font>
+
+<blockquote>
+<p>其实本人还出现过一个坑，就是当前用的电脑之前有使用过git而且被绑定过其他账号。执行到 git push -f origin master 后就报 Permission to xx/xx.git denied to xx.(应该是git默认使用了之前的账号来上传跟现在的账号的key又匹配不上就报这个)。这个问题简直快把我给逼疯了，结果不知怎么的被我给搞定了想想都搞笑😂。其实现在想想删除之前的 id_rsa 文件在创建新的应该就能解决。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/16/MapKit长按定位/" rel="next" title="MapKit长按定位">
+                <i class="fa fa-chevron-left"></i> MapKit长按定位
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ryan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git上传代码至GitHub"><span class="nav-number">1.</span> <span class="nav-text">Git上传代码至GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">1.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ryan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
