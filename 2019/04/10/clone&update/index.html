@@ -79,21 +79,17 @@
 
 
 
-<meta name="description" content="继UITableview(一)今天讲解UITableview的另外一种实现方式 - 继承与UIViewController。当创建好一个项目之后会发现自带会有一个名叫ViewController的文档点击ViewController.h不难发现该文件直接继承的是UIViewController">
+<meta name="description" content="CloneCD到一个目录然后执行以下步骤： 1$ git clone xx // 项目地址 过程 1234567Cloning into &amp;apos;ZGPageMenu&amp;apos;...remote: Enumerating objects: 121, done.remote: Counting objects: 100% (121/121), done.remote: Compressing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UITableview-实现方式(二)">
-<meta property="og:url" content="http://yoursite.com/2017/11/11/UITableview-实现方式(二)/index.html">
+<meta property="og:title" content="Git clone &amp; update">
+<meta property="og:url" content="http://yoursite.com/2019/04/10/clone&update/index.html">
 <meta property="og:site_name" content="Ryan">
-<meta property="og:description" content="继UITableview(一)今天讲解UITableview的另外一种实现方式 - 继承与UIViewController。当创建好一个项目之后会发现自带会有一个名叫ViewController的文档点击ViewController.h不难发现该文件直接继承的是UIViewController">
+<meta property="og:description" content="CloneCD到一个目录然后执行以下步骤： 1$ git clone xx // 项目地址 过程 1234567Cloning into &amp;apos;ZGPageMenu&amp;apos;...remote: Enumerating objects: 121, done.remote: Counting objects: 100% (121/121), done.remote: Compressing">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/6.png?raw=true">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/7.png?raw=true">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/8.png?raw=true">
-<meta property="og:updated_time" content="2017-11-13T11:23:35.096Z">
+<meta property="og:updated_time" content="2019-04-11T13:24:56.751Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UITableview-实现方式(二)">
-<meta name="twitter:description" content="继UITableview(一)今天讲解UITableview的另外一种实现方式 - 继承与UIViewController。当创建好一个项目之后会发现自带会有一个名叫ViewController的文档点击ViewController.h不难发现该文件直接继承的是UIViewController">
-<meta name="twitter:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/6.png?raw=true">
+<meta name="twitter:title" content="Git clone &amp; update">
+<meta name="twitter:description" content="CloneCD到一个目录然后执行以下步骤： 1$ git clone xx // 项目地址 过程 1234567Cloning into &amp;apos;ZGPageMenu&amp;apos;...remote: Enumerating objects: 121, done.remote: Counting objects: 100% (121/121), done.remote: Compressing">
 
 
 
@@ -123,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/11/UITableview-实现方式(二)/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/04/10/clone&update/"/>
 
 
 
 
 
-  <title>UITableview-实现方式(二) | Ryan</title>
+  <title>Git clone & update | Ryan</title>
   
 
 
@@ -236,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/11/UITableview-实现方式(二)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/clone&update/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ryan">
@@ -253,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">UITableview-实现方式(二)</h1>
+          <h1 class="post-title" itemprop="name headline">Git clone & update</h1>
         
 
         <div class="post-meta">
@@ -265,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-11T00:00:00+08:00">
-                2017-11-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T00:00:00+08:00">
+                2019-04-10
               </time>
             
 
@@ -303,41 +299,26 @@
       
 
       
-        <p>继<code>UITableview(一)</code>今天讲解UITableview的另外一种实现方式 - 继承与<code>UIViewController</code>。当创建好一个项目之后会发现自带会有一个名叫<code>ViewController</code>的文档点击<code>ViewController.h</code>不难发现该文件直接继承的是<code>UIViewController</code></p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/6.png?raw=true" alt=""></p>
+        <h3 id="Clone"><a href="#Clone" class="headerlink" title="Clone"></a>Clone</h3><p>CD到一个目录然后执行以下步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone xx // 项目地址</span><br></pre></td></tr></table></figure>
+<p>过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Cloning into &apos;ZGPageMenu&apos;...</span><br><span class="line">remote: Enumerating objects: 121, done.</span><br><span class="line">remote: Counting objects: 100% (121/121), done.</span><br><span class="line">remote: Compressing objects: 100% (85/85), done.</span><br><span class="line">remote: Total 121 (delta 34), reused 114 (delta 27), pack-reused 0</span><br><span class="line">Receiving objects: 100% (121/121), 56.63 KiB | 19.00 KiB/s, done.</span><br><span class="line">Resolving deltas: 100% (34/34), done.</span><br></pre></td></tr></table></figure>
+<p>然后就可以开始修改</p>
 <a id="more"></a>
-<p>在<code>UITableview(一)</code>中说到要实现一个表视图必须实现<code>UITableViewDataSource</code>中到两个方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section</span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</span><br></pre></td></tr></table></figure>
-<p>首先在<code>ViewController.h</code>中添加<code>UITableViewDelegate``UITableViewDataSource</code></p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/7.png?raw=true" alt=""></p>
-<blockquote>
-<p>为什么要添加<code>UITableViewDelegate``UITableViewDataSource</code>后续文章中会详细讲解。</p>
-</blockquote>
-<p>之后在<code>ViewController.m</code>文件中添加两个必须实现的方法及相关代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section</span><br><span class="line">&#123;</span><br><span class="line">    return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;cell&quot; forIndexPath:indexPath];</span><br><span class="line">    </span><br><span class="line">    if (!cell) &#123;</span><br><span class="line">        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@&quot;cell&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其次在 <code>- (void)viewDidLoad;</code>中还要注册<code>cell</code>当按照<code>UITableview(一)</code>中讲解的那样添加代码时</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@&quot;cell&quot;];</span><br></pre></td></tr></table></figure>
-<p>是会报错的</p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/8.png?raw=true" alt=""></p>
-<p>意思是没有相关的<code>tableView</code>属性，因为<code>UIViewController</code>不继承<code>UITableView</code>所以不拥有<code>UITableView</code>中的属性。因此我们必须单独添加</p>
-<p>首先初始化一个<code>UITableView</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UITableView *tableView = [[UITableView alloc] init];</span><br></pre></td></tr></table></figure>
-<p>初始化好之后就应该把<code>UITableView</code>视图添加到当前的视图中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self.view addSubview:tableView];</span><br></pre></td></tr></table></figure>
-<p>之后还必须设置下<code>tableView</code>的<code>frame</code>固定下显示的位置,设置为填满整个屏幕</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tableView.frame = [[UIScreen mainScreen] bounds];</span><br></pre></td></tr></table></figure>
-<p>而后就可以添加注册<code>cell</code>的代码了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@&quot;cell&quot;];</span><br></pre></td></tr></table></figure>
-<hr>
-<p>然而这并没有完事，还有两行最关键的代码需要添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tableView.delegate = self;</span><br><span class="line">tableView.dataSource = self;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>这两行代码是重中之重但却是最容易被忽视的</li>
-</ul>
-<hr>
-<p>之后就可以运行了当然别忘了在<code>AppDelegate.h</code>文件中设置为<code>rootViewController</code>。</p>
-<p>最后祝大家双十一快~乐 – 想想你们真的快乐吗！！！😏</p>
-
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p>CD 到项目根目录 然后执行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m &quot;更新注释&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
+<p>如何出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">You are not currently on a branch.</span><br><span class="line">Please specify which branch you want to merge with.</span><br><span class="line">See git-pull(1) for details.</span><br><span class="line"> </span><br><span class="line">    git pull &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>就执行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br></pre></td></tr></table></figure>
+<p>然后再次执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
+<p>最后:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push</span><br></pre></td></tr></table></figure>
+<p>出现以下内容说明update成功,可以查询远程项目更新情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Enumerating objects: 5, done.</span><br><span class="line">Counting objects: 100% (5/5), done.</span><br><span class="line">Delta compression using up to 4 threads</span><br><span class="line">Compressing objects: 100% (3/3), done.</span><br><span class="line">Writing objects: 100% (3/3), 289 bytes | 289.00 KiB/s, done.</span><br><span class="line">Total 3 (delta 2), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (2/2), completed with 2 local objects.</span><br><span class="line">To https://github.com/zhigangwu/ZGPageMenu.git</span><br><span class="line">   7c1515f..b99fd1d  master -&gt; master</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -361,8 +342,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/10/UITableView-实现方式(一)/" rel="next" title="UITableview-实现方式(一)">
-                <i class="fa fa-chevron-left"></i> UITableview-实现方式(一)
+              <a href="/2019/04/03/Git的各种总结/" rel="next" title="Git的各种总结">
+                <i class="fa fa-chevron-left"></i> Git的各种总结
               </a>
             
           </div>
@@ -370,10 +351,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/13/UITabelview--数据显示/" rel="prev" title="UITabelview--数据显示">
-                UITabelview--数据显示 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -425,8 +402,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -470,6 +456,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clone"><span class="nav-number">1.</span> <span class="nav-text">Clone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update"><span class="nav-number">2.</span> <span class="nav-text">Update</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
