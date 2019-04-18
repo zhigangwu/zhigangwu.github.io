@@ -299,84 +299,17 @@
 
       
         
-          
-            <p>近几个星期一直在看面试题，一开始说实话真的只是为了应付之后的面试但是越来越发现我的想法真的是一个天真+无邪！原因其实很简单面试的时候面试官可能只提几个跟自己公式项目相关的题目但也有可能提其他的，然而有一点是肯定的那就是随机性。作为应聘者的我们必然不清楚面试官会问些什么，但是我们又必须掌握那些面试官可能不会提及的问题。二来知识点其实都是连贯的很少有“单独“存在的理论知识，当你理解其中一层的含义的同时必然会引发出其他层面的知识，理解双层或者多层的知识这必然是个大工程。既然这样为什么不逐一的深入理解呢？说这些也无非在提醒自己和看到该文章的亲们。</p>
+          <p>近几个星期一直在看面试题，一开始说实话真的只是为了应付之后的面试但是越来越发现我的想法真的是一个天真+无邪！原因其实很简单面试的时候面试官可能只提几个跟自己公式项目相关的题目但也有可能提其他的，然而有一点是肯定的那就是随机性。作为应聘者的我们必然不清楚面试官会问些什么，但是我们又必须掌握那些面试官可能不会提及的问题。二来知识点其实都是连贯的很少有“单独“存在的理论知识，当你理解其中一层的含义的同时必然会引发出其他层面的知识，理解双层或者多层的知识这必然是个大工程。既然这样为什么不逐一的深入理解呢？说这些也无非在提醒自己和看到该文章的亲们。</p>
 <blockquote>
 <p>既然要“逐一”去理解那必然也得有个起步，经过这么久的面试图了解发现从ARC/MRC开始理解还是蛮合理的。废话不多说直接进入主题。（在此也说明下：本文主要内容还是来源于网络相关文章的总结，如有侵权行为望能联系我做及时修改 谢谢！）</p>
 </blockquote>
-<h3 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h3><p>ARC:自动管理内存-自动应用计数(Automatic Reference Count)起始于2011年。</p>
-<p>先大致了解下什么是<font color="red"> 引用计数 </font> 看下表：</p>
-<table>
-<thead>
-<tr>
-<th>对象操作</th>
-<th>Objective-C 方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>生成并持有对象</td>
-<td>alloc/new/copy/mutableCopy 引用计数 + 1</td>
-</tr>
-<tr>
-<td>持有对象</td>
-<td>retain 引用计数 + 1</td>
-</tr>
-<tr>
-<td>释放对象</td>
-<td>release/autorelease 引用计数 - 1</td>
-</tr>
-<tr>
-<td>废弃对象</td>
-<td>dealloc 一般情况是当引用计数为0时才调用</td>
-</tr>
-</tbody>
-</table>
-<p>引用计数:每个对象都有个可以递增或递减的计数器。如果想使某个对象继续存活，那就递增其引用计数；用完之后就递减其计数。计数为0，就表示没有对象想关注，此时就可以把它释放销毁。</p>
-<p>当一个对象被创建且被相关方法调用的时候，就会调用retain方法使得引用计数就+1，当调用release方法后相应的引用计数就-1，当引用计数为0时该对象的内存块就被释放。</p>
-<blockquote>
-<p>因为在MRC时代创建了多少RetainCount(引用计数数量)，就必须调用几次release，少一次都会由于内存的泄漏造成程序的crash。这无疑给程序员带来了巨大的工作量，由此ARC就产生了。</p>
-</blockquote>
-<ul>
-<li><p>ARC字面理解就是由编译器自动帮我们填写相应的release(单独说release应该是不严谨的)代码，由而实现自动管理引用计数的功能。</p>
-</li>
-<li><p><font color="red">ARC原理</font>：当我们编译源码的时候，编译器会分析源码中的每个对象的生命周期，然后基于这些对象的生命周期来添加相应的引用计数的代码操作。</p>
-</li>
-</ul>
-<p>因为编辑器只有当程序在运行的时候才会对代码进行分析，因此ARC是工作在编译期的一种方案。好处在于相对于垃圾回收这类内存管理机制，ARC不会对应用的运行效率有所影响。(其实对垃圾回收机制还不是很了解，具体跟ARC有什么区别还是有待研究的)</p>
-<blockquote>
-<p>然后ARC并不是万能也有弊端，无法处理retain cycle(内存的循环引用)。如果两个对象相互引用必即将导致程序的crash，因为这两个对象永远也不会被释放造成内存的泄漏。由此可以引出<font color="red">所有权修饰符</font>的相关知识点。</p>
-</blockquote>
-<p>主要有一下几种:</p>
-<ul>
-<li>__strong  </li>
-<li>__weak</li>
-<li>__unsafe_unretained</li>
-<li>__autoreleasing</li>
-</ul>
-<p><font color="red">__strong</font>:强引用会持有对象，持有强引用的变量在超出其作用域时将被废弃，随着强引用的消失引用的对象会随之释放。默认情况下就为该修饰符(由此可以解释<font color="red">类型必须附加所有权修饰符</font>而平时写的代码中貌似并没有的原因)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 下面两行代码等同</span><br><span class="line">id object = [[NSObject alloc] init];</span><br><span class="line"></span><br><span class="line">id __strong = object = [[NSObject alloc] init];</span><br></pre></td></tr></table></figure>
-<p>例A:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">UILabel *labelA = [[UILabel alloc] init];</span><br><span class="line">UILabel *labelB = labelA;</span><br><span class="line"></span><br><span class="line">// 内存地址输出</span><br><span class="line">NSLog(@&quot;labelA = %p&quot;,labelA);</span><br><span class="line">NSLog(@&quot;labelB = %p&quot;,labelB);</span><br><span class="line">    </span><br><span class="line">labelA.text = @&quot;强引用&quot;;</span><br><span class="line">labelB.text = @&quot;也是强引用&quot;;</span><br><span class="line">    </span><br><span class="line">// 内容输出</span><br><span class="line">NSLog(@&quot;labelA = %@&quot;,labelA.text);</span><br><span class="line">NSLog(@&quot;labelB = %@&quot;,labelB.text);</span><br></pre></td></tr></table></figure>
-<p>NSLog:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 内存地址输出</span><br><span class="line">2019-04-17 14:27:13.880260+0800 TEST[5347:1394167] labelA = 0x157e11f90</span><br><span class="line">2019-04-17 14:27:13.880383+0800 TEST[5347:1394167] labelB = 0x157e11f90</span><br><span class="line"></span><br><span class="line">// 指向的是同一个内存地址</span><br><span class="line"></span><br><span class="line">// 内容输出</span><br><span class="line">2019-04-17 14:13:46.850625+0800 TEST[5322:1389894] labelA = 也是强引用</span><br><span class="line">2019-04-17 14:13:46.850775+0800 TEST[5322:1389894] labelB = 也是强引用</span><br><span class="line"></span><br><span class="line">// 因为指向的是同一个内存地址，所以labelAlabelB的值始终都是相同的。</span><br></pre></td></tr></table></figure>
-<ul>
-<li>可以得出<code>__strong</code>修饰符能够对同一段内存进行持有并共同管理。</li>
-</ul>
-<p>例B:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">UILabel *labelA = [[UILabel alloc] init];</span><br><span class="line">UILabel *labelB = labelA;</span><br><span class="line"></span><br><span class="line">labelA = nil;</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;labelA = %p&quot;,labelA);</span><br><span class="line">NSLog(@&quot;labelB = %p&quot;,labelB);</span><br></pre></td></tr></table></figure>
-<p>NSLog:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2019-04-17 14:34:01.962571+0800 TEST[5350:1395366] labelA = 0x0</span><br><span class="line">2019-04-17 14:34:01.962692+0800 TEST[5350:1395366] labelB = 0x102a16cc0</span><br><span class="line"></span><br><span class="line">// 为什么labelB没有被至nil呢？labelA至nil前labelA labelB的内存地址是一样的，当labelA因为至nil被释放因此labelA的引用计数就为0，然而labelB也是强引用在没有手动至nil的情况下引用计数始终是不为0的。因此labelB的内存并没有被释放。</span><br></pre></td></tr></table></figure>
-<p><font color="red"><strong>weak</strong></font>:弱引用 不会持有对象。只能修饰对象类型，不能用于基本数据类型。作用在于：1.可以避免循环引用导致的内存泄漏。2.持有该修饰符的对象当被废弃后，编译器会自动将失效的指针赋值为nil，避免出现野指针的情况。缺点:使用`weak`编译器会先检查对象是否被释放，在检查的时就会造成一定的消耗。(详细在关键字修饰符weak做详细解析)</p>
-<p><font color="red"><strong>unsafe_unretained</strong></font>:弱引用会持有对象，即可用于基本数据类型也可以用于对象类型。特点:持有该修饰符的对象当被废弃后，编译器不会自动将失效的指针赋值为nil。由此就产生野指针，再次访问将会崩溃但不是每次都蹦。但是该修饰符在编译器编译时不会去检查对象是否被释放，相对于`weak`性能上会更优。</p>
-<p><font color="red"><strong>autoreleasing</strong></font>:被`autoreleasing<code>修饰的变量特点是在当前的autoreleasepool的作用域中有效，出了当的</code>autoreleasepool`会被自动释放。</p>
-<p>将对象赋值给有<code>__autoreleasing</code>修饰符的变量等同于ARC无效时调用对象的<code>autorelease</code>方法。即将对象注册到<code>autoreleasepool</code>中。</p>
-<blockquote>
-<p>提了所有权修饰符那必然要讲属性关键词，因为这两者是存在对应关系的。而且属性关键字在平时的使用中更频繁，因此更应深入理解。</p>
-</blockquote>
-<p>*如有错误之处望能联系我修改 不吝赐教！</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/17/理论知识总结一ARC/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
