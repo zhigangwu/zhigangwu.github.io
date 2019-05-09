@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="属性关键字:  atomic nonatomic strong weak copy assign retain readwrite readondy unsafe_unretained  属性关键字与所有权关键字之间是对应关系:  assign 对应 __unsafe_unretained修饰符 copy 对应__strong修饰符 retain 对应 __strong修饰符 strong 对应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理论知识总结一属性关键字">
+<meta property="og:url" content="http://yoursite.com/2019/04/25/理论知识总结一属性关键字/index.html">
+<meta property="og:site_name" content="Ryan">
+<meta property="og:description" content="属性关键字:  atomic nonatomic strong weak copy assign retain readwrite readondy unsafe_unretained  属性关键字与所有权关键字之间是对应关系:  assign 对应 __unsafe_unretained修饰符 copy 对应__strong修饰符 retain 对应 __strong修饰符 strong 对应">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-09T12:43:47.438Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理论知识总结一属性关键字">
+<meta name="twitter:description" content="属性关键字:  atomic nonatomic strong weak copy assign retain readwrite readondy unsafe_unretained  属性关键字与所有权关键字之间是对应关系:  assign 对应 __unsafe_unretained修饰符 copy 对应__strong修饰符 retain 对应 __strong修饰符 strong 对应">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/25/理论知识总结一属性关键字/"/>
+
+
+
+
+
+  <title>理论知识总结一属性关键字 | Ryan</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ryan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Back To My Keyboard</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/25/理论知识总结一属性关键字/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ryan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ryan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">理论知识总结一属性关键字</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-25T00:00:00+08:00">
+                2019-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>属性关键字:</p>
+<ul>
+<li>atomic</li>
+<li>nonatomic</li>
+<li>strong</li>
+<li>weak</li>
+<li>copy</li>
+<li>assign</li>
+<li>retain</li>
+<li>readwrite</li>
+<li>readondy</li>
+<li>unsafe_unretained</li>
+</ul>
+<p>属性关键字与所有权关键字之间是对应关系:</p>
+<ul>
+<li>assign 对应 <code>__unsafe_unretained</code>修饰符</li>
+<li>copy 对应<code>__strong</code>修饰符</li>
+<li>retain 对应 <code>__strong</code>修饰符</li>
+<li>strong 对应 <code>__strong</code>修饰符</li>
+<li>unsafe_unretained 对应 <code>__unsafe_unretained</code>修饰符</li>
+<li>weak 对应 <code>__weak</code>修饰符</li>
+</ul>
+<a id="more"></a>
+<h3 id="atomic-多线程安全，默认关键字。"><a href="#atomic-多线程安全，默认关键字。" class="headerlink" title="atomic: 多线程安全，默认关键字。"></a><font color="red">atomic:</font> 多线程安全，默认关键字。</h3><p>作用:多线程下将属性设置为<code>atomic</code>可以保证读取数据的一致性，因为它保证数据只被一个线程占用，也就是说一个线程对属性进行<font color="red">写</font>操作，会使用<font color="red"><code>自旋锁</code></font>锁住该属性，不被其他线程进行读取操作。</p>
+<p>缺点:使用自旋锁的开销会比较大(因为使用atomic在访问被锁的资源时，调用者线程不会休眠，而是不停循环在那里，直到被锁资源的锁被释放)。其实这也说明了atomic并不能真正的保证线程安全，因为自旋锁迟早就被释放。</p>
+<p>在多线程环境下，原子操作是必要的，否则有可能引起错误的结果。加了atomic，setter函数会变成如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;lock&#125; // 自旋锁</span><br><span class="line">   if (property != newValue) &#123;</span><br><span class="line">       [property release];</span><br><span class="line">       property = [newValue retain];</span><br><span class="line">   &#125;</span><br><span class="line">&#123;unlock&#125;</span><br></pre></td></tr></table></figure>
+<p>为什么不能真正的保证线程安全:</p>
+<p>例:<br>线程A 调用 getter<br>于此同时线程B 线程C 都调用了 setter </p>
+<p>那线程A get 到的值就有三种情况:<br>1.可能是B/C线程set之前原始的值<br>2.可能是 B 线程 set 的值<br>3.可能是 C 线程 set 的值</p>
+<p>因此atomic修饰的属性，系统在生成的getter/setter 会保证get/set的<code>操作</code>完整性，不受其他线程的影响。getter 在最总还是能得到一个完好无所的对象(保证了数据的完整性，就是不存在get不到值的情况)。多个线程同时调用setter方法的情况，虽然<font color="red"><code>不会</code></font>出现某个线程执在未执行完setter全部语句之前，另一个线程就开始执行setter方法(确保操作完整性)。但是只是保证了在getter和setter方法上的线程安全，getter和setter以为的线程安全就无法保证了。</p>
+<h3 id="nonatomic-在来理解nonatomic相对来说就比较轻松了，因为nonatomic理论上跟atomic是相对的。"><a href="#nonatomic-在来理解nonatomic相对来说就比较轻松了，因为nonatomic理论上跟atomic是相对的。" class="headerlink" title="nonatomic:在来理解nonatomic相对来说就比较轻松了，因为nonatomic理论上跟atomic是相对的。"></a><font color="red">nonatomic:</font>在来理解nonatomic相对来说就比较轻松了，因为nonatomic理论上跟atomic是相对的。</h3><p>即:非多线程、变量保护。因为没有自旋锁的存在，性能更优。但同时返回的对象或操作就有可能不是完整的。</p>
+<ul>
+<li>分析strong和weak的实现之前，很有必要看看对象的成员变量第怎么进行赋值的。因为对象的属性的setter本质就是对对象的<code>成员变量</code>进行复制，一般情况下每一个对象的属性就对应存在一个对象的成员变量</li>
+</ul>
+<h3 id="weak-弱引用，引用计数不会-1，并在引用对象被释放会指针会被至为nil。-用于一些对象相互引用的时候，避免出现强强引用，对象不能释放所造成的内存泄漏问题。"><a href="#weak-弱引用，引用计数不会-1，并在引用对象被释放会指针会被至为nil。-用于一些对象相互引用的时候，避免出现强强引用，对象不能释放所造成的内存泄漏问题。" class="headerlink" title="weak:弱引用，引用计数不会+1，并在引用对象被释放会指针会被至为nil。 用于一些对象相互引用的时候，避免出现强强引用，对象不能释放所造成的内存泄漏问题。"></a><font color="red">weak:</font>弱引用，引用计数不会+1，并在引用对象被释放会指针会被至为nil。 用于一些对象相互引用的时候，避免出现强强引用，对象不能释放所造成的内存泄漏问题。</h3><p>理论知识:weak是通过Runtime维护的<code>`weak表</code>,而strong是通过runtime维护的一个自动计数表结构。</p>
+<p><code>weak表</code>:其实就是一个hash表(哈希表)。<code>weak_table_t</code>是一个全局weak引用的表，使用不定类型<code>对象的地址</code>作为<code>key</code>，使用<code>weak_entry_t</code>(保存了所有指向指定对象的weak指针数组)类型结构体对象作为<code>value</code>。</p>
+<p>源码:</p>
+<p><code>SideTable</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct SideTable &#123;</span><br><span class="line">    spinlock_t slock; // 自旋锁 用来保证线程安全</span><br><span class="line">    RefcountMap refcnts; // 引用计数表</span><br><span class="line">    weak_table_t weak_table; // weak 表</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>SideTable:管理引用计数表和weak表(一个全局的Hsah表)，并使用<code>spinlock_lock</code>(自旋锁)来防止操作表结构时可能的竞态条件(线程安全 保证了getter和setter的完整性)。</p>
+<p><code>weak_table_t</code>:全局弱引用hash表 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct weak_table_t &#123;</span><br><span class="line">    weak_entry_t *weak_entries; // 保存所有指向指定对象的weak指针</span><br><span class="line">    size_t num_entries; // 存储空间 即`entries`的数目</span><br><span class="line">    uintptr_t mask; // 参与判断引用计数辅助量</span><br><span class="line">    uintptr_t mas_push_displacement; // hash key 最大偏移量</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>作用:就是在对象执行dealloc的时候将所有指向该对象的weak指针的值设为nil，避免空指针。 使用不定类型对象的地址的hash化后的数值作为key，用<code>weak_entry_t</code>类型的结构体对象作为value。</p>
+<p><code>weak_entry_t</code>: 是存储在弱引用表中的一个内部结构体，负责维护和存储指向一个对象的所有弱引用hash表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">    #define WEAK_INLINE_COUNT 4</span><br><span class="line">    struct weak_entry_t &#123;</span><br><span class="line">        DisguisedPtr&lt;objc_object&gt; referent; // 对 `obje_object *`指针及其一些操作进行的封装 目的就是为了让它给人看起来不会有内存泄漏的样子，其内容可以理解为对象的内存地址。 </span><br><span class="line">        union &#123;</span><br><span class="line">            struct &#123;</span><br><span class="line">                weak_referrer_t *referrers;</span><br><span class="line">                uintptr_t out_of_line : 1; // 成员为最低有效位 当标志位为0时 增加引用表指针纬度 当其为0的时候 `weak_referrer_t`(weak_referrer_t其实是obje_object的别名 定义:`typedef obje_object ** weak_referrer_t`) 成员将扩展为静态数组型的 hash table</span><br><span class="line">                uintptr_t num_refs : PTR_MINUS_1; // 引用数值 这里记录弱引用表中引用有效数字 即里面元素的数量</span><br><span class="line">                uintptr_t mask;</span><br><span class="line">                uintptr_t mas_hash_displacement; // hash 元素上限阀值</span><br><span class="line">            &#125;;</span><br><span class="line">            struct &#123;</span><br><span class="line">                weak_referrer_t inline_referrers[WEAK_INLINE_COUNT];</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">// weak_entry_t 中的referrers有两种形式 当out_of_line为 0 时 referrers 就是一个静态数组类型的表 数组大小默认为 WEAK_INLINE_COUNT  当 out_of_line 不为 0 时 referrers 则是一个动态的数组 内容随之增加。</span><br></pre></td></tr></table></figure>
+<p><code>weak</code>实现原理步骤:</p>
+<font color="red">1</font>.初始化:<code>runtime</code>会调用<code>objc_initWeak</code>函数，初始化一个新的weak指针指向对象的地址。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    id obj1 = [[NSObject alloc] init];</span><br><span class="line">    id __weak obj2 = obj1;</span><br><span class="line">    </span><br><span class="line">// 编译转换 </span><br><span class="line"></span><br><span class="line">    id obj2;</span><br><span class="line">    objc_initWeak(&amp;obj2, obj1); // 通过 objc_initWeak 函数初始化 </span><br><span class="line">    objc_destroyWeak(&amp;obj2); // 调用 objc_destroyWeak 函数来释放该变量</span><br></pre></td></tr></table></figure><br><br>objc_initWeak:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 前提条件: 必须是一个没有被注册为__weak对象的有效指针。而value则可以是null或指向一个有效的对象。</span><br><span class="line">    id objc_initWeak(id *location, id newObj) &#123;</span><br><span class="line">        // 查看对象实例是否有效</span><br><span class="line">        // 无效对象直接导致指针释放</span><br><span class="line">        </span><br><span class="line">        if (!newObj) &#123; </span><br><span class="line">            *location = nil;</span><br><span class="line">            return nil;</span><br><span class="line">        &#125;</span><br><span class="line">        // 有效object将被注册为一个指向value的__weak对象</span><br><span class="line">        return storeWeak&lt;true/*old*/, false/*new*/, false/*crash*/&gt; (location, (objc_object*)newObj);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br><br><font color="red">2</font>.添加引用时<code>objc_initWeak()</code>函数会调用<code>objc_storeWeak()</code>函数,用于更新指针指向，并创建对应的弱引用表<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void objc_destroyWeak(id *location) &#123;</span><br><span class="line">    (void)storeWeak&lt;true/*old*/, false/*new*/, false/*crash*/&gt; (location, nil);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br><code>objc_storeWeak()</code>函数具体实现:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">// HaveOld:  true - 变量有值</span><br><span class="line">//          false - 需要被及时清理，当前值可能为 nil</span><br><span class="line">// HaveNew:  true - 需要被分配的新值，当前值可能为 nil</span><br><span class="line">//          false - 不需要分配新值</span><br><span class="line">// CrashIfDeallocating: true - 说明 newObj 已经释放或者 newObj 不支持弱引用，该过程需要暂停</span><br><span class="line">//          false - 用 nil 替代存储</span><br><span class="line">template bool HaveOld, bool HaveNew, bool CrashIfDeallocating&gt;</span><br><span class="line">static id storeWeak(id *location, objc_object *newObj) &#123;</span><br><span class="line">    // 该过程用来更新弱引用指针的指向</span><br><span class="line">    // 初始化 previouslyInitializedClass 指针</span><br><span class="line">    Class previouslyInitializedClass = nil;</span><br><span class="line">    id oldObj;</span><br><span class="line">    // 声明两个 SideTable</span><br><span class="line">    // ① 新旧散列创建</span><br><span class="line">    SideTable *oldTable;</span><br><span class="line">    SideTable *newTable;</span><br><span class="line">    // 获得新值和旧值的锁存位置（用地址作为唯一标示）</span><br><span class="line">    // 通过地址来建立索引标志，防止桶重复</span><br><span class="line">    // 下面指向的操作会改变旧值</span><br><span class="line">retry:</span><br><span class="line">    if (HaveOld) &#123;</span><br><span class="line">        // 更改指针，获得以 oldObj 为索引所存储的值地址</span><br><span class="line">        oldObj = *location;</span><br><span class="line">        oldTable = &amp;SideTables()[oldObj];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        oldTable = nil;</span><br><span class="line">    &#125;</span><br><span class="line">    if (HaveNew) &#123;</span><br><span class="line">        // 更改新值指针，获得以 newObj 为索引所存储的值地址</span><br><span class="line">        newTable = &amp;SideTables()[newObj];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        newTable = nil;</span><br><span class="line">    &#125;</span><br><span class="line">    // 加锁操作，防止多线程中竞争冲突</span><br><span class="line">    SideTable::lockTwoHaveOld, HaveNew&gt;(oldTable, newTable);</span><br><span class="line">    // 避免线程冲突重处理</span><br><span class="line">    // location 应该与 oldObj 保持一致，如果不同，说明当前的 location 已经处理过 oldObj 可是又被其他线程所修改</span><br><span class="line">    if (HaveOld  &amp;&amp;  *location != oldObj) &#123;</span><br><span class="line">        SideTable::unlockTwoHaveOld, HaveNew&gt;(oldTable, newTable);</span><br><span class="line">        goto retry;</span><br><span class="line">    &#125;</span><br><span class="line">    // 防止弱引用间死锁</span><br><span class="line">    // 并且通过 +initialize 初始化构造器保证所有弱引用的 isa 非空指向</span><br><span class="line">    if (HaveNew  &amp;&amp;  newObj) &#123;</span><br><span class="line">        // 获得新对象的 isa 指针</span><br><span class="line">        Class cls = newObj-&gt;getIsa();</span><br><span class="line">        // 判断 isa 非空且已经初始化</span><br><span class="line">        if (cls != previouslyInitializedClass  &amp;&amp;</span><br><span class="line">            !((objc_class *)cls)-&gt;isInitialized()) &#123;</span><br><span class="line">            // 解锁</span><br><span class="line">            SideTable::unlockTwoHaveOld, HaveNew&gt;(oldTable, newTable);</span><br><span class="line">            // 对其 isa 指针进行初始化</span><br><span class="line">            _class_initialize(_class_getNonMetaClass(cls, (id)newObj));</span><br><span class="line">            // 如果该类已经完成执行 +initialize 方法是最理想情况</span><br><span class="line">            // 如果该类 +initialize 在线程中</span><br><span class="line">            // 例如 +initialize 正在调用 storeWeak 方法</span><br><span class="line">            // 需要手动对其增加保护策略，并设置 previouslyInitializedClass 指针进行标记</span><br><span class="line">            previouslyInitializedClass = cls;</span><br><span class="line">            // 重新尝试</span><br><span class="line">            goto retry;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // ② 清除旧值</span><br><span class="line">    if (HaveOld) &#123;</span><br><span class="line">        weak_unregister_no_lock(&amp;oldTable-&gt;weak_table, oldObj, location);</span><br><span class="line">    &#125;</span><br><span class="line">    // ③ 分配新值</span><br><span class="line">    if (HaveNew) &#123;</span><br><span class="line">        newObj = (objc_object *)weak_register_no_lock(&amp;newTable-&gt;weak_table,</span><br><span class="line">                                                      (id)newObj, location,</span><br><span class="line">                                                      CrashIfDeallocating);</span><br><span class="line">        // 如果弱引用被释放 weak_register_no_lock 方法返回 nil</span><br><span class="line">        // 在引用计数表中设置若引用标记位</span><br><span class="line">        if (newObj  &amp;&amp;  !newObj-&gt;isTaggedPointer()) &#123;</span><br><span class="line">            // 弱引用位初始化操作</span><br><span class="line">            // 引用计数那张散列表的weak引用对象的引用计数中标识为weak引用</span><br><span class="line">            newObj-&gt;setWeaklyReferenced_nolock();</span><br><span class="line">        &#125;</span><br><span class="line">        // 之前不要设置 location 对象，这里需要更改指针指向</span><br><span class="line">        *location = (id)newObj;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        // 没有新值，则无需更改</span><br><span class="line">    &#125;</span><br><span class="line">    SideTable::unlockTwoHaveOld, HaveNew&gt;(oldTable, newTable);</span><br><span class="line">    return (id)newObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br><font color="red">3</font>.释放时调用<code>objc_clear_deallocating</code>函数.<code>objc_clear_deallocating</code>函数首先根据对象地址获取所有weak指针地址的<code>数组</code>，然后变量这个数组把其中的数据设置为<code>nil</code>，最后把这个entry从weak表中删除，最后清理对象的记录。<br><br>调用<code>objc_clear_deallocating</code>函数:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    void objc_clear_deallocating(id obj) &#123;</span><br><span class="line">        assert(obj);</span><br><span class="line">        assert(!UseGC);</span><br><span class="line">        if (obj-&gt;isTaggedPointer()) return;</span><br><span class="line">        obj-&gt;clearDeallocating();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">// 其最后调用了 clearDeallocating() 函数</span><br></pre></td></tr></table></figure><br><br>最后在<code>weak_clear_no_lock()</code>函数中可以看出具体至nil的具体操作:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Called by dealloc; nils out all weak pointers that point to the</span><br><span class="line"> * provided object so that they can no longer be used.</span><br><span class="line"> *</span><br><span class="line"> * @param weak_table</span><br><span class="line"> * @param referent The object being deallocated.</span><br><span class="line"> */</span><br><span class="line">void weak_clear_no_lock(weak_table_t *weak_table, id referent_id)</span><br><span class="line">&#123;</span><br><span class="line">    objc_object *referent = (objc_object *)referent_id;</span><br><span class="line">    weak_entry_t *entry = weak_entry_for_referent(weak_table, referent);</span><br><span class="line">    if (entry == nil) &#123;</span><br><span class="line">        /// XXX shouldn&apos;t happen, but does with mismatched CF/objc</span><br><span class="line">        //printf(&quot;XXX no entry for clear deallocating %p\n&quot;, referent);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    // zero out references</span><br><span class="line">    weak_referrer_t *referrers;</span><br><span class="line">    size_t count;</span><br><span class="line">    </span><br><span class="line">    if (entry-&gt;out_of_line) &#123;  </span><br><span class="line">        referrers = entry-&gt;referrers;</span><br><span class="line">        count = TABLE_SIZE(entry);</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        referrers = entry-&gt;inline_referrers;</span><br><span class="line">        count = WEAK_INLINE_COUNT;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    for (size_t i = 0; i &lt; count; ++i) &#123;</span><br><span class="line">        objc_object **referrer = referrers[i];</span><br><span class="line">        if (referrer) &#123;</span><br><span class="line">            if (*referrer == referent) &#123;</span><br><span class="line">                *referrer = nil;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (*referrer) &#123;</span><br><span class="line">                _objc_inform(&quot;__weak variable at %p holds %p instead of %p. &quot;</span><br><span class="line">                             &quot;This is probably incorrect use of &quot;</span><br><span class="line">                             &quot;objc_storeWeak() and objc_loadWeak(). &quot;</span><br><span class="line">                             &quot;Break on objc_weak_error to debug.\n&quot;,</span><br><span class="line">                             referrer, (void*)*referrer, (void*)referent);</span><br><span class="line">                objc_weak_error();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    weak_entry_remove(weak_table, entry);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>### <font color="red">strong:</font>理解了weak再来理解strong就相对比较的简单了。因为weak多半是为了解决strong带来的一些问题而存在的。强引用，被strong修饰的属性一般不会自动释放。<br><br>### <font color="red">assign:</font>既可以修饰对象类型的，也可以修饰基本数据类型。引用计数不 +1，当被修饰的对象被释放后指针不会被至为nil(跟weak相反)会产生野指针，因此向被释放的对象发送消息会导致崩溃。<code>setter</code>方法直接赋值，不进行任何<code>retain</code>操作，为了解决原类型与循环引用问题。<br><br><br>### <font color="red">copy:</font>copy 主要使用在两个方面:<br><br>1.<code>block</code>: 在MRC时代block内部的代码块是在栈区(由系统编译器自动管理，不需要程序员手动管理)的，使用copy关键字可以把它放到堆区。 ARC使用copy和strong效果是一样的。<br><br><em> 很有必要理解下为什么要把<code>block</code>把到堆区:<br><br>&gt; 其实先大致理解下<font color="red"><code>栈</code></font>和<font color="red"><code>堆</code></font>的意思。<br>&gt;<br>&gt; <font color="blue"><code>栈</code></font>:有系统编译器自动管理，不需要程序员手动管理。一般用于存放<code>非OC对象</code><br>&gt; <font color="blue"><code>堆</code></font>:释放由程序员手动管理，因此不及时回收很容易产生内存泄漏情况。一般用于存放<code>OC对象</code>。<br>&gt;<br>&gt; 然而<code>block</code>就是一个对象，理论上是可以进行retain/release。但是block在创建的时候它的内存默认是分配在<code>栈</code>上的，所以它的作用域仅限在创建的时候的上下文函数或方法。所以当你在该作用域外调用该block程序就会崩溃。把block的内存推到堆区就可以避免这个问题。<br><br>2.用于某些父类指针可以指向子类的对象(多指存在不可变和可变类型的对象:NSString、NSArray、NSDictionary…),作用就是保护属性变量不会被修改。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@property (nonatomic,strong) NSString * strongedStr;</span><br><span class="line">@property (nonatomic,copy) NSString * copyedStr;</span><br><span class="line"></span><br><span class="line">    NSMutableString *mutable_string = [[NSMutableString alloc] initWithString:@&quot;可变类型&quot;];</span><br><span class="line">    </span><br><span class="line">    self.strongedStr = mutable_string;</span><br><span class="line">    self.copyedStr = mutable_string;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;mutable_string = %p&quot;,mutable_string);</span><br><span class="line">    NSLog(@&quot;strongedStr = %p&quot;,self.strongedStr);</span><br><span class="line">    NSLog(@&quot;copyedStr = %p&quot;,self.copyedStr);</span><br><span class="line">    </span><br><span class="line"> // 内存地址</span><br><span class="line"> mutable_string = 0x283c14630</span><br><span class="line"> strongedStr = 0x283c14630</span><br><span class="line"> copyedStr = 0x283244420</span><br><span class="line"> </span><br><span class="line"> // 值</span><br><span class="line"> mutable_string = 可变类型</span><br><span class="line"> strongedStr = 可变类型</span><br><span class="line"> copyedStr = 可变类型</span><br></pre></td></tr></table></figure><br><br>&gt; 可以很明显的看出使用<code>strong</code>修饰的<code>不可变</code>类型的地址跟<code>可变</code>类型的地址是相同的，<br>&gt; 使用<code>copy</code>则是新地址。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 改变mutable_string 的值后看下内存地址变化</span><br><span class="line">    [mutable_string appendString:@&quot;还是可变类型&quot;];</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;mutable_string = %p&quot;,mutable_string);</span><br><span class="line">    NSLog(@&quot;strongedStr = %p&quot;,self.strongedStr);</span><br><span class="line">    NSLog(@&quot;copyedStr = %p&quot;,self.copyedStr);</span><br><span class="line">    </span><br><span class="line"> // 内存地址</span><br><span class="line"> mutable_string = 0x282508330</span><br><span class="line"> strongedStr = 0x282508330</span><br><span class="line"> copyedStr = 0x282b58940</span><br><span class="line"> </span><br><span class="line"> // 值</span><br><span class="line"> mutable_string = 可变类型还是可变类型</span><br><span class="line"> strongedStr = 可变类型还是可变类型</span><br><span class="line"> copyedStr = 可变类型</span><br></pre></td></tr></table></figure><br><br>&gt; 可以很明显的看出<code>copy</code>修饰的<code>值</code>没有改变，但是内存地址却发生了改变。<code>strong</code>修饰的则都随着改变。  
+
+</em> 由此可以引出copy的<code>深拷贝</code>和<code>浅拷贝</code>的概念和区别。<br><br><font color="red">浅拷贝:</font>拷贝后，并没有进行真正的复制，而是复制的对象和原对象指向同一个地址。<br><br><font color="red">深拷贝:</font>真正的复制，复制的对象指向新的地址。<br><br>&gt; 真正理解<code>深拷贝</code>和<code>浅拷贝</code>还需要了解<code>容器类</code>和<code>非容器类</code>。<br>&gt;<br>&gt; <code>容器类</code>:可以包容其他类的基类。如:NSarray,NSDictionary<br>&gt;<br>&gt; <code>非容器类</code>:则不可以可以包容其他类的基类。如:NSString<br>&gt;<br>&gt; 因为<code>容器类</code>和<code>非容器类</code>所涉及的<code>深拷贝</code>和<code>浅拷贝</code>也是有所区别的。<br><br><br>### <font color="red"><code>非容器类</code>:</font>
+
+<h4 id="不可变"><a href="#不可变" class="headerlink" title="不可变:"></a><code>不可变</code>:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">NSString *string = @&quot;非容器不可变类型&quot;;</span><br><span class="line">NSString *stringA = [string copy];</span><br><span class="line">NSString *stringB = [string mutableCopy];</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;string--值 = %@&quot;,string);</span><br><span class="line">NSLog(@&quot;stringA--值 = %@&quot;,stringA);</span><br><span class="line">NSLog(@&quot;stringB--值 = %@&quot;,stringB);</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;string--地址 = %p&quot;,string);</span><br><span class="line">NSLog(@&quot;stringA--地址 = %p&quot;,stringA);</span><br><span class="line">NSLog(@&quot;stringB--地址 = %p&quot;,stringB);</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;string--class = %@&quot;,string.class);</span><br><span class="line">NSLog(@&quot;stringA--class = %@&quot;,stringA.class);</span><br><span class="line">NSLog(@&quot;stringB--class = %@&quot;,stringB.class);</span><br><span class="line"></span><br><span class="line">//  NSLog:</span><br><span class="line">string--值 = 非容器不可变类型</span><br><span class="line">stringA--值 = 非容器不可变类型</span><br><span class="line">stringB--值 = 非容器不可变类型</span><br><span class="line"></span><br><span class="line">string--地址 = 0x104094290</span><br><span class="line">stringA--地址 = 0x104094290 // copy 值相同 地址相同</span><br><span class="line">stringB--地址 = 0x2818dc540 // mutableCopy 值相同 地址不同 </span><br><span class="line"></span><br><span class="line">string--class = __NSCFConstantString</span><br><span class="line">stringA--class = __NSCFConstantString // 不可变对象</span><br><span class="line">stringB--class = __NSCFString // 可变对象</span><br></pre></td></tr></table></figure>
+<p>结论:</p>
+<font color="blue"> 1.非容器 -&gt; 不可变对象 -&gt; copy -&gt; 浅拷贝:地址相同 不可变对象</font> 
+
+<font color="blue"> 2.非容器 -&gt; 不可变对象 -&gt; mutableCopy -&gt; 深拷贝:地址不同 可变对象 </font>
+
+
+<h4 id="可变"><a href="#可变" class="headerlink" title="可变:"></a><code>可变</code>:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">NSMutableString *mustablestring = [[NSMutableString alloc] initWithString:@&quot;非容器可变类型&quot;];</span><br><span class="line">NSString *stringA = [mustablestring copy];</span><br><span class="line">NSString *stringB = [mustablestring mutableCopy];</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;string--值 = %@&quot;,mustablestring);</span><br><span class="line">NSLog(@&quot;stringA--值 = %@&quot;,stringA);</span><br><span class="line">NSLog(@&quot;stringB--值 = %@&quot;,stringB);</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;string--地址 = %p&quot;,mustablestring);</span><br><span class="line">NSLog(@&quot;stringA--地址 = %p&quot;,stringA);</span><br><span class="line">NSLog(@&quot;stringB--地址 = %p&quot;,stringB);</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;string--class = %@&quot;,mustablestring.class);</span><br><span class="line">NSLog(@&quot;stringA--class = %@&quot;,stringA.class);</span><br><span class="line">NSLog(@&quot;stringB--class = %@&quot;,stringB.class);</span><br><span class="line"></span><br><span class="line">// </span><br><span class="line"></span><br><span class="line">string--值 = 非容器可变类型</span><br><span class="line">stringA--值 = 非容器可变类型</span><br><span class="line">stringB--值 = 非容器可变类型</span><br><span class="line"></span><br><span class="line">string--地址 = 0x280c94810</span><br><span class="line">stringA--地址 = 0x280c948d0</span><br><span class="line">stringB--地址 = 0x280c94ab0</span><br><span class="line"></span><br><span class="line">string--class = __NSCFString</span><br><span class="line">stringA--class = __NSCFString</span><br><span class="line">stringB--class = __NSCFString</span><br></pre></td></tr></table></figure>
+<p>结论:</p>
+<font color="blue"> 1.非容器 -&gt; 可变对象 -&gt; copy -&gt; 深拷贝:地址不同 可变对象</font> 
+
+<font color="blue"> 2.非容器 -&gt; 可变对象 -&gt; mutableCopy -&gt; 深拷贝:地址不同 可变对象 </font>
+
+
+<h3 id="容器类"><a href="#容器类" class="headerlink" title="容器类:"></a><font color="red"><code>容器类</code>:</font></h3><h4 id="不可变-1"><a href="#不可变-1" class="headerlink" title="不可变:"></a><code>不可变</code>:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">NSArray *array = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;];</span><br><span class="line">NSArray *arrayA = [array copy];</span><br><span class="line">NSArray *arrayB = [array mutableCopy];</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;array--值 = %@&quot;,array);</span><br><span class="line">NSLog(@&quot;arrayA--值 = %@&quot;,arrayA);</span><br><span class="line">NSLog(@&quot;arrayB--值 = %@&quot;,arrayB);</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;array--地址 = %p&quot;,array);</span><br><span class="line">NSLog(@&quot;arrayA--地址 = %p&quot;,arrayA);</span><br><span class="line">NSLog(@&quot;arrayB--地址 = %p&quot;,arrayB);</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;array--class = %@&quot;,array.class);</span><br><span class="line">NSLog(@&quot;arrayA--class = %@&quot;,arrayA.class);</span><br><span class="line">NSLog(@&quot;arrayB--class = %@&quot;,arrayB.class);</span><br><span class="line"></span><br><span class="line">array--值 = (1,2,3)</span><br><span class="line">arrayA--值 = (1,2,3)</span><br><span class="line">arrayB--值 = (1,2,3)</span><br><span class="line"></span><br><span class="line">array--地址 = 0x282e005d0</span><br><span class="line">arrayA--地址 = 0x282e005d0</span><br><span class="line">arrayB--地址 = 0x282e006c0</span><br><span class="line"></span><br><span class="line">array--class = __NSArrayI</span><br><span class="line">arrayA--class = __NSArrayI</span><br><span class="line">arrayB--class = __NSArrayM</span><br></pre></td></tr></table></figure>
+<p>结论:</p>
+<font color="blue"> 1.容器 -&gt; 不可变对象 -&gt; copy -&gt; 浅拷贝:地址相同 不可变对象</font> 
+
+<font color="blue"> 2.容器 -&gt; 不可变对象 -&gt; mutableCopy -&gt; 深拷贝:地址不同 可变对象 </font>
+
+<h4 id="可变-1"><a href="#可变-1" class="headerlink" title="可变:"></a><code>可变</code>:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mutablearray--值 = (1,2,3)</span><br><span class="line">mutablearrayA--值 = (1,2,3)</span><br><span class="line">mutablearrayB--值 = (1,2,3)</span><br><span class="line"></span><br><span class="line">mutablearray--地址 = 0x2831fc2d0</span><br><span class="line">mutablearrayA--地址 = 0x2831fc300</span><br><span class="line">mutablearrayB--地址 = 0x2831fc330</span><br><span class="line"></span><br><span class="line">mutablearray--class = __NSArrayM</span><br><span class="line">mutablearrayA--class = __NSArrayI</span><br><span class="line">mutablearrayB--class = __NSArrayM</span><br></pre></td></tr></table></figure>
+<p>结论:</p>
+<font color="blue"> 1.容器 -&gt; 可变对象 -&gt; copy -&gt; 深拷贝:地址不同 不可变对象</font> 
+
+<font color="blue"> 2.容器 -&gt; 可变对象 -&gt; mutableCopy -&gt; 深拷贝:地址不同 可变对象 </font>
+
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>非容器</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方法类型</td>
+<td>不可变类型</td>
+<td>可变类型</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>浅拷贝</td>
+<td>深拷贝</td>
+</tr>
+<tr>
+<td>mutableCopy</td>
+<td>深拷贝</td>
+<td>深拷贝</td>
+</tr>
+<tr>
+<td></td>
+<td>容器</td>
+<td></td>
+</tr>
+<tr>
+<td>copy</td>
+<td>浅拷贝</td>
+<td>深拷贝</td>
+</tr>
+<tr>
+<td>mutableCopy</td>
+<td>深拷贝</td>
+<td>深拷贝</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-copy对于可变对象为深拷贝，对于不可变对象为浅拷贝"><a href="#1-copy对于可变对象为深拷贝，对于不可变对象为浅拷贝" class="headerlink" title=" 1:copy对于可变对象为深拷贝，对于不可变对象为浅拷贝 "></a><font color="red"> 1:copy对于可变对象为深拷贝，对于不可变对象为浅拷贝 </font></h4><h4 id="2-mutableCopy都是深拷贝"><a href="#2-mutableCopy都是深拷贝" class="headerlink" title=" 2: mutableCopy都是深拷贝 "></a><font color="red"> 2: mutableCopy都是深拷贝 </font></h4><h3 id="retain-持有特效性，setter方法会将传入的参数先保留，在赋值。释放旧的对象，将旧对象的值赋予输入对象，在提高输入对象的引用计数值-1。-release旧值，retain新值"><a href="#retain-持有特效性，setter方法会将传入的参数先保留，在赋值。释放旧的对象，将旧对象的值赋予输入对象，在提高输入对象的引用计数值-1。-release旧值，retain新值" class="headerlink" title="retain:持有特效性，setter方法会将传入的参数先保留，在赋值。释放旧的对象，将旧对象的值赋予输入对象，在提高输入对象的引用计数值 +1。(release旧值，retain新值)"></a><font color="red">retain:</font>持有特效性，setter方法会将传入的参数先保留，在赋值。释放旧的对象，将旧对象的值赋予输入对象，在提高输入对象的引用计数值 +1。(release旧值，retain新值)</h3><ul>
+<li>声明<code>属性</code>时效果等同于<code>strong</code>，而在声明<code>block</code>时使用的<code>strong</code>与<code>copy</code>是等效的，但是<code>retain</code>却不等效于<code>strong</code>而等效于<code>assign</code>。</li>
+</ul>
+<h3 id="readwrite-readonly-readwrite默认读写属性，生成setter和getter方法。readonly只读属性，只生成getter方法。"><a href="#readwrite-readonly-readwrite默认读写属性，生成setter和getter方法。readonly只读属性，只生成getter方法。" class="headerlink" title="readwrite readonly: readwrite默认读写属性，生成setter和getter方法。readonly只读属性，只生成getter方法。"></a><font color="red">readwrite readonly:</font> readwrite默认读写属性，生成setter和getter方法。readonly只读属性，只生成getter方法。</h3><h3 id="unsafe-unretained-相当于ARC环境下的assign。对象被释放后不会至nil。容易导致野指针。"><a href="#unsafe-unretained-相当于ARC环境下的assign。对象被释放后不会至nil。容易导致野指针。" class="headerlink" title="unsafe_unretained:相当于ARC环境下的assign。对象被释放后不会至nil。容易导致野指针。"></a><font color="red">unsafe_unretained:</font>相当于ARC环境下的<code>assign</code>。对象被释放后不会至<code>nil</code>。容易导致野指针。</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/17/理论知识总结一ARC/" rel="next" title="理论知识总结一ARC">
+                <i class="fa fa-chevron-left"></i> 理论知识总结一ARC
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/07/Property/" rel="prev" title="Property">
+                Property <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ryan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#atomic-多线程安全，默认关键字。"><span class="nav-number">1.</span> <span class="nav-text">atomic: 多线程安全，默认关键字。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nonatomic-在来理解nonatomic相对来说就比较轻松了，因为nonatomic理论上跟atomic是相对的。"><span class="nav-number">2.</span> <span class="nav-text">nonatomic:在来理解nonatomic相对来说就比较轻松了，因为nonatomic理论上跟atomic是相对的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-弱引用，引用计数不会-1，并在引用对象被释放会指针会被至为nil。-用于一些对象相互引用的时候，避免出现强强引用，对象不能释放所造成的内存泄漏问题。"><span class="nav-number">3.</span> <span class="nav-text">weak:弱引用，引用计数不会+1，并在引用对象被释放会指针会被至为nil。 用于一些对象相互引用的时候，避免出现强强引用，对象不能释放所造成的内存泄漏问题。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不可变"><span class="nav-number">3.1.</span> <span class="nav-text">不可变:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可变"><span class="nav-number">3.2.</span> <span class="nav-text">可变:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器类"><span class="nav-number">4.</span> <span class="nav-text">容器类:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不可变-1"><span class="nav-number">4.1.</span> <span class="nav-text">不可变:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可变-1"><span class="nav-number">4.2.</span> <span class="nav-text">可变:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">4.3.</span> <span class="nav-text">总结:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-copy对于可变对象为深拷贝，对于不可变对象为浅拷贝"><span class="nav-number">4.4.</span> <span class="nav-text"> 1:copy对于可变对象为深拷贝，对于不可变对象为浅拷贝 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-mutableCopy都是深拷贝"><span class="nav-number">4.5.</span> <span class="nav-text"> 2: mutableCopy都是深拷贝 </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#retain-持有特效性，setter方法会将传入的参数先保留，在赋值。释放旧的对象，将旧对象的值赋予输入对象，在提高输入对象的引用计数值-1。-release旧值，retain新值"><span class="nav-number">5.</span> <span class="nav-text">retain:持有特效性，setter方法会将传入的参数先保留，在赋值。释放旧的对象，将旧对象的值赋予输入对象，在提高输入对象的引用计数值 +1。(release旧值，retain新值)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#readwrite-readonly-readwrite默认读写属性，生成setter和getter方法。readonly只读属性，只生成getter方法。"><span class="nav-number">6.</span> <span class="nav-text">readwrite readonly: readwrite默认读写属性，生成setter和getter方法。readonly只读属性，只生成getter方法。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unsafe-unretained-相当于ARC环境下的assign。对象被释放后不会至nil。容易导致野指针。"><span class="nav-number">7.</span> <span class="nav-text">unsafe_unretained:相当于ARC环境下的assign。对象被释放后不会至nil。容易导致野指针。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ryan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
