@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="对于什么是Category，我觉得还是从其作用上将应该更容易理解。 由于某些原因发现现有的类的方法特别是系统自带的类无法满足现有的情况，那怎么办呢？这个时候Category就出现了。因为Category可以在不改变原有类的结果情况下添加自己自定义的方法。需要注意的是Category原则上只能添加方法而不能添加属性。为什么是原则上情况呢？下文会逐步讲解。  Category 有分类和类别两种叫法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Category &amp; Extension">
+<meta property="og:url" content="http://yoursite.com/2019/05/07/Category & Extension/index.html">
+<meta property="og:site_name" content="Ryan">
+<meta property="og:description" content="对于什么是Category，我觉得还是从其作用上将应该更容易理解。 由于某些原因发现现有的类的方法特别是系统自带的类无法满足现有的情况，那怎么办呢？这个时候Category就出现了。因为Category可以在不改变原有类的结果情况下添加自己自定义的方法。需要注意的是Category原则上只能添加方法而不能添加属性。为什么是原则上情况呢？下文会逐步讲解。  Category 有分类和类别两种叫法。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/Screen%20Shot%202019-05-09%20at%2019.51.11.png?raw=true">
+<meta property="og:updated_time" content="2019-05-09T12:47:42.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Category &amp; Extension">
+<meta name="twitter:description" content="对于什么是Category，我觉得还是从其作用上将应该更容易理解。 由于某些原因发现现有的类的方法特别是系统自带的类无法满足现有的情况，那怎么办呢？这个时候Category就出现了。因为Category可以在不改变原有类的结果情况下添加自己自定义的方法。需要注意的是Category原则上只能添加方法而不能添加属性。为什么是原则上情况呢？下文会逐步讲解。  Category 有分类和类别两种叫法。">
+<meta name="twitter:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/Screen%20Shot%202019-05-09%20at%2019.51.11.png?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/07/Category & Extension/"/>
+
+
+
+
+
+  <title>Category & Extension | Ryan</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ryan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Back To My Keyboard</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/Category & Extension/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ryan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ryan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Category & Extension</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T00:00:00+08:00">
+                2019-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对于什么是Category，我觉得还是从其作用上将应该更容易理解。</p>
+<p>由于某些原因发现<code>现有的类的方法特别是系统自带的类</code>无法满足现有的情况，那怎么办呢？这个时候Category就出现了。因为<code>Category</code>可以在不改变原有类的结果情况下添加自己自定义的方法。需要注意的是<code>Category</code><font color="red">原则上</font>只能添加<code>方法</code>而不能添加<code>属性</code>。为什么是<code>原则上</code>情况呢？下文会逐步讲解。</p>
+<blockquote>
+<p>Category 有<code>分类</code>和<code>类别</code>两种叫法。</p>
+</blockquote>
+<p>上面只是笼统的讲述了Category,下面来逐个讲解相关功能。</p>
+<h4 id="一-添加方法"><a href="#一-添加方法" class="headerlink" title="一:添加方法"></a>一:添加方法</h4><p>首页创建一个Category。此处创建了一个UIColor的分类Default，并自定义一个方法。</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// .h 添加一个类方法</span><br><span class="line">@interface UIColor (Default)</span><br><span class="line"></span><br><span class="line">+ (UIColor *)defaultColorForButtonTtitle;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">// .m 实现这个类方法</span><br><span class="line">+ (UIColor *)defaultColorForButtonTtitle &#123;</span><br><span class="line">    UIColor *color = [[UIColor alloc] init];</span><br><span class="line">    color = UIColor.redColor;</span><br><span class="line">    return color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 类方法调用</span><br><span class="line">[pushbut setTitleColor:[UIColor defaultColorForButtonTtitle] forState:UIControlStateNormal];</span><br></pre></td></tr></table></figure>
+<p>这就是Category方法的添加。因为可以自定义自己的方法，由此可以推出第二个作用。</p>
+<h4 id="二-将类的实现代码分散到多个分类当中"><a href="#二-将类的实现代码分散到多个分类当中" class="headerlink" title="二:将类的实现代码分散到多个分类当中"></a>二:将类的实现代码分散到多个分类当中</h4><p>因为类中经常容易填满各种方法，而这些方法的代码则全部在一个巨大的实现文件里。使用Category的机制，可以把代码按逻辑划入几个分区中，以便开发和调试。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@interface PresonInfo : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) NSString *familyName;</span><br><span class="line">@property (nonatomic, copy) NSString *lastName;</span><br><span class="line">@property (nonatomic, strong) NSArray *friends;</span><br><span class="line"></span><br><span class="line">- (void)initWithFamilyName:(NSString *)firstName andLastName:(NSString *)lastName;</span><br><span class="line"></span><br><span class="line">- (void)addBoyFriend:(PresonInfo *)preson;</span><br><span class="line">- (void)deleteBoyFriend:(PresonInfo *)preson;</span><br><span class="line"></span><br><span class="line">- (void)addGirlFriend:(PresonInfo *)preson;</span><br><span class="line">- (void)deleteGirlFriend:(PresonInfo *)preson;</span><br><span class="line"></span><br><span class="line">- (void)addALLFriend:(PresonInfo *)preson;</span><br><span class="line">- (void)deleteALLFriend:(PresonInfo *)preson;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>PresonInfo类的方法可能并不算多但也都是在.m文件中要实现的，那如果后期还要继续添加方法那务必会造成.m文件代码量的变大。时间长了自己都忘了改方法的具体作用。这时Category就起到了很大的作用。如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">@interface PresonInfo : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) NSString *familyName;</span><br><span class="line">@property (nonatomic, copy) NSString *lastName;</span><br><span class="line">@property (nonatomic, strong) NSArray *friends;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)initWithFamilyName:(NSString *)firstName andLastName:(NSString *)lastName;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">// boy</span><br><span class="line">@interface PresonInfo (Boy)</span><br><span class="line"></span><br><span class="line">- (void)addBoyFriend:(PresonInfo *)preson;</span><br><span class="line">- (void)deleteBoyFriend:(PresonInfo *)preson;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">// girl</span><br><span class="line">@interface PresonInfo (Girl)</span><br><span class="line"></span><br><span class="line">- (void)addGirlFriend:(PresonInfo *)preson;</span><br><span class="line">- (void)deleteGirlFriend:(PresonInfo *)preson;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">// all</span><br><span class="line">@interface PresonInfo (All)</span><br><span class="line"></span><br><span class="line">- (void)addALLFriend:(PresonInfo *)preson;</span><br><span class="line">- (void)deleteALLFriend:(PresonInfo *)preson;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然而在创建分类添加方法时，往往都会出现某些方法是比较<code>私有的</code>。我们可以把这些比较<code>私有的</code>方法单独并归到一个分类中，这样就可以隐藏实现细节。</li>
+</ul>
+<h4 id="三-使用class-continuation分类-隐藏实现文件"><a href="#三-使用class-continuation分类-隐藏实现文件" class="headerlink" title="三:使用class-continuation分类 隐藏实现文件"></a>三:使用<code>class-continuation分类</code> 隐藏实现文件</h4><p>就如上面说的类中经常会包含一些无须对外公布的方法和实例变量。然而Objective-C的动态消息机制又实现不了真正的<code>方法私有</code>或者<code>实例变量的私有</code>，但是还要有必要隐藏着部分的内容。着就是<code>class-continuation分类</code>存在的意义。</p>
+<ul>
+<li><code>class-continuation分类</code>必须定义在其所接续的那个类的实现文件里。原因在于这是<font color="red">唯一能声明实例变量的分类，而且此分类没有特定的实现文件，其中的方法都应该定义在类的主实现文件里</font>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// class-continuation分类写法</span><br><span class="line">@interface PresonInfo ()</span><br><span class="line">// Methods </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这样就可以将其隐藏起来，只供本类使用。</li>
+</ul>
+<h4 id="四-关联对象"><a href="#四-关联对象" class="headerlink" title="四:关联对象"></a>四:关联对象</h4><p>关联对象:Associated Object,即把一个对象关联到另一个对象上。</p>
+<p>在讲解管理对象之前先来讲讲Category的属性相关问题。<br>都知道在一般类中创建一个属性，都会生成对应的实例变量，getter方法和setter方法。这些都是编译器自动为我们生成的。然而为什么在Category里添加属性会有警报甚至crash呢？那是因为<font color="red">在Category里添加的属性是不会自动生成对应的成员变量以及getter和setter的实现方法</font>。</p>
+<p>既然不能自动生成那可以手动设置吗？显然是可以的。此时会涉及到另一个十分重要的知识点<code>Runtime</code>(在此只讲解本文相关的知识点，后续会有专门篇幅)。通过<code>Runtime</code>的相关API就能手动的给Category添加对应的getter和setter的实现方法。其实这个过程也就是<code>关联对象</code>的过程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 当我在UIColor的分类Default中添加下面一个属性</span><br><span class="line">@interface UIColor (Default)</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) NSString *nameString;</span><br><span class="line"></span><br><span class="line">+ (UIColor *)defaultColorForButtonTtitle;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">// 在.m文件中就会出现这么一条警告</span><br><span class="line">Property &apos;nameString&apos; requires method &apos;nameString&apos; to be defined - use @dynamic or provide a method implementation in this category</span><br><span class="line"></span><br><span class="line">// 大致意思是提醒我们需要定义该属性实例变量的方法，使用@dynamic或者自己定义。</span><br></pre></td></tr></table></figure>
+<p>@dynamic:告诉编译器属性的getter和setter方法由用户实现，不自动生成。所以最后我们还是得手动来设置方法。</p>
+<p>下面就来手动实现先如何关联对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// getter方法</span><br><span class="line">- (NSString *)name &#123;</span><br><span class="line">    return objc_getAssociatedObject(self, @&quot;nameKey&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// setter方法</span><br><span class="line">- (void)setName:(NSString *)name &#123;</span><br><span class="line">    objc_setAssociatedObject(self, @&quot;nameKey&quot;, name, OBJC_ASSOCIATION_COPY);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">objc_getAssociatedObject(id _Nonnull object, const void * _Nonnull key)</span><br><span class="line"></span><br><span class="line">// object : 关联的源对象  key : 关联的键值</span><br><span class="line"></span><br><span class="line">objc_setAssociatedObject(id _Nonnull object, const void * _Nonnull key,id _Nullable value, objc_AssociationPolicy policy)</span><br><span class="line"></span><br><span class="line">// object : 关联的源对象 key : 关联的键值  value : 关联的对象  objc_AssociationPolicy policy : 关联的策略</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 调用 (可能不是那么的符合实际)</span><br><span class="line">UIColor *color = [[UIColor alloc] init];</span><br><span class="line">color.name = @&quot;红色&quot;;</span><br><span class="line">[pushbut setTitle:color.name forState:UIControlStateNormal];</span><br></pre></td></tr></table></figure>
+<p>这样就实现了给分类添加一个属性。其中也是<code>Runtime</code>的功能之一。</p>
+<p>然而对于关联对象<code>Runtime</code>还提供了一个移除的API</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 这个其实应很容易理解了</span><br><span class="line">void objc_removeAssociatedObjects(id object)</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="因为可以自定义方法那必然会发生一些冲突，比如自定义的方法跟原有类的方法一致会产生什么影响"><a href="#因为可以自定义方法那必然会发生一些冲突，比如自定义的方法跟原有类的方法一致会产生什么影响" class="headerlink" title="因为可以自定义方法那必然会发生一些冲突，比如自定义的方法跟原有类的方法一致会产生什么影响?"></a>因为可以自定义方法那必然会发生一些冲突，比如自定义的方法跟原有类的方法一致会产生什么影响?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 在UIColor分类中添加了如下方法 该方法跟UIColor类原有方法一致</span><br><span class="line">@interface UIColor (Default)</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line"></span><br><span class="line">+ (UIColor *)colorWithWhite:(CGFloat)white alpha:(CGFloat)alpha;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>这时在.m文件中就会出现这个么一个警告</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Category is implementing a method which will also be implemented by its primary class</span><br><span class="line">// 意思是原有类已经有这个方法</span><br></pre></td></tr></table></figure>
+<font color="red">在Category中存在着这样的方法调用优先级 <code>分类 -&gt; 本类 -&gt; 父类</code>, 当实现并调用这个方法时因iOS方法调用机制的原理，找到了相对应的方法名后就直接调用了并停止继续寻找其他相对应的方法名。这样原有类的方法就被忽略了。</font>
+
+<ul>
+<li>因此在开发的过程中尽量不要在Category中覆盖原有类方法，如真的有必要则改用继承。</li>
+</ul>
+<hr>
+<h3 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h3><p>对于Extension之前一直都不是很清楚什么是Extension，然而当贴出下面这段代码立马就眼前一亮。因为这种形式的代码在平时用的是不能再少了。当然Extension还有其他的表现形式，比如单独创建一个扩展。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// .m 文件  @interface 部分的代码就是Extension</span><br><span class="line">@interface Test_ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">    NSString *string;</span><br><span class="line">    NSArray *array;</span><br><span class="line">    NSDictionary *dictionary;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) UIButton *push;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@implementation Test_ViewController</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p> 单独添加扩展<br><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/Screen%20Shot%202019-05-09%20at%2019.51.11.png?raw=true" alt=""></p>
+<p>Extension(扩展、延展、匿名分类)跟Category最大的区别在于Extension不仅仅能声明方法，还可以声明属性及成员变量。不过这些都是私有的，只有在当前类中执行。上面说到Category应该避免覆盖原有类的方法，然而Extension因为没有对应的实现文件。只是提供了相应的方法个属性，即使实现了自定义的同名方法其实也相当于重置了原有类的方法，运行后也相当于调用了原有类的方法，而不是覆盖。</p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>1.Category只可以添加方法，不自带增加成员变量。Extension则都可以。</p>
+<p>2.Category可以访问原有类的.h文件中的属性，而Extension不行。</p>
+<p>3.Category会覆盖原有类的方法调用，而Extension相当于重置。</p>
+<blockquote>
+<p>那接下来就讲讲本文中提到的<code>Runtime</code></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/07/Property/" rel="next" title="Property">
+                <i class="fa fa-chevron-left"></i> Property
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ryan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-添加方法"><span class="nav-number">1.</span> <span class="nav-text">一:添加方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-将类的实现代码分散到多个分类当中"><span class="nav-number">2.</span> <span class="nav-text">二:将类的实现代码分散到多个分类当中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-使用class-continuation分类-隐藏实现文件"><span class="nav-number">3.</span> <span class="nav-text">三:使用class-continuation分类 隐藏实现文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-关联对象"><span class="nav-number">4.</span> <span class="nav-text">四:关联对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#因为可以自定义方法那必然会发生一些冲突，比如自定义的方法跟原有类的方法一致会产生什么影响"><span class="nav-number">5.</span> <span class="nav-text">因为可以自定义方法那必然会发生一些冲突，比如自定义的方法跟原有类的方法一致会产生什么影响?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extension"><span class="nav-number"></span> <span class="nav-text">Extension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别"><span class="nav-number"></span> <span class="nav-text">区别</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ryan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
