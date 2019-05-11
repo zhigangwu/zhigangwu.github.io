@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。 其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。">
+<meta name="description" content="面试时被问及的一个问题，容我技术菜接触少被问及时虽然吞吞吐吐说了点，但毕竟没接触也不是很有信心，具体怎么实现更不用说了。面试完回来后就翻阅各种文章发现用的最多的就是Runtime的方法交换功能了。在此只是个人的知识点整理，各位客官如有不足多多提点。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实习录">
-<meta property="og:url" content="http://yoursite.com/2018/08/13/实习录/index.html">
+<meta property="og:title" content="防止Button连续点击-Runtime的使用">
+<meta property="og:url" content="http://yoursite.com/2019/05/11/防止Button连续点击-Runtime的使用/index.html">
 <meta property="og:site_name" content="Ryan">
-<meta property="og:description" content="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。 其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。">
+<meta property="og:description" content="面试时被问及的一个问题，容我技术菜接触少被问及时虽然吞吞吐吐说了点，但毕竟没接触也不是很有信心，具体怎么实现更不用说了。面试完回来后就翻阅各种文章发现用的最多的就是Runtime的方法交换功能了。在此只是个人的知识点整理，各位客官如有不足多多提点。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-13T06:56:08.724Z">
+<meta property="og:updated_time" content="2019-05-11T02:39:19.337Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="实习录">
-<meta name="twitter:description" content="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。 其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。">
+<meta name="twitter:title" content="防止Button连续点击-Runtime的使用">
+<meta name="twitter:description" content="面试时被问及的一个问题，容我技术菜接触少被问及时虽然吞吞吐吐说了点，但毕竟没接触也不是很有信心，具体怎么实现更不用说了。面试完回来后就翻阅各种文章发现用的最多的就是Runtime的方法交换功能了。在此只是个人的知识点整理，各位客官如有不足多多提点。">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/13/实习录/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/05/11/防止Button连续点击-Runtime的使用/"/>
 
 
 
 
 
-  <title>实习录 | Ryan</title>
+  <title>防止Button连续点击-Runtime的使用 | Ryan</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/实习录/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/11/防止Button连续点击-Runtime的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ryan">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">实习录</h1>
+          <h1 class="post-title" itemprop="name headline">防止Button连续点击-Runtime的使用</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T00:00:00+08:00">
-                2018-08-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-11T00:00:00+08:00">
+                2019-05-11
               </time>
             
 
@@ -299,16 +299,24 @@
       
 
       
-        <h4 id="时隔将至半载趁有点空余时间-其实是懒-￣▽￣-感觉多多少少还是应该写点感受的。"><a href="#时隔将至半载趁有点空余时间-其实是懒-￣▽￣-感觉多多少少还是应该写点感受的。" class="headerlink" title="时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。"></a>时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。</h4><blockquote>
-<p>其实回想今年的实习路走的还算顺利，年初回杭简历投了是不少但是面试却少之可怜，然而第一次的面试就被录用了而且是自己意向的公司。但是说实话并没有高兴坏了而是感慨着之后的时间必然得花更多的时间在工作上了。</p>
-</blockquote>
+        <p>面试时被问及的一个问题，容我技术菜接触少被问及时虽然吞吞吐吐说了点，但毕竟没接触也不是很有信心，具体怎么实现更不用说了。面试完回来后就翻阅各种文章发现用的最多的就是<code>Runtime</code>的方法交换功能了。在此只是个人的知识点整理，各位客官如有不足多多提点。</p>
 <a id="more"></a>
-<h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><p>上班敲代码的时间远比之前上的班的时间过的要快的多快的多，真正体会到了时间不够用是种什么感觉。因为经验少多半的时间用在了找资料看资料上，工作进度也随之累积着。但感慨的是时间并没有被浪费掉而是为现在的工作打下了基础。</p>
-<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>第一个项目可以说是个不小的项目因为是实习分配到的相比其他端算是简单的，但是相比自学期间写的Demo现在想想根本就是两回事啊！所以每天工作的时间自然而然的花在了资料上了。虽还有很多要学但是比起刚入职的那段时间现在起码不会那么的狼狈吧。</p>
-<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><p>因为上班地址离住比较远(其实应该算是很远吧20KM +)坐公交地铁不实际因此就买了辆小龟车(电动车)开启了每天上下班兜风的日子。虽然本人没什么睡懒觉的习惯但是因为之前上班的点离的都是相当的近生物钟还是会相对比较迟，至此生物钟也被重新规划。</p>
-<hr>
-<p>写的不多希望以后的自己看到了多少会有点感触！</p>
-<p>在此还要感谢在生活中工作中曾帮助过我的人—祝安好！</p>
+<p>首选创建一个UIButton的分类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// .h中添加该属性 用于调用时设置延迟时间 这样不同的button可以设置不同的延迟时间</span><br><span class="line">@property (nonatomic, assign) NSTimeInterval delay_interval;</span><br></pre></td></tr></table></figure>
+<p>既然添加了属性当然就要利用<code>Runtime</code>的添加属性功能为delay_interval设置对应的getter和setter方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (NSTimeInterval)delay_interval &#123;</span><br><span class="line">    return [objc_getAssociatedObject(self, delayintervalkey) doubleValue];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)setDelay_interval:(NSTimeInterval)delay_interval &#123;</span><br><span class="line">    objc_setAssociatedObject(self, delayintervalkey, @(delay_interval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在.m中一个BOOL用来判断按钮的点击状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@interface UIButton ()</span><br><span class="line"></span><br><span class="line">@property (nonatomic, assign) BOOL clickBool;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>设置getter和setter</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)clickBool &#123;</span><br><span class="line">    return [objc_getAssociatedObject(self, unclickkey) doubleValue];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)setClickBool:(BOOL)clickBool &#123;</span><br><span class="line">    objc_setAssociatedObject(self, unclickkey, @(clickBool), OBJC_ASSOCIATION_RETAIN_NONATOMIC);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来就是方法交换的实现了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">+ (void)load &#123;</span><br><span class="line">    Method frommethod = class_getInstanceMethod(self, @selector(sendAction:to:forEvent:));</span><br><span class="line">    Method tomethod = class_getInstanceMethod(self, @selector(delayedClick:to:forEvent:));</span><br><span class="line">    method_exchangeImplementations(frommethod, tomethod);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)delayedClick:(SEL)action to:(id)target forEvent:(UIEvent *)event &#123;</span><br><span class="line">    </span><br><span class="line">    if (self.clickBool == NO) &#123;</span><br><span class="line">        self.clickBool = YES;</span><br><span class="line">        [self delayedClick:action to:target forEvent:event];</span><br><span class="line">        [self performSelector:@selector(setClickBool:) withObject:@(NO) afterDelay:self.delay_interval];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;</code>方法的作用在于当交换方法完成且已被点击后重新设置按钮的状态以用来触发下一次点击。<font color="red">这个方法是单线程的，也就是说只有当前调用此方法的函数执行完毕后，selector方法才会被调用</font></p>
+<p>最后就是调用了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 设置延迟时间即可</span><br><span class="line">clickButton.delay_interval = 5;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>总结后发现这么一个需求就利用到了<code>Runtime</code>的多个功能点。不得不说<code>Runtime</code>在某些功能上的功能强大。也正好为最近的<code>Runtime</code>学习整理来一个很好的例子。</li>
+</ul>
 
       
     </div>
@@ -333,8 +341,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/23/UILabel、UITextview、UITextField/" rel="next" title="UILabel、UITextview、UITextField">
-                <i class="fa fa-chevron-left"></i> UILabel、UITextview、UITextField
+              <a href="/2019/05/07/Category & Extension/" rel="next" title="Category & Extension">
+                <i class="fa fa-chevron-left"></i> Category & Extension
               </a>
             
           </div>
@@ -342,10 +350,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/27/UICollectionView/" rel="prev" title="UICollectionView">
-                UICollectionView <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -397,17 +401,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -451,22 +446,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#时隔将至半载趁有点空余时间-其实是懒-￣▽￣-感觉多多少少还是应该写点感受的。"><span class="nav-number">1.</span> <span class="nav-text">时隔将至半载趁有点空余时间(其实是懒(￣▽￣///))感觉多多少少还是应该写点感受的。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间"><span class="nav-number"></span> <span class="nav-text">时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作"><span class="nav-number"></span> <span class="nav-text">工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生活"><span class="nav-number"></span> <span class="nav-text">生活</span></a></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
