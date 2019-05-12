@@ -88,7 +88,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160121/1453346875560481.png">
 <meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160121/1453346881610109.png">
-<meta property="og:updated_time" content="2019-05-12T11:50:34.048Z">
+<meta property="og:updated_time" content="2019-05-12T11:53:57.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime">
 <meta name="twitter:description" content="Runtime的特性是消息/方法的传递，如果消息/方法在对象中找不到，就进行转发。是对获取Objective-C运行时和Objective-C根类底层的访问。 都知道Objective-C是C语言的一门衍生语言，而Runtime的核心就是C。C语言在函数调用的时候就会决定用哪个函数，如果调用了未实现的函数就会报错。然而Objective-C是一门动态语言，即在动态调用过程(运行时)编译器才会决定调">
@@ -328,209 +328,59 @@
 </ul>
 <h3 id="为分类添加属性"><a href="#为分类添加属性" class="headerlink" title="为分类添加属性"></a>为分类添加属性</h3><p>该功能请转至<a href="https://zhigangwu.github.io/2019/05/07/Category%20&amp;%20Extension/" target="_blank" rel="external">Category &amp; Extension</a></p>
 <p>在此补充下<br><code>objc_setAssociatedObject(id _Nonnull object, const void * _Nonnull key,id _Nullable value, objc_AssociationPolicy policy)</code><br>中<code>objc_AssociationPolicy policy</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">policy：关联策略。有五种关联策略。</span><br><span class="line">OBJC_ASSOCIATION_ASSIGN 等价于 @property(assign)。</span><br><span class="line">OBJC_ASSOCIATION_RETAIN_NONATOMIC等价于 @property(strong, nonatomic)。</span><br><span class="line">OBJC_ASSOCIATION_COPY_NONATOMIC等价于@property(copy, nonatomic)。</span><br><span class="line">OBJC_ASSOCIATION_RETAIN等价于@property(strong,atomic)。</span><br><span class="line">OBJC_ASSOCIATION_COPY等价于@property(copy, atomic)。</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 获取类中所有的变量和方法</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>(void)getProperties {</p>
-<p>  unsigned int count = 0;</p>
-<p>  // 拷贝出UITextField所有的成员变量列表<br>  Ivar *ivars = class_copyIvarList([UITextField class], &amp;count);</p>
-<p>  for (int i = 0; i&lt;count; i++) {</p>
-<pre><code>// 取出成员变量
-Ivar ivar = *(ivars + i);
-// 打印成员变量名字
-NSLog(@&quot;变量名字 = %s&quot;, ivar_getName(ivar));
-// 打印成员变量的数据类型
-NSLog(@&quot;数据类型 = %s&quot;, ivar_getTypeEncoding(ivar));
-</code></pre><p>  }<br>}</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">### 实现NSCoding的自动归档和自动解档</span><br><span class="line"></span><br><span class="line">首页得了解什么是`归档`和`解档`</span><br><span class="line"></span><br><span class="line">归档(序列化 持久化):就是把需要存储的对象的数据存储到沙盒的Documents目录下的文件中，即存储到磁盘上，实现数据的持久化存储和备份。</span><br><span class="line"></span><br><span class="line">解档(接档 反序列化):从磁盘上读取归档下的文件数据，用来完成用户的需求。</span><br><span class="line"></span><br><span class="line">首先用代码简单讲解下归档和解档的实现</span><br><span class="line"></span><br><span class="line">1.创建一个Model类并添加NSSecureCoding协议</span><br></pre></td></tr></table></figure>
-<p>// .h 文件<br>@interface FourLines : NSObject <nssecurecoding></nssecurecoding></p>
-<p>@property (nonatomic,strong) NSString<em> name;//姓名<br>@property (nonatomic,assign) NSString</em> age;//年龄<br>@property (nonatomic,strong) NSString* work;//职业</p>
-<p>@end</p>
-<p>// .m文件<br>@implementation FourLines</p>
-<ul>
-<li><p>(void)encodeWithCoder:(NSCoder *)aCoder {<br>  [aCoder encodeObject:self.name forKey:@”name”];<br>  [aCoder encodeObject:self.age forKey:@”age”];<br>  [aCoder encodeObject:self.work forKey:@”work”];<br>}</p>
-</li>
-<li><p>(instancetype)initWithCoder:(NSCoder *)aDecoder {<br>  if (self = [super init]) {</p>
-<pre><code>self.name = [aDecoder decodeObjectForKey:@&quot;name&quot;];
-self.age = [aDecoder decodeObjectForKey:@&quot;age&quot;];
-self.work = [aDecoder decodeObjectForKey:@&quot;work&quot;];
-</code></pre><p>  }<br>  return self;<br>}</p>
-</li>
-</ul>
-<ul>
-<li>(BOOL)supportsSecureCoding{<br>  return YES;<br>}<br>@end</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2.ViewController.m文件下</span><br><span class="line"></span><br><span class="line">归档</span><br></pre></td></tr></table></figure>
-<p>// 注释掉的代码为iOS 12之前的实现方式  iOS 12之后以弃用了改方法</p>
-<ul>
-<li><p>(void)saveClick:(UIButton <em>)sender {<br>  FourLines </em>line = [[FourLines alloc] init];<br>  line.name = @”例子”;<br>  line.age = @”12”;<br>  line.work = @”ios”;</p>
-<p>  NSError *error;<br>  self.archivedData = [NSKeyedArchiver archivedDataWithRootObject:line requiringSecureCoding:YES error:&amp;error];</p>
-<p>  if (self.archivedData == nil || error) {</p>
-<pre><code>NSLog(@&quot;归档失败:%@&quot;, error);
-return;
-</code></pre><p>  }</p>
-</li>
-</ul>
-<p>//    FourLines <em>newPerson = (FourLines </em>)[NSKeyedUnarchiver unarchivedObjectOfClass:FourLines.class fromData:data error:&amp;error];<br>//    NSLog(@”newPerson====:%@”,newPerson.name);</p>
-<p>//    NSArray <em>path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);<br>//    NSString </em>documentPath = [path firstObject];<br>//    NSLog(@”path====:%@”,documentPath);<br>//    NSString *filePath = [documentPath stringByAppendingPathComponent:@”lines”];</p>
-<p>//    [NSKeyedArchiver archiveRootObject:line toFile:filePath];</p>
-<p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">解档</span><br></pre></td></tr></table></figure></p>
-<p>// 注释掉的代码为iOS 12之前的实现方式  iOS 12之后以弃用了改方法</p>
-<ul>
-<li>(void)takeClick:(UIButton <em>)sender {<br>  NSError </em>error = nil;<br>  FourLines *per = [NSKeyedUnarchiver unarchivedObjectOfClass:[FourLines class] fromData:self.archivedData error:&amp;error];<br>  if (per == nil || error) {<pre><code>NSLog(@&quot;解档失败:%@&quot;, error);
-return;
-</code></pre>  }<br>  NSLog(@”name = %@ age = %@”,per.name,per.age);</li>
-</ul>
-<p>//    NSArray <em>paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);<br>//    NSString </em>documentPath = [paths objectAtIndex:0];<br>//    NSString *filePath = [documentPath stringByAppendingPathComponent:@”lines”];</p>
-<p>//    FourLines *lines = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];<br>//    NSLog(@”名字==%@,性别==%@,年龄==%@”,lines.name,lines.age,lines.work);<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-----</span><br><span class="line"></span><br><span class="line">&gt; 以上是归解档的简单实现方式，接下来了解下`Runtime`的自动归档和自动解档.</span><br><span class="line"></span><br><span class="line">如果还是拿上面的例子来修改的话其实只要改变Model类.m文件下的代码即可(记得添加`#import &lt;objc/runtime.h&gt;`)</span><br><span class="line"></span><br><span class="line">归档</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><p>(void)encodeWithCoder:(NSCoder *)aCoder {<br>  Class currentClass = self.class;</p>
-<p>  while (currentClass &amp;&amp; currentClass != [NSObject class]) {</p>
-<pre><code>unsigned int count = 0;
-Ivar *ivars = class_copyIvarList(currentClass, &amp;count);
-for (int i = 0; i &lt; count; i++) {
-    Ivar ivar = ivars[i];
-    NSString *key = [NSString stringWithUTF8String:ivar_getName(ivar)];
-    id value = [self valueForKey:key];
-    [aCoder encodeObject:value forKey:key];
-}
-currentClass = [currentClass superclass];
-free(ivars);
-</code></pre><p>  }<br>}</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">解档</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>(instancetype)initWithCoder:(NSCoder *)aDecoder {<br>  if (self = [super init]) {</p>
-<pre><code>Class currentClass = self.class;
-while (currentClass &amp;&amp; currentClass != [NSObject class]) {
-    unsigned int count = 0;
-    Ivar *ivar = class_copyIvarList(currentClass, &amp;count);
-    for (int i = 0; i &lt; count; i++) {
-        NSString *key = [NSString stringWithUTF8String:ivar_getName(ivar[i])];
-
-        id value = [aDecoder decodeObjectForKey:key];
-
-        [self setValue:value forKey:key];
-    }
-
-    currentClass = [currentClass superclass];
-    free(ivar);
-}
-</code></pre><p>  }<br>  return self;<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">其实从代码中就可以看出其实就是通过`Runtime`的`Ivar`来获取成员变量的列表从而使用for循环把成员变量自动添加到归档文件当中，而不用繁琐的一个个添加。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 动态添加方法</span><br><span class="line"></span><br><span class="line">用意:当硬件内存过小的时候，如果我们将每个方法都直接加载到内存当中，但是却极少的使用这就造成了内存的浪费。像`懒加载`就很好的避开了这个问题，只有当被用到时才会被加载。</span><br><span class="line"></span><br><span class="line">都知道调用一个未实现的方法必然会报错奔溃 如</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>// FourLines类中未实现<code>draw:</code>方法<br>FourLines *line = [[FourLines alloc] init];<br>[line performSelector:@selector(draw:) withObject:@”画一条线”];</p>
-<p>// 警告:Undeclared selector ‘draw:’<br>// 运行后就会崩溃<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;当利用`- (id)performSelector:(SEL)aSelector withObject:(id)object;`</span><br><span class="line">&gt;1.调用一个未实现的`对象方法`时，就会调用`+(BOOL)resolveInstanceMethod:(SEL)sel`方法</span><br><span class="line">&gt;</span><br><span class="line">&gt;2.调用一个未实现的`类方法`时，就会调用`+(BOOL)resolveClassMethod:(SEL)sel`方法</span><br><span class="line"></span><br><span class="line">因为我们需要FourLines类中添加如下代码 </span><br><span class="line"></span><br><span class="line">首选添加`#import &lt;objc/message.h&gt;`</span><br></pre></td></tr></table></figure></p>
-<p>// 因为调用的是一个对象方法 所以添加 + (BOOL)resolveInstanceMethod:(SEL)sel 方法</p>
-<ul>
-<li><p>(BOOL)resolveInstanceMethod:(SEL)sel {<br>  if (sel == @selector(draw:)) {</p>
-<pre><code>BOOL isSuccess = class_addMethod(self, sel, (IMP)draw, &quot;v@:@&quot;);
-
-return isSuccess;
-</code></pre><p>  }</p>
-<p>  return [super resolveInstanceMethod:sel];<br>}</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; class_addMethod(Class _Nullable cls, SEL _Nonnull name, IMP _Nonnull imp,const char * _Nullable types)</span><br><span class="line">&gt; </span><br><span class="line">&gt; cls : 表示给哪个类添加方法 </span><br><span class="line">&gt; </span><br><span class="line">&gt; SEL _Nonnull name : SEL即方法编号 name 指的应该是方法名称 因为有判断是sel方法 所以对应输入 sel </span><br><span class="line">&gt; </span><br><span class="line">&gt; IMP _Nonnull imp : 表示方法的实现 具体应该是值 SEL 所指定的 IMP 方法的实现。</span><br><span class="line">&gt; </span><br><span class="line">&gt; const char * _Nullable types : 方法类型。如果有参数的方法需要对方法的实现和class_addMethod方法内的方法类型参数做一些修改。</span><br><span class="line"></span><br><span class="line">### 实现字典和模型的自动转换</span><br><span class="line"></span><br><span class="line">说到字典和模型的转换很贴切的例子就是在数据请求后的JSON转Model了，因为这个过其实就是字典转模型的过程。直接代码讲解:</span><br><span class="line"></span><br><span class="line">首选来实现一个简单的GET请求</span><br></pre></td></tr></table></figure>
-<p>在ViewController中添加一个NSMutableData类型的实例变量，并添加<nsurlsessiondatadelegate>协议</nsurlsessiondatadelegate></p>
-<p>@property (nonatomic, strong) NSMutableData *responseData;</p>
-<p>// 设置getter方法</p>
-<ul>
-<li>(NSMutableData *)responseData {<br>  if (_responseData == nil) {<pre><code>_responseData = [NSMutableData data];
-</code></pre>  }<br>  return _responseData;<br>}</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">实现&lt;NSURLSessionDataDelegate&gt;相关协议</span><br></pre></td></tr></table></figure>
-<p>// 请求的是一个天气预报的API</p>
-<ul>
-<li><p>(void)networkRequest {<br>  NSURL <em>url = [NSURL URLWithString:@”<a href="http://www.weather.com.cn/data/sk/101110101.html" target="_blank" rel="external">http://www.weather.com.cn/data/sk/101110101.html</a>“];<br>  NSURLRequest </em>request = [NSURLRequest requestWithURL:url];</p>
-<p>  NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[NSOperationQueue mainQueue]];</p>
-<p>  NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request];</p>
-<p>  [dataTask resume];<br>}</p>
-</li>
-</ul>
-<p>// 接收到服务器响应的时候调用该方法</p>
-<ul>
-<li><p>(void)URLSession:(NSURLSession <em>)session dataTask:(NSURLSessionDataTask </em>)dataTask<br>didReceiveResponse:(NSURLResponse *)response<br>completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {</p>
-<p>  completionHandler(NSURLSessionResponseAllow);</p>
-</li>
-</ul>
-<p>}</p>
-<p>// 接收到服务器返回数据的时候会调用该方法，如果数据较大那么该方法可能会调用多次</p>
-<ul>
-<li>(void)URLSession:(NSURLSession <em>)session dataTask:(NSURLSessionDataTask </em>)dataTask didReceiveData:(NSData *)data {<br>  [self.responseData appendData:data];<br>}</li>
-</ul>
-<p>// 当请求完成(成功|失败)的时候会调用该方法，如果请求失败，则error有值</p>
-<ul>
-<li><p>(void)URLSession:(NSURLSession <em>)session task:(NSURLSessionTask </em>)task didCompleteWithError:(NSError *)error {<br>  if (error == nil) {</p>
-<pre><code>NSError *error;
-NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&amp;error];
-
-FourLines *lines = [FourLines modelWithDict2:dic];
-NSLog(@&quot;lines = %@&quot;,lines.weatherinfo);
-</code></pre><p>  } else {</p>
-<pre><code>NSLog(@&quot;请求失败 = %@&quot;,error);
-</code></pre><p>  }<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-------</span><br><span class="line"></span><br><span class="line">接下来设置Model类</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>// 添加两个类方法 来对NSDictionary进行类型转换</p>
-<ul>
-<li>(instancetype)modelWithDict:(NSDictionary *)dict;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>// 实现</p>
-<ul>
-<li><p>(instancetype)modelWithDict:(NSDictionary *)dict {<br>  id obj = [[self alloc] init];</p>
-<p>  unsigned int outCount = 0;</p>
-<p>  Ivar *ivarList = class_copyIvarList([self class], &amp;outCount);</p>
-<p>  for (int i = 0; i &lt; outCount; i++) {</p>
-<pre><code>Ivar ivar = ivarList[i];
-
-const char *name = ivar_getName(ivar);
-
-NSString *ivarName = [NSString stringWithUTF8String:name];
-
-NSString *key = [ivarName substringFromIndex:1];
-
-id value = dict[key];
-
-if (value) {
-    [obj setValue:value forKey:key];
-}
-</code></pre><p>  }</p>
-<p>  free(ivarList);</p>
-<p>  return obj;<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">重写`- (NSString *)description;`方法</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>(NSString <em>)description {<br>  unsigned int count;<br>  const char </em>clasName = object_getClassName(self);<br>  NSMutableString <em>string = [NSMutableString stringWithFormat:@”&lt;%s: %p&gt;:[ \n”,clasName, self];<br>  Class clas = NSClassFromString([NSString stringWithCString:clasName encoding:NSUTF8StringEncoding]);<br>  Ivar </em>ivars = class_copyIvarList(clas, &amp;count);<br>  for (int i = 0; i &lt; count; i++) {</p>
-<pre><code>@autoreleasepool {
-    Ivar ivar = ivars[i];
-    const char *name = ivar_getName(ivar);
-    //得到类型
-    NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(ivar) encoding:NSUTF8StringEncoding];
-    NSString *key = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
-    id value = [self valueForKey:key];
-    NSLog(@&quot;type = %@&quot;,type);
-    //确保BOOL 值输出的是YES 或 NO，这里的B是我打印属性类型得到的……
-    if ([type isEqualToString:@&quot;B&quot;]) {
-        value = (value == 0 ? @&quot;NO&quot; : @&quot;YES&quot;);
-    }
-    [string appendFormat:@&quot;\t%@ = %@\n&quot;,[self delLine:key], value];
-}
-</code></pre><p>  }<br>  [string appendFormat:@”]”];<br>  return string;<br>}</p>
-</li>
-<li><p>(NSString <em>)delLine:(NSString </em>)string {<br>  if ([string hasPrefix:@”_”]) {</p>
-<pre><code>return [string substringFromIndex:1];
-</code></pre><p>  }<br>  return string;<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">打印输出NSLog(@&quot;lines = %@&quot;,lines.weatherinfo);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>2019-05-12 19:34:27.705523+0800 Test[2666:406683] lines = {<br>    AP = “962.7hPa”;<br>    Radar = “JC_RADAR_AZ9290_JB”;<br>    SD = “52%”;<br>    WD = “\U897f\U5357\U98ce”;<br>    WS = “\U5c0f\U4e8e3\U7ea7”;<br>    WSE = “&lt;3”;<br>    city = “\U897f\U5b89”;<br>    cityid = 101110101;<br>    isRadar = 1;<br>    njd = “\U6682\U65e0\U5b9e\U51b5”;<br>    sm = “1.2”;<br>    temp = “23.3”;<br>    time = “18:00”;<br>}<br>```</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">policy：关联策略。有五种关联策略。</span><br><span class="line">OBJC_ASSOCIATION_ASSIGN 等价于 @property(assign)。</span><br><span class="line">OBJC_ASSOCIATION_RETAIN_NONATOMIC等价于 @property(strong, nonatomic)。</span><br><span class="line">OBJC_ASSOCIATION_COPY_NONATOMIC等价于@property(copy, nonatomic)。</span><br><span class="line">OBJC_ASSOCIATION_RETAIN等价于@property(strong,atomic)。</span><br><span class="line">OBJC_ASSOCIATION_COPY等价于@property(copy, atomic)。</span><br></pre></td></tr></table></figure>
+<h3 id="获取类中所有的变量和方法"><a href="#获取类中所有的变量和方法" class="headerlink" title="获取类中所有的变量和方法"></a>获取类中所有的变量和方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (void)getProperties &#123;</span><br><span class="line"></span><br><span class="line">    unsigned int count = 0;</span><br><span class="line">    </span><br><span class="line">    // 拷贝出UITextField所有的成员变量列表</span><br><span class="line">    Ivar *ivars = class_copyIvarList([UITextField class], &amp;count);</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i&lt;count; i++) &#123;</span><br><span class="line">        // 取出成员变量</span><br><span class="line">        Ivar ivar = *(ivars + i);</span><br><span class="line">        // 打印成员变量名字</span><br><span class="line">        NSLog(@&quot;变量名字 = %s&quot;, ivar_getName(ivar));</span><br><span class="line">        // 打印成员变量的数据类型</span><br><span class="line">        NSLog(@&quot;数据类型 = %s&quot;, ivar_getTypeEncoding(ivar));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实现NSCoding的自动归档和自动解档"><a href="#实现NSCoding的自动归档和自动解档" class="headerlink" title="实现NSCoding的自动归档和自动解档"></a>实现NSCoding的自动归档和自动解档</h3><p>首页得了解什么是<code>归档</code>和<code>解档</code></p>
+<p>归档(序列化 持久化):就是把需要存储的对象的数据存储到沙盒的Documents目录下的文件中，即存储到磁盘上，实现数据的持久化存储和备份。</p>
+<p>解档(接档 反序列化):从磁盘上读取归档下的文件数据，用来完成用户的需求。</p>
+<p>首先用代码简单讲解下归档和解档的实现</p>
+<p>1.创建一个Model类并添加NSSecureCoding协议</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// .h 文件</span><br><span class="line">@interface FourLines : NSObject &lt;NSSecureCoding&gt;</span><br><span class="line"></span><br><span class="line">@property (nonatomic,strong) NSString* name;//姓名</span><br><span class="line">@property (nonatomic,assign) NSString* age;//年龄</span><br><span class="line">@property (nonatomic,strong) NSString* work;//职业</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">// .m文件</span><br><span class="line">@implementation FourLines</span><br><span class="line"></span><br><span class="line">- (void)encodeWithCoder:(NSCoder *)aCoder &#123;</span><br><span class="line">    [aCoder encodeObject:self.name forKey:@&quot;name&quot;];</span><br><span class="line">    [aCoder encodeObject:self.age forKey:@&quot;age&quot;];</span><br><span class="line">    [aCoder encodeObject:self.work forKey:@&quot;work&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (instancetype)initWithCoder:(NSCoder *)aDecoder &#123;</span><br><span class="line">    if (self = [super init]) &#123;</span><br><span class="line">        self.name = [aDecoder decodeObjectForKey:@&quot;name&quot;];</span><br><span class="line">        self.age = [aDecoder decodeObjectForKey:@&quot;age&quot;];</span><br><span class="line">        self.work = [aDecoder decodeObjectForKey:@&quot;work&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (BOOL)supportsSecureCoding&#123;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>2.ViewController.m文件下</p>
+<p>归档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 注释掉的代码为iOS 12之前的实现方式  iOS 12之后以弃用了改方法</span><br><span class="line">- (void)saveClick:(UIButton *)sender &#123;</span><br><span class="line">    FourLines *line = [[FourLines alloc] init];</span><br><span class="line">    line.name = @&quot;例子&quot;;</span><br><span class="line">    line.age = @&quot;12&quot;;</span><br><span class="line">    line.work = @&quot;ios&quot;;</span><br><span class="line">    </span><br><span class="line">    NSError *error;</span><br><span class="line">    self.archivedData = [NSKeyedArchiver archivedDataWithRootObject:line requiringSecureCoding:YES error:&amp;error];</span><br><span class="line">    </span><br><span class="line">    if (self.archivedData == nil || error) &#123;</span><br><span class="line">        NSLog(@&quot;归档失败:%@&quot;, error);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">//    FourLines *newPerson = (FourLines *)[NSKeyedUnarchiver unarchivedObjectOfClass:FourLines.class fromData:data error:&amp;error];</span><br><span class="line">//    NSLog(@&quot;newPerson====:%@&quot;,newPerson.name);</span><br><span class="line">    </span><br><span class="line">//    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);</span><br><span class="line">//    NSString *documentPath = [path firstObject];</span><br><span class="line">//    NSLog(@&quot;path====:%@&quot;,documentPath);</span><br><span class="line">//    NSString *filePath = [documentPath stringByAppendingPathComponent:@&quot;lines&quot;];</span><br><span class="line">    </span><br><span class="line">//    [NSKeyedArchiver archiveRootObject:line toFile:filePath];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 注释掉的代码为iOS 12之前的实现方式  iOS 12之后以弃用了改方法</span><br><span class="line">- (void)takeClick:(UIButton *)sender &#123;</span><br><span class="line">    NSError *error = nil;</span><br><span class="line">    FourLines *per = [NSKeyedUnarchiver unarchivedObjectOfClass:[FourLines class] fromData:self.archivedData error:&amp;error];</span><br><span class="line">    if (per == nil || error) &#123;</span><br><span class="line">        NSLog(@&quot;解档失败:%@&quot;, error);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    NSLog(@&quot;name = %@ age = %@&quot;,per.name,per.age);</span><br><span class="line">    </span><br><span class="line">//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);</span><br><span class="line">//    NSString *documentPath = [paths objectAtIndex:0];</span><br><span class="line">//    NSString *filePath = [documentPath stringByAppendingPathComponent:@&quot;lines&quot;];</span><br><span class="line">    </span><br><span class="line">//    FourLines *lines = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];</span><br><span class="line">//    NSLog(@&quot;名字==%@,性别==%@,年龄==%@&quot;,lines.name,lines.age,lines.work);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>以上是归解档的简单实现方式，接下来了解下<code>Runtime</code>的自动归档和自动解档.</p>
+</blockquote>
+<p>如果还是拿上面的例子来修改的话其实只要改变Model类.m文件下的代码即可(记得添加<code>#import &lt;objc/runtime.h&gt;</code>)</p>
+<p>归档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (void)encodeWithCoder:(NSCoder *)aCoder &#123;</span><br><span class="line">    Class currentClass = self.class;</span><br><span class="line">    </span><br><span class="line">    while (currentClass &amp;&amp; currentClass != [NSObject class]) &#123;</span><br><span class="line">        unsigned int count = 0;</span><br><span class="line">        Ivar *ivars = class_copyIvarList(currentClass, &amp;count);</span><br><span class="line">        for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">            Ivar ivar = ivars[i];</span><br><span class="line">            NSString *key = [NSString stringWithUTF8String:ivar_getName(ivar)];</span><br><span class="line">            id value = [self valueForKey:key];</span><br><span class="line">            [aCoder encodeObject:value forKey:key];</span><br><span class="line">        &#125;</span><br><span class="line">        currentClass = [currentClass superclass];</span><br><span class="line">        free(ivars);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)initWithCoder:(NSCoder *)aDecoder &#123;</span><br><span class="line">    if (self = [super init]) &#123;</span><br><span class="line">        Class currentClass = self.class;</span><br><span class="line">        while (currentClass &amp;&amp; currentClass != [NSObject class]) &#123;</span><br><span class="line">            unsigned int count = 0;</span><br><span class="line">            Ivar *ivar = class_copyIvarList(currentClass, &amp;count);</span><br><span class="line">            for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">                NSString *key = [NSString stringWithUTF8String:ivar_getName(ivar[i])];</span><br><span class="line">                </span><br><span class="line">                id value = [aDecoder decodeObjectForKey:key];</span><br><span class="line">                </span><br><span class="line">                [self setValue:value forKey:key];</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            currentClass = [currentClass superclass];</span><br><span class="line">            free(ivar);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实从代码中就可以看出其实就是通过<code>Runtime</code>的<code>Ivar</code>来获取成员变量的列表从而使用for循环把成员变量自动添加到归档文件当中，而不用繁琐的一个个添加。</p>
+<h3 id="动态添加方法"><a href="#动态添加方法" class="headerlink" title="动态添加方法"></a>动态添加方法</h3><p>用意:当硬件内存过小的时候，如果我们将每个方法都直接加载到内存当中，但是却极少的使用这就造成了内存的浪费。像<code>懒加载</code>就很好的避开了这个问题，只有当被用到时才会被加载。</p>
+<p>都知道调用一个未实现的方法必然会报错奔溃 如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// FourLines类中未实现`draw:`方法</span><br><span class="line">FourLines *line = [[FourLines alloc] init];</span><br><span class="line">[line performSelector:@selector(draw:) withObject:@&quot;画一条线&quot;];</span><br><span class="line"></span><br><span class="line">// 警告:Undeclared selector &apos;draw:&apos;</span><br><span class="line">// 运行后就会崩溃</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当利用<code>- (id)performSelector:(SEL)aSelector withObject:(id)object;</code><br>1.调用一个未实现的<code>对象方法</code>时，就会调用<code>+(BOOL)resolveInstanceMethod:(SEL)sel</code>方法</p>
+<p>2.调用一个未实现的<code>类方法</code>时，就会调用<code>+(BOOL)resolveClassMethod:(SEL)sel</code>方法</p>
+</blockquote>
+<p>因为我们需要FourLines类中添加如下代码 </p>
+<p>首选添加<code>#import &lt;objc/message.h&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 因为调用的是一个对象方法 所以添加 + (BOOL)resolveInstanceMethod:(SEL)sel 方法</span><br><span class="line"></span><br><span class="line">+ (BOOL)resolveInstanceMethod:(SEL)sel &#123;</span><br><span class="line">    if (sel == @selector(draw:)) &#123;</span><br><span class="line">        BOOL isSuccess = class_addMethod(self, sel, (IMP)draw, &quot;v@:@&quot;);</span><br><span class="line">        </span><br><span class="line">        return isSuccess;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return [super resolveInstanceMethod:sel];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>class_addMethod(Class _Nullable cls, SEL _Nonnull name, IMP _Nonnull imp,const char * _Nullable types)</p>
+<p>cls : 表示给哪个类添加方法 </p>
+<p>SEL _Nonnull name : SEL即方法编号 name 指的应该是方法名称 因为有判断是sel方法 所以对应输入 sel </p>
+<p>IMP _Nonnull imp : 表示方法的实现 具体应该是值 SEL 所指定的 IMP 方法的实现。</p>
+<p>const char * _Nullable types : 方法类型。如果有参数的方法需要对方法的实现和class_addMethod方法内的方法类型参数做一些修改。</p>
+</blockquote>
+<h3 id="实现字典和模型的自动转换"><a href="#实现字典和模型的自动转换" class="headerlink" title="实现字典和模型的自动转换"></a>实现字典和模型的自动转换</h3><p>说到字典和模型的转换很贴切的例子就是在数据请求后的JSON转Model了，因为这个过其实就是字典转模型的过程。直接代码讲解:</p>
+<p>首选来实现一个简单的GET请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">在ViewController中添加一个NSMutableData类型的实例变量，并添加&lt;NSURLSessionDataDelegate&gt;协议</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) NSMutableData *responseData;</span><br><span class="line"></span><br><span class="line">// 设置getter方法</span><br><span class="line">- (NSMutableData *)responseData &#123;</span><br><span class="line">    if (_responseData == nil) &#123;</span><br><span class="line">        _responseData = [NSMutableData data];</span><br><span class="line">    &#125;</span><br><span class="line">    return _responseData;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现<nsurlsessiondatadelegate>相关协议</nsurlsessiondatadelegate></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">// 请求的是一个天气预报的API</span><br><span class="line">- (void)networkRequest &#123;</span><br><span class="line">    NSURL *url = [NSURL URLWithString:@&quot;http://www.weather.com.cn/data/sk/101110101.html&quot;];</span><br><span class="line">    NSURLRequest *request = [NSURLRequest requestWithURL:url];</span><br><span class="line">    </span><br><span class="line">    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[NSOperationQueue mainQueue]];</span><br><span class="line">    </span><br><span class="line">    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request];</span><br><span class="line">    </span><br><span class="line">    [dataTask resume];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 接收到服务器响应的时候调用该方法</span><br><span class="line">- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask</span><br><span class="line">didReceiveResponse:(NSURLResponse *)response</span><br><span class="line"> completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler &#123;</span><br><span class="line">    </span><br><span class="line">    completionHandler(NSURLSessionResponseAllow);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 接收到服务器返回数据的时候会调用该方法，如果数据较大那么该方法可能会调用多次</span><br><span class="line">- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data &#123;</span><br><span class="line">    [self.responseData appendData:data];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 当请求完成(成功|失败)的时候会调用该方法，如果请求失败，则error有值</span><br><span class="line">- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error &#123;</span><br><span class="line">    if (error == nil) &#123;</span><br><span class="line">        </span><br><span class="line">        NSError *error;</span><br><span class="line">        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&amp;error];</span><br><span class="line">        </span><br><span class="line">        FourLines *lines = [FourLines modelWithDict2:dic];</span><br><span class="line">        NSLog(@&quot;lines = %@&quot;,lines.weatherinfo);</span><br><span class="line">        </span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        NSLog(@&quot;请求失败 = %@&quot;,error);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>接下来设置Model类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 添加两个类方法 来对NSDictionary进行类型转换</span><br><span class="line">+ (instancetype)modelWithDict:(NSDictionary *)dict;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// 实现</span><br><span class="line">+ (instancetype)modelWithDict:(NSDictionary *)dict &#123;</span><br><span class="line">    id obj = [[self alloc] init];</span><br><span class="line">    </span><br><span class="line">    unsigned int outCount = 0;</span><br><span class="line">    </span><br><span class="line">    Ivar *ivarList = class_copyIvarList([self class], &amp;outCount);</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; outCount; i++) &#123;</span><br><span class="line">        Ivar ivar = ivarList[i];</span><br><span class="line">        </span><br><span class="line">        const char *name = ivar_getName(ivar);</span><br><span class="line">        </span><br><span class="line">        NSString *ivarName = [NSString stringWithUTF8String:name];</span><br><span class="line">        </span><br><span class="line">        NSString *key = [ivarName substringFromIndex:1];</span><br><span class="line">        </span><br><span class="line">        id value = dict[key];</span><br><span class="line">        </span><br><span class="line">        if (value) &#123;</span><br><span class="line">            [obj setValue:value forKey:key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    free(ivarList);</span><br><span class="line">    </span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重写<code>- (NSString *)description;</code>方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">- (NSString *)description &#123;</span><br><span class="line">    unsigned int count;</span><br><span class="line">    const char *clasName = object_getClassName(self);</span><br><span class="line">    NSMutableString *string = [NSMutableString stringWithFormat:@&quot;&lt;%s: %p&gt;:[ \n&quot;,clasName, self];</span><br><span class="line">    Class clas = NSClassFromString([NSString stringWithCString:clasName encoding:NSUTF8StringEncoding]);</span><br><span class="line">    Ivar *ivars = class_copyIvarList(clas, &amp;count);</span><br><span class="line">    for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">        @autoreleasepool &#123;</span><br><span class="line">            Ivar ivar = ivars[i];</span><br><span class="line">            const char *name = ivar_getName(ivar);</span><br><span class="line">            //得到类型</span><br><span class="line">            NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(ivar) encoding:NSUTF8StringEncoding];</span><br><span class="line">            NSString *key = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];</span><br><span class="line">            id value = [self valueForKey:key];</span><br><span class="line">            NSLog(@&quot;type = %@&quot;,type);</span><br><span class="line">            //确保BOOL 值输出的是YES 或 NO，这里的B是我打印属性类型得到的……</span><br><span class="line">            if ([type isEqualToString:@&quot;B&quot;]) &#123;</span><br><span class="line">                value = (value == 0 ? @&quot;NO&quot; : @&quot;YES&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            [string appendFormat:@&quot;\t%@ = %@\n&quot;,[self delLine:key], value];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    [string appendFormat:@&quot;]&quot;];</span><br><span class="line">    return string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSString *)delLine:(NSString *)string &#123;</span><br><span class="line">    if ([string hasPrefix:@&quot;_&quot;]) &#123;</span><br><span class="line">        return [string substringFromIndex:1];</span><br><span class="line">    &#125;</span><br><span class="line">    return string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打印输出NSLog(@”lines = %@”,lines.weatherinfo);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">2019-05-12 19:34:27.705523+0800 Test[2666:406683] lines = &#123;</span><br><span class="line">    AP = &quot;962.7hPa&quot;;</span><br><span class="line">    Radar = &quot;JC_RADAR_AZ9290_JB&quot;;</span><br><span class="line">    SD = &quot;52%&quot;;</span><br><span class="line">    WD = &quot;\U897f\U5357\U98ce&quot;;</span><br><span class="line">    WS = &quot;\U5c0f\U4e8e3\U7ea7&quot;;</span><br><span class="line">    WSE = &quot;&lt;3&quot;;</span><br><span class="line">    city = &quot;\U897f\U5b89&quot;;</span><br><span class="line">    cityid = 101110101;</span><br><span class="line">    isRadar = 1;</span><br><span class="line">    njd = &quot;\U6682\U65e0\U5b9e\U51b5&quot;;</span><br><span class="line">    sm = &quot;1.2&quot;;</span><br><span class="line">    temp = &quot;23.3&quot;;</span><br><span class="line">    time = &quot;18:00&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>返回的JSON格式还有模型套模型，模型中的数组中装着模型。在此就讲解最简单的一种，后期在讲解数据请求时在来细致讨论。</p>
 <p>其实<code>Runtime</code>实现字典和模型的转换，其实跟自动归解档原理上都是很像是的。都是利用<code>Runtime</code>的<code>Ivar</code>来获取成员变量列表，在利用for寻来来自动设置value和key，从而实现自动的转换。</p>
@@ -687,7 +537,7 @@ if (value) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态交换-类方法"><span class="nav-number">1.</span> <span class="nav-text">动态交换(类方法)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为分类添加属性"><span class="nav-number">2.</span> <span class="nav-text">为分类添加属性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态交换-类方法"><span class="nav-number">1.</span> <span class="nav-text">动态交换(类方法)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为分类添加属性"><span class="nav-number">2.</span> <span class="nav-text">为分类添加属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取类中所有的变量和方法"><span class="nav-number">3.</span> <span class="nav-text">获取类中所有的变量和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现NSCoding的自动归档和自动解档"><span class="nav-number">4.</span> <span class="nav-text">实现NSCoding的自动归档和自动解档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态添加方法"><span class="nav-number">5.</span> <span class="nav-text">动态添加方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现字典和模型的自动转换"><span class="nav-number">6.</span> <span class="nav-text">实现字典和模型的自动转换</span></a></li></ol></div>
             
 
           </div>
