@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Ryan">
 <meta property="og:description" content="近几个星期一直在看面试题，一开始说实话真的只是为了应付之后的面试但是越来越发现我的想法真的是一个天真+无邪！原因其实很简单面试的时候面试官可能只提几个跟自己公式项目相关的题目但也有可能提其他的，然而有一点是肯定的那就是随机性。作为应聘者的我们必然不清楚面试官会问些什么，但是我们又必须掌握那些面试官可能不会提及的问题。二来知识点其实都是连贯的很少有“单独“存在的理论知识，当你理解其中一层的含义的同时">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-18T14:03:56.144Z">
+<meta property="og:updated_time" content="2019-05-27T13:21:37.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理论知识总结一ARC">
 <meta name="twitter:description" content="近几个星期一直在看面试题，一开始说实话真的只是为了应付之后的面试但是越来越发现我的想法真的是一个天真+无邪！原因其实很简单面试的时候面试官可能只提几个跟自己公式项目相关的题目但也有可能提其他的，然而有一点是肯定的那就是随机性。作为应聘者的我们必然不清楚面试官会问些什么，但是我们又必须掌握那些面试官可能不会提及的问题。二来知识点其实都是连贯的很少有“单独“存在的理论知识，当你理解其中一层的含义的同时">
@@ -304,8 +304,14 @@
 <p>既然要“逐一”去理解那必然也得有个起步，经过这么久的面试图了解发现从ARC/MRC开始理解还是蛮合理的。废话不多说直接进入主题。（在此也说明下：本文主要内容还是来源于网络相关文章的总结，如有侵权行为望能联系我做及时修改 谢谢！）</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h3><p>ARC:自动管理内存-自动应用计数(Automatic Reference Count)起始于2011年。</p>
-<p>先大致了解下什么是<font color="red"> 引用计数 </font> 看下表：</p>
+<h3 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h3><p>ARC: 在Objective-C中采用ARC(Automatic Reference Counting)机制，让编译器来进行内存管理。<code>在新一代Apple LLVM 编译器中设置 ARC 为有效的状态，就无需再次键入 retain 或 release 代码。</code>这在降低程序奔溃，内存泄漏等风险的同时，很多程度上减少了开发程序的工作。编译器完全清楚目标对象，并能立刻释放那些不再被使用的对象。如此一来，应用程序将具有<code>可预测性</code>，且能流畅运行，速度也将大幅度提升。</p>
+<h4 id="内存管理方式"><a href="#内存管理方式" class="headerlink" title="内存管理方式"></a>内存管理方式</h4><ul>
+<li>自己生成的对象，自己所持有</li>
+<li>非自己成的对象，自己也能持有</li>
+<li>不需要自己持有的对象时释放</li>
+<li>非自己持有的对象无法释放</li>
+</ul>
+<h4 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h4><p>先大致了解下什么是<font color="red"> 引用计数 </font> 看下表：</p>
 <table>
 <thead>
 <tr>
@@ -324,7 +330,7 @@
 </tr>
 <tr>
 <td>释放对象</td>
-<td>release/autorelease 引用计数 - 1</td>
+<td>release 引用计数 - 1</td>
 </tr>
 <tr>
 <td>废弃对象</td>
@@ -332,7 +338,7 @@
 </tr>
 </tbody>
 </table>
-<p>引用计数:每个对象都有个可以递增或递减的计数器。如果想使某个对象继续存活，那就递增其引用计数；用完之后就递减其计数。计数为0，就表示没有对象想关注，此时就可以把它释放销毁。</p>
+<p>每个对象都有个可以递增或递减的计数器。如果想使某个对象继续存活，那就递增其引用计数；用完之后就递减其计数。计数为0，就表示没有对象想关注，此时就可以把它释放销毁。</p>
 <p>当一个对象被创建且被相关方法调用的时候，就会调用retain方法使得引用计数就+1，当调用release方法后相应的引用计数就-1，当引用计数为0时该对象的内存块就被释放。</p>
 <blockquote>
 <p>因为在MRC时代创建了多少RetainCount(引用计数数量)，就必须调用几次release，少一次都会由于内存的泄漏造成程序的crash。这无疑给程序员带来了巨大的工作量，由此ARC就产生了。</p>
@@ -347,14 +353,14 @@
 <blockquote>
 <p>然后ARC并不是万能也有弊端，无法处理retain cycle(内存的循环引用)。如果两个对象相互引用必即将导致程序的crash，因为这两个对象永远也不会被释放造成内存的泄漏。由此可以引出<font color="red">所有权修饰符</font>的相关知识点。</p>
 </blockquote>
-<p>主要有一下几种:</p>
-<ul>
+<h3 id="所有权修饰符"><a href="#所有权修饰符" class="headerlink" title="所有权修饰符"></a>所有权修饰符</h3><ul>
 <li>__strong  </li>
 <li>__weak</li>
 <li>__unsafe_unretained</li>
 <li>__autoreleasing</li>
 </ul>
-<p><font color="red">__strong</font>:强引用会持有对象，持有强引用的变量在超出其作用域时将被废弃，随着强引用的消失引用的对象会随之释放。默认情况下就为该修饰符(由此可以解释<font color="red">类型必须附加所有权修饰符</font>而平时写的代码中貌似并没有的原因)。</p>
+<h4 id="strong"><a href="#strong" class="headerlink" title="__strong:"></a><font color="red">__strong</font>:</h4><p>是id类型和对象类型默认的所有权修饰符。</p>
+<p>强引用会持有对象，持有强引用的变量在超出其作用域时将被废弃，随着强引用的消失引用的对象会随之释放。默认情况下就为该修饰符(由此可以解释<font color="red">类型必须附加所有权修饰符</font>而平时写的代码中貌似并没有的原因)。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 下面两行代码等同</span><br><span class="line">id object = [[NSObject alloc] init];</span><br><span class="line"></span><br><span class="line">id __strong = object = [[NSObject alloc] init];</span><br></pre></td></tr></table></figure>
 <p>例A:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">UILabel *labelA = [[UILabel alloc] init];</span><br><span class="line">UILabel *labelB = labelA;</span><br><span class="line"></span><br><span class="line">// 内存地址输出</span><br><span class="line">NSLog(@&quot;labelA = %p&quot;,labelA);</span><br><span class="line">NSLog(@&quot;labelB = %p&quot;,labelB);</span><br><span class="line">    </span><br><span class="line">labelA.text = @&quot;强引用&quot;;</span><br><span class="line">labelB.text = @&quot;也是强引用&quot;;</span><br><span class="line">    </span><br><span class="line">// 内容输出</span><br><span class="line">NSLog(@&quot;labelA = %@&quot;,labelA.text);</span><br><span class="line">NSLog(@&quot;labelB = %@&quot;,labelB.text);</span><br></pre></td></tr></table></figure>
@@ -527,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC"><span class="nav-number">1.</span> <span class="nav-text">ARC</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC"><span class="nav-number">1.</span> <span class="nav-text">ARC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存管理方式"><span class="nav-number">1.1.</span> <span class="nav-text">内存管理方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用计数"><span class="nav-number">1.2.</span> <span class="nav-text">引用计数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有权修饰符"><span class="nav-number">2.</span> <span class="nav-text">所有权修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#strong"><span class="nav-number">2.1.</span> <span class="nav-text">__strong:</span></a></li></ol></li></ol></div>
             
 
           </div>
