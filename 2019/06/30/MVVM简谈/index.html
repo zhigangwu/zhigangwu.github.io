@@ -79,19 +79,17 @@
 
 
 
-<meta name="description" content="UITableView嵌套UICollectionView其实就是在Cell当中添加UICollectionView，并设置其代理和数据源。所以关键代码在UITableViewCell当中。">
+<meta name="description" content="搬砖的时间总是过的很快，在新环境已满一个月了。想想之前找工作面试时被各种问题问的发愣时的种种尴尬，想想关键还是自身的原因。因为在上份工作期间只顾着学习新的知识点而没有花时间去做深入总结. 有了之前的教训应当引以为戒。 当然该文章主要目的并不是发牢骚。而是在这一个月内自己对MVVM的一个接触和大致的理解。虽然我一直很怀疑对于一年多点的经验的我现来才开始理解MVVM是否已晚，但我始终坚信学了总没有错！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UITableView嵌套UICollectionView">
-<meta property="og:url" content="http://yoursite.com/2019/03/02/UITableView嵌套UICollectionView/index.html">
+<meta property="og:title" content="MVVM简谈">
+<meta property="og:url" content="http://yoursite.com/2019/06/30/MVVM简谈/index.html">
 <meta property="og:site_name" content="Ryan">
-<meta property="og:description" content="UITableView嵌套UICollectionView其实就是在Cell当中添加UICollectionView，并设置其代理和数据源。所以关键代码在UITableViewCell当中。">
+<meta property="og:description" content="搬砖的时间总是过的很快，在新环境已满一个月了。想想之前找工作面试时被各种问题问的发愣时的种种尴尬，想想关键还是自身的原因。因为在上份工作期间只顾着学习新的知识点而没有花时间去做深入总结. 有了之前的教训应当引以为戒。 当然该文章主要目的并不是发牢骚。而是在这一个月内自己对MVVM的一个接触和大致的理解。虽然我一直很怀疑对于一年多点的经验的我现来才开始理解MVVM是否已晚，但我始终坚信学了总没有错！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/IMG_2125.PNG?raw=true">
-<meta property="og:updated_time" content="2019-03-03T11:55:43.925Z">
+<meta property="og:updated_time" content="2019-06-30T03:31:47.633Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UITableView嵌套UICollectionView">
-<meta name="twitter:description" content="UITableView嵌套UICollectionView其实就是在Cell当中添加UICollectionView，并设置其代理和数据源。所以关键代码在UITableViewCell当中。">
-<meta name="twitter:image" content="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/IMG_2125.PNG?raw=true">
+<meta name="twitter:title" content="MVVM简谈">
+<meta name="twitter:description" content="搬砖的时间总是过的很快，在新环境已满一个月了。想想之前找工作面试时被各种问题问的发愣时的种种尴尬，想想关键还是自身的原因。因为在上份工作期间只顾着学习新的知识点而没有花时间去做深入总结. 有了之前的教训应当引以为戒。 当然该文章主要目的并不是发牢骚。而是在这一个月内自己对MVVM的一个接触和大致的理解。虽然我一直很怀疑对于一年多点的经验的我现来才开始理解MVVM是否已晚，但我始终坚信学了总没有错！">
 
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/02/UITableView嵌套UICollectionView/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/06/30/MVVM简谈/"/>
 
 
 
 
 
-  <title>UITableView嵌套UICollectionView | Ryan</title>
+  <title>MVVM简谈 | Ryan</title>
   
 
 
@@ -234,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/UITableView嵌套UICollectionView/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/30/MVVM简谈/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ryan">
@@ -251,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">UITableView嵌套UICollectionView</h1>
+          <h1 class="post-title" itemprop="name headline">MVVM简谈</h1>
         
 
         <div class="post-meta">
@@ -263,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-02T00:00:00+08:00">
-                2019-03-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-30T00:00:00+08:00">
+                2019-06-30
               </time>
             
 
@@ -301,37 +299,16 @@
       
 
       
-        <p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/IMG_2125.PNG?raw=true" alt="demo"></p>
-<p>UITableView嵌套UICollectionView其实就是在Cell当中添加UICollectionView，并设置其代理和数据源。所以关键代码在UITableViewCell当中。</p>
-<a id="more"></a>
-<ul>
-<li>在UITableViewCell中设置UICollectionView</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) &#123;</span><br><span class="line">    super.init(style: style, reuseIdentifier: reuseIdentifier)</span><br><span class="line">    </span><br><span class="line">    let layout = UICollectionViewFlowLayout.init()</span><br><span class="line">    layout.minimumLineSpacing = 0</span><br><span class="line">    layout.minimumInteritemSpacing = 0</span><br><span class="line">    layout.sectionInset = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)</span><br><span class="line">    layout.itemSize = CGSize(width: (kScreenWidth - 25) / 4, height: (kScreenWidth - 25) / 4)</span><br><span class="line">    </span><br><span class="line">    collectionView = UICollectionView.init(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: (kScreenWidth - 25) / 4 * 3), collectionViewLayout: layout)</span><br><span class="line">    collectionView.backgroundColor = UIColor.white</span><br><span class="line">    collectionView.register(NestingCollectionViewCell.self, forCellWithReuseIdentifier: &quot;Nesting&quot;)</span><br><span class="line">    collectionView.delegate = self</span><br><span class="line">    collectionView.dataSource = self;</span><br><span class="line">    self.contentView.addSubview(collectionView)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>设置代理和数据源</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -&gt; Int &#123;</span><br><span class="line">    return self.collectionDataArr.count</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -&gt; UICollectionViewCell &#123;</span><br><span class="line">    </span><br><span class="line">    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: &quot;Nesting&quot;, for: indexPath)</span><br><span class="line">    </span><br><span class="line">    cell.backgroundColor = UIColor.yellow</span><br><span class="line">    </span><br><span class="line">    return cell</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>重点是点击代理的触发，因为是在Cell中实现的代理在Controll中无法直接获取到didSelectItemAt的值因此需要自定义一个代理</li>
-</ul>
-<p>1.声明一个delegate</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">weak var delegate : SelectCollectionItemDelegate?</span><br></pre></td></tr></table></figure>
-<p>2.设置delegate方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@objc protocol SelectCollectionItemDelegate &#123;</span><br><span class="line">    @objc optional func selectCollectionItem(indexPath : IndexPath)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3.实现代理方法 在UICollectionViewDelegate的didSelectItemAt方法中实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) &#123;</span><br><span class="line">   self.delegate!.selectCollectionItem!(indexPath: indexPath)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>4.接收自定义代理 在要实现的Controller中添加自定义代理并设置代理 此处为SelectCollectionItemDelegate 最后实现代理</p>
-<blockquote>
-<ul>
-<li>collectioncell.delegate = self   此处很关键</li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func selectCollectionItem(indexPath: IndexPath) &#123;</span><br><span class="line">    print(indexPath)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>自此一个简单的UITableView嵌套UICollectionView就算完成<a href="https://github.com/zhigangwu/UITableViewNestedUICollection" target="_blank" rel="external">Demo</a></p>
-<ul>
-<li>如有误不吝赐教！！！！！</li>
-</ul>
+        <p>搬砖的时间总是过的很快，在新环境已满一个月了。想想之前找工作面试时被各种问题问的发愣时的种种尴尬，想想关键还是自身的原因。因为在上份工作期间只顾着学习新的知识点而没有花时间去做<font color="red">深入总结</font>. 有了之前的教训应当引以为戒。</p>
+<p>当然该文章主要目的并不是发牢骚。而是在这一个月内自己对<font color="blue">MVVM</font>的一个接触和大致的理解。虽然我一直很怀疑对于一年多点的经验的我现来才开始理解<font color="blue">MVVM</font>是否已晚，但我始终坚信学了总没有错！</p>
+<p>之前是一直沉浸在自我认为的<font color="blue">MVC</font>中，对于<font color="blue">MVC</font>的理解还是远远不够的，也没有花时间去深入理解过，只是在大致的理解同时在项目中自我认为比较合理的去实现模块的分离工作。</p>
+<h4 id="低耦合"><a href="#低耦合" class="headerlink" title="低耦合"></a>低耦合</h4><p>经过一些Blog的阅读和实践，在<font color="red">低耦合</font>上我是这么理解的:<font color="orange">少写重复的代码,利用现有的资源实现相同的功能。</font>就拿TableView的实现来说<font color="blue">Delegate</font>和<font color="blue">DataSource </font>是必不可少的，在<font color="blue">MVC</font>中我会一股脑的在ViewController中去实现它们，然后在其他的类中重复着相同的事情。这显然不是<font color="red">低耦合</font></p>
+<p>而在<font color="blue">MVVM</font>的实现中我却发现真正<font color="red">低耦合</font>的其实只有<font color="blue">DataSource</font>。因为对于<font color="blue">Delegate</font>部分方法在不同功能的TableView实现中是不一样的。而<font color="blue">DataSource</font>的实现却是很固定的，简单点说无非就是多分区和单个分区的区别以及<font color="blue">cellForRowAtIndexPath</font>的内部实现了。这些实现完全可以通过一定的方法固定实现。</p>
+<p>当然<font color="blue">Delegate</font>也可以，但是相对于<font color="blue">DataSource</font>只有几个主要的方法来说<font color="blue">Delegate</font>是相当不稳定的。因为在平时的项目中<font color="blue">Delegate</font>的方法使用率相对比较是更高的。又比如<font color="blue">didSelectRowAtIndexPath</font>的方法又不得不从新回到ViewControll中来实现点击的跳转。</p>
+<p>按照<font color="blue">MVVM</font>设计思路，被重用的是<font color="BLUE">ViewModel</font>，而改变内容的其实只有<font color="BLUE">Model</font>。<font color="BLUE">Model</font>多半只涉及到数据跟操作是没有多大关联的。</p>
+<h4 id="开发需求"><a href="#开发需求" class="headerlink" title="开发需求"></a>开发需求</h4><p><font color="blue">MVVM</font>出现有个作用是为了解决在<font color="blue">MVC</font>中厚重的<font color="blue">ViewController</font>。但是以我目前的接触过的项目来说我并没有碰到过这种情况，因为目前的模块功能并不会复杂到不得不在<font color="blue">ViewController</font>内写过超千行的代码量。即使如此我想很多人都会绕过采用更优的方法来实现。</p>
+<hr>
+<p>其实以上几点并不是对<font color="blue">MVVM</font>的排挤，相反而是一种对比和理解。每个设计模式都有自己有优缺点，哪种更适合自己的项目、更容易维护当然只有自己最清楚了。</p>
 
       
     </div>
@@ -356,8 +333,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/27/UICollectionView/" rel="next" title="UICollectionView">
-                <i class="fa fa-chevron-left"></i> UICollectionView
+              <a href="/2019/05/12/Runtime/" rel="next" title="Runtime">
+                <i class="fa fa-chevron-left"></i> Runtime
               </a>
             
           </div>
@@ -365,10 +342,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/05/UICollectionView的无限轮播/" rel="prev" title="UICollectionView的无限轮播">
-                UICollectionView的无限轮播 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -420,8 +393,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -465,6 +447,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#低耦合"><span class="nav-number">1.</span> <span class="nav-text">低耦合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开发需求"><span class="nav-number">2.</span> <span class="nav-text">开发需求</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

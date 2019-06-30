@@ -229,6 +229,135 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/30/MVVM简谈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ryan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ryan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/30/MVVM简谈/" itemprop="url">MVVM简谈</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-30T00:00:00+08:00">
+                2019-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>搬砖的时间总是过的很快，在新环境已满一个月了。想想之前找工作面试时被各种问题问的发愣时的种种尴尬，想想关键还是自身的原因。因为在上份工作期间只顾着学习新的知识点而没有花时间去做<font color="red">深入总结</font>. 有了之前的教训应当引以为戒。</p>
+<p>当然该文章主要目的并不是发牢骚。而是在这一个月内自己对<font color="blue">MVVM</font>的一个接触和大致的理解。虽然我一直很怀疑对于一年多点的经验的我现来才开始理解<font color="blue">MVVM</font>是否已晚，但我始终坚信学了总没有错！</p>
+<p>之前是一直沉浸在自我认为的<font color="blue">MVC</font>中，对于<font color="blue">MVC</font>的理解还是远远不够的，也没有花时间去深入理解过，只是在大致的理解同时在项目中自我认为比较合理的去实现模块的分离工作。</p>
+<h4 id="低耦合"><a href="#低耦合" class="headerlink" title="低耦合"></a>低耦合</h4><p>经过一些Blog的阅读和实践，在<font color="red">低耦合</font>上我是这么理解的:<font color="orange">少写重复的代码,利用现有的资源实现相同的功能。</font>就拿TableView的实现来说<font color="blue">Delegate</font>和<font color="blue">DataSource </font>是必不可少的，在<font color="blue">MVC</font>中我会一股脑的在ViewController中去实现它们，然后在其他的类中重复着相同的事情。这显然不是<font color="red">低耦合</font></p>
+<p>而在<font color="blue">MVVM</font>的实现中我却发现真正<font color="red">低耦合</font>的其实只有<font color="blue">DataSource</font>。因为对于<font color="blue">Delegate</font>部分方法在不同功能的TableView实现中是不一样的。而<font color="blue">DataSource</font>的实现却是很固定的，简单点说无非就是多分区和单个分区的区别以及<font color="blue">cellForRowAtIndexPath</font>的内部实现了。这些实现完全可以通过一定的方法固定实现。</p>
+<p>当然<font color="blue">Delegate</font>也可以，但是相对于<font color="blue">DataSource</font>只有几个主要的方法来说<font color="blue">Delegate</font>是相当不稳定的。因为在平时的项目中<font color="blue">Delegate</font>的方法使用率相对比较是更高的。又比如<font color="blue">didSelectRowAtIndexPath</font>的方法又不得不从新回到ViewControll中来实现点击的跳转。</p>
+<p>按照<font color="blue">MVVM</font>设计思路，被重用的是<font color="BLUE">ViewModel</font>，而改变内容的其实只有<font color="BLUE">Model</font>。<font color="BLUE">Model</font>多半只涉及到数据跟操作是没有多大关联的。</p>
+<h4 id="开发需求"><a href="#开发需求" class="headerlink" title="开发需求"></a>开发需求</h4><p><font color="blue">MVVM</font>出现有个作用是为了解决在<font color="blue">MVC</font>中厚重的<font color="blue">ViewController</font>。但是以我目前的接触过的项目来说我并没有碰到过这种情况，因为目前的模块功能并不会复杂到不得不在<font color="blue">ViewController</font>内写过超千行的代码量。即使如此我想很多人都会绕过采用更优的方法来实现。</p>
+<hr>
+<p>其实以上几点并不是对<font color="blue">MVVM</font>的排挤，相反而是一种对比和理解。每个设计模式都有自己有优缺点，哪种更适合自己的项目、更容易维护当然只有自己最清楚了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/Runtime/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1380,132 +1509,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/06/WeekSelection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ryan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ryan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/06/WeekSelection/" itemprop="url">WeekSelection</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-06T00:00:00+08:00">
-                2019-03-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天写项目正好写到了一个实习期让我抓狂的功能-UITableView的多选，想想还是写个<a href="https://github.com/zhigangwu/WeekSelection" target="_blank" rel="external">Demo</a>记录下比较好。</p>
-<p>老规矩先上效果图：</p>
-<p><img src="https://github.com/zhigangwu/zhigangwu.github.io/blob/master/images/IMG_2138.GIF?raw=true" alt="demo"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/06/WeekSelection/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1556,7 +1559,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
