@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="CloneCD到一个目录然后执行以下步骤： 1$ git clone xx // 项目地址 过程 1234567Cloning into &amp;apos;ZGPageMenu&amp;apos;...remote: Enumerating objects: 121, done.remote: Counting objects: 100% (121/121), done.remote: Compressing">
+<meta name="description" content="load、initialize方法在平时的项目真的说实话压根就没怎么用过，唯一有印象的是在Runtime的Method Swilzzing的作用下在Cagetory中有定义过load方法。粗咯整理以下几点。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git clone &amp; update">
-<meta property="og:url" content="http://yoursite.com/2019/04/10/clone&update/index.html">
+<meta property="og:title" content="load &amp; initialize">
+<meta property="og:url" content="http://yoursite.com/2019/08/15/load & initialize/index.html">
 <meta property="og:site_name" content="Ryan">
-<meta property="og:description" content="CloneCD到一个目录然后执行以下步骤： 1$ git clone xx // 项目地址 过程 1234567Cloning into &amp;apos;ZGPageMenu&amp;apos;...remote: Enumerating objects: 121, done.remote: Counting objects: 100% (121/121), done.remote: Compressing">
+<meta property="og:description" content="load、initialize方法在平时的项目真的说实话压根就没怎么用过，唯一有印象的是在Runtime的Method Swilzzing的作用下在Cagetory中有定义过load方法。粗咯整理以下几点。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-11T13:24:56.751Z">
+<meta property="og:updated_time" content="2019-08-15T02:05:10.888Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git clone &amp; update">
-<meta name="twitter:description" content="CloneCD到一个目录然后执行以下步骤： 1$ git clone xx // 项目地址 过程 1234567Cloning into &amp;apos;ZGPageMenu&amp;apos;...remote: Enumerating objects: 121, done.remote: Counting objects: 100% (121/121), done.remote: Compressing">
+<meta name="twitter:title" content="load &amp; initialize">
+<meta name="twitter:description" content="load、initialize方法在平时的项目真的说实话压根就没怎么用过，唯一有印象的是在Runtime的Method Swilzzing的作用下在Cagetory中有定义过load方法。粗咯整理以下几点。">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/10/clone&update/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/08/15/load & initialize/"/>
 
 
 
 
 
-  <title>Git clone & update | Ryan</title>
+  <title>load & initialize | Ryan</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/clone&update/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/load & initialize/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ryan">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Git clone & update</h1>
+          <h1 class="post-title" itemprop="name headline">load & initialize</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T00:00:00+08:00">
-                2019-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T00:00:00+08:00">
+                2019-08-15
               </time>
             
 
@@ -299,26 +299,48 @@
       
 
       
-        <h3 id="Clone"><a href="#Clone" class="headerlink" title="Clone"></a>Clone</h3><p>CD到一个目录然后执行以下步骤：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone xx // 项目地址</span><br></pre></td></tr></table></figure>
-<p>过程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Cloning into &apos;ZGPageMenu&apos;...</span><br><span class="line">remote: Enumerating objects: 121, done.</span><br><span class="line">remote: Counting objects: 100% (121/121), done.</span><br><span class="line">remote: Compressing objects: 100% (85/85), done.</span><br><span class="line">remote: Total 121 (delta 34), reused 114 (delta 27), pack-reused 0</span><br><span class="line">Receiving objects: 100% (121/121), 56.63 KiB | 19.00 KiB/s, done.</span><br><span class="line">Resolving deltas: 100% (34/34), done.</span><br></pre></td></tr></table></figure>
-<p>然后就可以开始修改</p>
+        <p>load、initialize方法在平时的项目真的说实话压根就没怎么用过，唯一有印象的是在Runtime的Method Swilzzing的作用下在Cagetory中有定义过load方法。粗咯整理以下几点。</p>
 <a id="more"></a>
-<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p>CD 到项目根目录 然后执行:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m &quot;更新注释&quot;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
-<p>如何出现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">You are not currently on a branch.</span><br><span class="line">Please specify which branch you want to merge with.</span><br><span class="line">See git-pull(1) for details.</span><br><span class="line"> </span><br><span class="line">    git pull &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-<p>就执行:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br></pre></td></tr></table></figure>
-<p>然后再次执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
-<p>最后:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push</span><br></pre></td></tr></table></figure>
-<p>出现以下内容说明update成功,可以查询远程项目更新情况：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Enumerating objects: 5, done.</span><br><span class="line">Counting objects: 100% (5/5), done.</span><br><span class="line">Delta compression using up to 4 threads</span><br><span class="line">Compressing objects: 100% (3/3), done.</span><br><span class="line">Writing objects: 100% (3/3), 289 bytes | 289.00 KiB/s, done.</span><br><span class="line">Total 3 (delta 2), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (2/2), completed with 2 local objects.</span><br><span class="line">To https://github.com/zhigangwu/ZGPageMenu.git</span><br><span class="line">   7c1515f..b99fd1d  master -&gt; master</span><br></pre></td></tr></table></figure>
+<h3 id="void-load"><a href="#void-load" class="headerlink" title="+ (void)load;"></a>+ (void)load;</h3><p>####作用:</p>
+<ul>
+<li>在整个文件被加载到运行时，在 main 函数调用之前被 ObjC 运行时调用的钩子方法。相当于对类进行了某种程度的初始化操作，用来判断子类或分类是否已经正确载入系统，且能够被正常使用。</li>
+</ul>
+<p>####特点:</p>
+<ul>
+<li><p>该方法对于加入运行期系统的每个类及分类来说，必定会调用此方法，而且仅调用一次。</p>
+</li>
+<li><p>如果分类和其所属的类都定义了load方法，则优选调用类里面的在调用分类中的。这里有点要注意<font color="red">类中和分类中的load方法是都会被调用的</font>。</p>
+</li>
+<li><p>执行子类中的load方法之前，必定会先执行所有超类中的load方法。有依赖库的也优先于子类。</p>
+</li>
+</ul>
+<p>####注意点:</p>
+<ul>
+<li><p>load方法不遵从继承规则，即某个类没有实现load方法，是不会调用超类的load方法的。</p>
+</li>
+<li><p>在load方法中使用其他类是不完全的，因为无法确定其他类的load方法是否已经加载完毕。</p>
+</li>
+</ul>
+<p>####实现步骤</p>
+<ul>
+<li><p>首页是判断当前类中是否存在load方法，因为load方法不遵从继承规则，所以如果当前类没有实现load方法就不用在继续。</p>
+</li>
+<li><p>存在load方法就调用当前类的父类的load方法，父类如果存在分类的话也会调用。</p>
+</li>
+<li><p>父类的load方法都调用完后在调用当前类的方法，如果当前类有分类就等当前类中的load方法调用完毕后在调用分类中的load方法。</p>
+</li>
+</ul>
+<h3 id="void-initialize"><a href="#void-initialize" class="headerlink" title="+ (void)initialize;"></a>+ (void)initialize;</h3><p>initialize方法的作用跟load其实是没什么大致区别的，在此只记录一些不同的特性。</p>
+<p>####不同特性:</p>
+<ul>
+<li><p>只有当程序调用到了相关的类时，才调用。这点跟load是不同的，load方法是在系统接入时就会整个调用。而并不是在被调用时。</p>
+</li>
+<li><p>initialize方法是遵从继承原则的，当前类为实现initialize方法时，会调用超类的initialize方法。</p>
+</li>
+<li><p>只有执行initialize方法的那个线程可以操作类或类的实例。优选与线程的执行。</p>
+</li>
+</ul>
+
       
     </div>
     
@@ -342,8 +364,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/03/Git的各种总结/" rel="next" title="Git的各种总结">
-                <i class="fa fa-chevron-left"></i> Git的各种总结
+              <a href="/2019/06/30/MVVM简谈/" rel="next" title="MVVM简谈">
+                <i class="fa fa-chevron-left"></i> MVVM简谈
               </a>
             
           </div>
@@ -351,10 +373,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/17/理论知识总结一ARC/" rel="prev" title="理论知识总结一ARC">
-                理论知识总结一ARC <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -470,7 +488,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clone"><span class="nav-number">1.</span> <span class="nav-text">Clone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update"><span class="nav-number">2.</span> <span class="nav-text">Update</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#void-load"><span class="nav-number">1.</span> <span class="nav-text">+ (void)load;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#void-initialize"><span class="nav-number">2.</span> <span class="nav-text">+ (void)initialize;</span></a></li></ol></div>
             
 
           </div>
