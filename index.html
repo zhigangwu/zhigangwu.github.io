@@ -229,6 +229,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/Swift特殊情况笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ryan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ryan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/Swift特殊情况笔记/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T19:46:28+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="项目中不常出现但非常有用的设置"><a href="#项目中不常出现但非常有用的设置" class="headerlink" title="项目中不常出现但非常有用的设置"></a>项目中不常出现但非常有用的设置</h3><h3 id="2020-8-13"><a href="#2020-8-13" class="headerlink" title="2020-8-13"></a>2020-8-13</h3><p>没有更新Blog已经很久了，实在是懒的惭愧😂。终于在经历了去年的风波和今年的疫情后安稳了下来，也因为Swift也只是在之前工作之余中学过一点,并没有在真正的项目中使用过,所以还是很有必要好好的记录记录。</p>
+<p>从手中项目中的表现来看主要功能的实现还是没什么问题的，主要的问题在于一些比较特殊情况的实现或者说应该注意的点。这些情况实现虽然出现的不是那么的频繁，但能在不查资料的情况下使用它们还是再好不过的。以下都是在项目中碰到的情况。</p>
+<h4 id="Swift-4-0"><a href="#Swift-4-0" class="headerlink" title="Swift 4.0"></a>Swift 4.0</h4><h4 id="自定义TabelViewCell-的-arrowImage-在-scaleAspectFit-状态下如何修改原生的箭头图标"><a href="#自定义TabelViewCell-的-arrowImage-在-scaleAspectFit-状态下如何修改原生的箭头图标" class="headerlink" title="自定义TabelViewCell 的 arrowImage 在 .scaleAspectFit 状态下如何修改原生的箭头图标"></a>自定义TabelViewCell 的 arrowImage 在 .scaleAspectFit 状态下如何修改原生的箭头图标</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrowImage = <span class="type">UIImageView</span>.<span class="keyword">init</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">20</span>, height: <span class="number">20</span>))</span><br><span class="line"></span><br><span class="line">arrowImage.contentMode = .scaleAspectFit</span><br><span class="line"></span><br><span class="line">arrowImage.image = <span class="type">UIImage</span>(named: <span class="string">"next_icon"</span>)</span><br><span class="line">cell.accessoryView = arrowImage</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>虽然可以在自定义的Cell中设置统一的箭头Icon，但在Cell的布局相对简单又觉得创建一个自定义的Cell又显麻烦，而且用自带的Cell样式就能搞定的情况下要修改箭头的样式。使用这种方式就很方便了。</p>
+</blockquote>
+<h4 id="隐藏TabelViewCell-没有内容的区间-不显示没有内容区域的分割线"><a href="#隐藏TabelViewCell-没有内容的区间-不显示没有内容区域的分割线" class="headerlink" title="隐藏TabelViewCell 没有内容的区间(不显示没有内容区域的分割线)"></a>隐藏TabelViewCell 没有内容的区间(不显示没有内容区域的分割线)</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tableView.tableFooterView = <span class="type">UIView</span>()</span><br></pre></td></tr></table></figure>
+<h4 id="统一设置Navigation样式"><a href="#统一设置Navigation样式" class="headerlink" title="统一设置Navigation样式"></a>统一设置Navigation样式</h4><blockquote>
+<p>因为项目UI的样式其Navigation都是统一的——带有颜色的背景、导航标题颜色为白色且字号固定</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接在AppDelegate中设置</span></span><br><span class="line"><span class="comment">// 设置背景图</span></span><br><span class="line"><span class="keyword">var</span> backGroundImage = <span class="type">UIImage</span>(named: <span class="string">"nav_bg"</span>)</span><br><span class="line">backGroundImage = backGroundImage?.resizableImage(withCapInsets: <span class="type">UIEdgeInsets</span>.zero, resizingMode: <span class="type">UIImageResizingMode</span>.stretch)</span><br><span class="line"><span class="keyword">let</span> navBar = <span class="type">UINavigationBar</span>.appearance()</span><br><span class="line">navBar.setBackgroundImage(backGroundImage, <span class="keyword">for</span>: .<span class="keyword">default</span>)</span><br><span class="line">        </span><br><span class="line"><span class="comment">// 设置title字体和颜色</span></span><br><span class="line">navBar.tintColor = .white</span><br><span class="line">navBar.titleTextAttributes = [<span class="type">NSAttributedString</span>.<span class="type">Key</span>.foregroundColor : <span class="type">UIColor</span>.white,<span class="type">NSAttributedString</span>.<span class="type">Key</span>.font : <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">20</span>, weight: .bold)]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 隐藏Navigation返回按钮文字</span></span><br><span class="line"><span class="keyword">let</span> navBarItem = <span class="type">UIBarButtonItem</span>.appearance()</span><br><span class="line">navBarItem.setBackButtonTitlePositionAdjustment(<span class="type">UIOffset</span>(horizontal: -<span class="number">100</span>, vertical: <span class="number">0</span>), <span class="keyword">for</span>: .<span class="keyword">default</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果要单独隐藏摸个页面的Navigation返回按钮文字 可以使用下面方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// push时设置</span></span><br><span class="line"><span class="keyword">let</span> item = <span class="type">UIBarButtonItem</span>(title: <span class="string">""</span>, style: .plain, target: <span class="keyword">self</span>, action: <span class="literal">nil</span>)</span><br><span class="line"><span class="keyword">self</span>.navigationItem.backBarButtonItem = item;</span><br><span class="line"><span class="keyword">self</span>.navigationController?.pushViewController(<span class="type">ViewController</span>(), animated: <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="指定部分字符串颜色和字体"><a href="#指定部分字符串颜色和字体" class="headerlink" title="指定部分字符串颜色和字体"></a>指定部分字符串颜色和字体</h4><blockquote>
+<p>这个碰到的情况还是很高的,之前在项目中还傻傻的用两个Label来实现 (￣▽￣///)</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> string = <span class="type">NSString</span>(string: (terms.titleLabel?.text)!)</span><br><span class="line"></span><br><span class="line"><span class="comment">// range很好的定位了要设置的部分 </span></span><br><span class="line"><span class="keyword">let</span> range = string.range(of: <span class="string">"服务协议和隐私条款"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> mutableArr = <span class="type">NSMutableAttributedString</span>.<span class="keyword">init</span>(string: (terms.titleLabel?.text)!)</span><br><span class="line">        mutableArr.addAttribute(<span class="type">NSAttributedString</span>.<span class="type">Key</span>.foregroundColor, value: <span class="type">UIColor</span>.black, range: range)</span><br><span class="line">        </span><br><span class="line">terms.titleLabel?.attributedText = mutableArr</span><br></pre></td></tr></table></figure>
+<h4 id="修改placeholder的字体属性"><a href="#修改placeholder的字体属性" class="headerlink" title="修改placeholder的字体属性"></a>修改placeholder的字体属性</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">textField.placeholder = placeholderArray[indexPath.row]</span><br><span class="line"></span><br><span class="line">textField.attributedPlaceholder = <span class="type">NSAttributedString</span>.<span class="keyword">init</span>(string: placeholderArray[indexPath.row], attributes: [<span class="type">NSAttributedString</span>.<span class="type">Key</span>.foregroundColor : <span class="type">RGBAlpa</span>(<span class="number">169</span>,<span class="number">199</span>,<span class="number">218</span>,<span class="number">1</span>)])</span><br></pre></td></tr></table></figure>
+<h4 id="同时带标题和图片的按钮"><a href="#同时带标题和图片的按钮" class="headerlink" title="同时带标题和图片的按钮 "></a>同时带标题和图片的按钮 <img src="https://raw.githubusercontent.com/zhigangwu/zhigangwu.github.io/master/images/90E398D6-8A10-4E87-BDF8-DADAC5035264.png" alt=""></h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="type">UIButton</span>()</span><br><span class="line">button.setTitle(<span class="string">"5000积分"</span>, <span class="keyword">for</span>: .normal)</span><br><span class="line">button.setImage(<span class="type">UIImage</span>(named: <span class="string">"commodity_jifen_icon2"</span>), <span class="keyword">for</span>: .normal)</span><br><span class="line">button.imageEdgeInsets = <span class="type">UIEdgeInsets</span>(top: -<span class="number">30</span>, <span class="keyword">left</span>: <span class="number">0</span>, bottom: <span class="number">0</span>, <span class="keyword">right</span>: <span class="number">0</span>)</span><br><span class="line">button.titleEdgeInsets = <span class="type">UIEdgeInsets</span>(top: <span class="number">30</span>, <span class="keyword">left</span>: -<span class="number">30</span>, bottom: <span class="number">0</span>, <span class="keyword">right</span>: <span class="number">0</span>)</span><br><span class="line">button.backgroundColor = .red</span><br><span class="line">cell.addSubview(button)</span><br><span class="line">button.snp_makeConstraints &#123; (<span class="type">ConstraintMaker</span>) <span class="keyword">in</span></span><br><span class="line">     <span class="type">ConstraintMaker</span>.centerX.equalToSuperview()</span><br><span class="line">     <span class="type">ConstraintMaker</span>.size.equalTo(<span class="type">CGSize</span>(width: <span class="type">WIDTH</span> / <span class="number">3</span>, height: <span class="number">88</span>))</span><br><span class="line">     <span class="type">ConstraintMaker</span>.bottom.equalToSuperview().offset(-<span class="number">10</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>主要还是用到了UIButton的imageEdgeInsets和titleEdgeInsets 两个属性来控制图片和标题在button中的位置。图片和标题默认的<strong>Y轴</strong>位置都是根据按钮的横向水平位置。</p>
+<p>图片的位置居左，标题的<strong>X轴</strong>的坐标则在图片的右侧，宽度则为标题内容的宽度。</p>
+<p>要想调整位置则根据当前的坐标通过UIEdgeInsets来调整。</p>
+<p>UIEdgeInsets有 top、left、bottom、right 四个方向的属性  对应的属性值会在当前对应的坐标上进行加减 从而实现想要的位置。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/load & initialize/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1380,133 +1526,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/Git的各种总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ryan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ryan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/03/Git的各种总结/" itemprop="url">Git的各种总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-03T00:00:00+08:00">
-                2019-04-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>真的是说出来都是泪😭被Git整整蹂躏了一个多的星期，从Git上传项目到github到git创建私有库可以说是步步是坑。期间甚至一度的彪脏话一度的奔溃，虽然至本片总结算是解决了大部分难题但还是有很多问题的具体真正的解决步骤没有弄清楚（因为很多步骤感觉都是凑巧成功的—惭愧）。不管怎么样还是得好好的把解决了的问题总结总结。</p>
-<h2 id="Git上传代码至GitHub"><a href="#Git上传代码至GitHub" class="headerlink" title="Git上传代码至GitHub"></a>Git上传代码至GitHub</h2><blockquote>
-<p>其实这个问题我是在创建私有库的支行才碰到的但是发现这个其实是基础的东西（惭愧again），因为之前一直使用Desktop管理项目没使用过Git，现在发现坑还真不少….</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/03/Git的各种总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1557,7 +1576,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
